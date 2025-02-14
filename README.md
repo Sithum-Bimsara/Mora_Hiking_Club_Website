@@ -1,4 +1,9 @@
-mora-hiking/
+# Mora Hiking Club Website
+
+## Project Structure
+
+```
+Mora_Hiking_Club_Website/
 │── backend/
 │   ├── src/
 │   │   ├── config/
@@ -49,5 +54,4 @@ mora-hiking/
 │   │   │   ├── api.js                  # API call functions
 │   │   ├── App.js
 │   ├── package.json
-│   ├── .env
-│   ├── README.md
+```
