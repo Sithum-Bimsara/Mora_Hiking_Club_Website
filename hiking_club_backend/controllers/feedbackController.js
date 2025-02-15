@@ -1,66 +1,82 @@
-const db = require("../config/db");
+const feedbackModel = require("../models/feedbackModel");
 
-// Create a new feedback entry
-const addFeedback = async (feedbackData) => {
-    const query = "INSERT INTO feedback (event_id, rating, review) VALUES (?, ?, ?)";
-    const values = [
-        feedbackData.event_id,
-        feedbackData.rating,
-        feedbackData.review
-    ];
-    const [result] = await db.execute(query, values);
-    return result;
+// Create new feedback
+const addFeedback = async (req, res) => {
+    try {
+        const feedbackData = req.body;
+        const result = await feedbackModel.addFeedback(feedbackData);
+        res.status(201).json({ message: "Feedback submitted successfully", feedbackId: result.insertId });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
 };
 
-// Get all feedback entries
-const getAllFeedbacksByEvent = async (eventId) => {
-    const query = "SELECT * FROM feedback WHERE event_id = ?";
-    const [feedback] = await db.execute(query, [eventId]);
-    return feedback;
+// Get all feedback for a specific event
+const getAllFeedbacksByEvent = async (req, res) => {
+    try {
+        const { eventId } = req.params;
+        const feedbacks = await feedbackModel.getAllFeedbacksByEvent(eventId);
+        res.status(200).json(feedbacks);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
 };
 
 // Get specific feedback by ID
-const getFeedbackById = async (id) => {
-    const query = "SELECT * FROM feedback WHERE id = ?";
-    const [feedback] = await db.execute(query, [id]);
-    return feedback.length ? feedback[0] : null;
+const getFeedbackById = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const feedback = await feedbackModel.getFeedbackById(id);
+        if (!feedback) return res.status(404).json({ message: "Feedback not found" });
+        res.status(200).json(feedback);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
 };
 
-// Update feedback entry
-const updateFeedback = async (id, feedbackData) => {
-    const query = `
-        UPDATE feedback 
-        SET event_id = ?, rating = ?, review = ?
-        WHERE id = ?`;
-    const values = [
-        feedbackData.event_id,
-        feedbackData.rating,
-        feedbackData.review,
-        id
-    ];
-    const [result] = await db.execute(query, values);
-    return result;
+// Update feedback
+const updateFeedback = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const feedbackData = req.body;
+        await feedbackModel.updateFeedback(id, feedbackData);
+        res.status(200).json({ message: "Feedback updated successfully" });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
 };
 
-// Delete feedback entry
-const deleteFeedback = async (id) => {
-    const query = "DELETE FROM feedback WHERE id = ?";
-    const [result] = await db.execute(query, [id]);
-    return result;
+// Delete feedback
+const deleteFeedback = async (req, res) => {
+    try {
+        const { id } = req.params;
+        await feedbackModel.deleteFeedback(id);
+        res.status(200).json({ message: "Feedback deleted successfully" });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
 };
 
 // Get feedback count for an event
-const getFeedbackCount = async (eventId) => {
-    const query = `SELECT COUNT(*) AS feedback_count FROM feedback WHERE event_id = ?`;
-    const [result] = await db.execute(query, [eventId]);
-    return result[0].feedback_count;
+const getFeedbackCount = async (req, res) => {
+    try {
+        const { eventId } = req.params;
+        const count = await feedbackModel.getFeedbackCount(eventId);
+        res.status(200).json({ feedbackCount: count });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
 };
 
-// Get the avergae rating of an event
-const getAverageRating = async (eventId) => {
-    const query = `SELECT AVG(rating) AS average_rating FROM feedback WHERE event_id = ?`;
-    const [result] = await db.execute(query, [eventId]);
-    return result[0].average_rating || 0;
+// Get average rating for an event
+const getAverageRating = async (req, res) => {
+    try {
+        const { eventId } = req.params;
+        const averageRating = await feedbackModel.getAverageRating(eventId);
+        res.status(200).json({ averageRating });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
 };
 
 module.exports = {
@@ -70,5 +86,6 @@ module.exports = {
     updateFeedback,
     deleteFeedback,
     getFeedbackCount,
-    getAverageRating
+    getAverageRating,
 };
+
