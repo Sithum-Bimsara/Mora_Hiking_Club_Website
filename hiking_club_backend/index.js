@@ -9,14 +9,17 @@ const articleRoutes = require("./routes/articleRoutes");
 const commentRoutes = require("./routes/articleCommentRoutes");
 const knowledgeCategoryRoutes = require("./routes/knowledgeCategoryRoutes");
 const knowledgeRoutes = require("./routes/knowledgeRoutes");
+const memberRoutes = require("./routes/memberRoutes");
+const applicantRoutes = require("./routes/applicantRoutes");
+const authRoutes = require("./routes/authRoutes");
 
 const mySqlPool = require("./config/db");
-
 dotenv.config();
 
 const app = express();
-app.use(express.json());
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true })); 
 
 
 app.use("/api/articles", articleRoutes);
@@ -29,6 +32,9 @@ app.use("/api/articles", articleRoutes);
 app.use("/api/comments", commentRoutes);
 app.use("/api/knowledge-categories", knowledgeCategoryRoutes);
 app.use("/api/knowledge", knowledgeRoutes);
+app.use("/api/members", memberRoutes);
+app.use("/api/applicants", applicantRoutes);
+app.use("/auth", authRoutes);
 
 const port = process.env.PORT || 8000;
 
