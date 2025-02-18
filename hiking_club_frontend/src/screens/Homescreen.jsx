@@ -7,11 +7,11 @@ const Homescreen = () => {
 
       {/* Hero Section */}
       <header className="hero">
-        <h1>MORA HIKING CLUB</h1>
-        <div className="hike-cards">
-          <div className="card">New hikes</div>
-          <div className="card">Hikes</div>
-          <div className="card"></div>
+        <h1 style={{height : '300px',fontSize : '80px'}}>MORA HIKING CLUB</h1>
+        <div style={{height : '300px'}} className="hike-cards">
+          <div style={{height : '300px', width : '300px'}} className="card">New hikes</div>
+          <div style={{height : '300px', width : '300px'}} className="card">Hikes</div>
+          <div style={{height : '300px', width : '300px'}} className="card"></div>
         </div>
       </header>
 
