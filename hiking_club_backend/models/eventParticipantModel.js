@@ -2,14 +2,14 @@ const db = require("../config/db");
 
 // Add an event participant
 const addEventParticipant = async (eventId, memberId, status) => {
-    const query = "INSERT INTO event_participant (event_id, member_id, status) VALUES (?, ?, ?)";
+    const query = "INSERT INTO event_participant (event_id, member_id, participation_status) VALUES (?, ?, ?)";
     const [result] = await db.execute(query, [eventId, memberId, status]);
     return result;
 };
 
 // Update event participant status
 const updateEventParticipantStatus = async (eventId, memberId, status) => {
-    const query = "UPDATE event_participant SET status = ? WHERE event_id = ? AND member_id = ?";
+    const query = "UPDATE event_participant SET participation_status = ? WHERE event_id = ? AND member_id = ?";
     const [result] = await db.execute(query, [status, eventId, memberId]);
     return result;
 };

@@ -3,8 +3,8 @@ const eventParticipantModel = require("../models/eventParticipantModel");
 // Add an event participant
 const addEventParticipant = async (req, res) => {
     try {
-        const { event_id, member_id, status } = req.body;
-        await eventParticipantModel.addEventParticipant(event_id, member_id, status);
+        const { event_id, member_id, participation_status } = req.body;
+        await eventParticipantModel.addEventParticipant(event_id, member_id, participation_status);
         res.status(201).json({ message: "Event participant added successfully" });
     } catch (error) {
         res.status(500).json({ error: error.message });
@@ -15,8 +15,8 @@ const addEventParticipant = async (req, res) => {
 const updateEventParticipantStatus = async (req, res) => {
     try {
         const { event_id, member_id } = req.params;
-        const { status } = req.body;
-        await eventParticipantModel.updateEventParticipantStatus(event_id, member_id, status);
+        const { participation_status } = req.body;
+        await eventParticipantModel.updateEventParticipantStatus(event_id, member_id, participation_status);
         res.status(200).json({ message: "Event participant status updated successfully" });
     } catch (error) {
         res.status(500).json({ error: error.message });
