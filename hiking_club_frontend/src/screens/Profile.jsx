@@ -4,14 +4,14 @@ import "../styles/Profile.css";
 const Profile = () => {
   return (
     <div className="profile-container">
-      <h2 className="profile-title">My Account</h2>
+      <h2 style = {{fontSize : '40px'}} className="profile-title">My Account</h2>
       <div className="profile-content">
         <div className="profile-left">
-          <div className="profile-picture"></div>
+          <div style={{height : '300px',width : '300px'}} className="profile-picture"></div>
           <button className="save-button">Save</button>
         </div>
         <div className="profile-right">
-          <h4>My Files</h4>
+          <h4 style = {{fontSize : '30px'}}>My Files</h4>
           <div className="divider"></div>
         </div>
       </div>

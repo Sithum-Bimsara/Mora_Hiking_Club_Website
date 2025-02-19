@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/Articles.css";
+import "../styles/Knowledge.css";
 
 const articles = [
   {
@@ -14,10 +14,10 @@ const articles = [
   },
 ];
 
-const Articles = () => {
+const Knowledge = () => {
   return (
     <div className="articles-container">
-      <h1 style = {{fontSize : '50px'}} className="articles-title">Articles</h1>
+      <h1 style = {{fontSize : '50px'}} className="articles-title">Knowledge</h1>
       <div className="search-bar">
         <input type="text" placeholder="Search" />
       </div>
@@ -36,4 +36,4 @@ const Articles = () => {
   );
 };
 
-export default Articles;
+export default Knowledge;

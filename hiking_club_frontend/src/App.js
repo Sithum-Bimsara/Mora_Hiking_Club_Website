@@ -6,6 +6,7 @@ import "./App.css";
 import Hikes from "./screens/Hikes";
 import Profile from "./screens/Profile";
 import Articles from "./screens/Articles";
+import Knowledge from "./screens/Knowledge";
 
 function App() {
   return ( 
@@ -17,6 +18,7 @@ function App() {
           <Route path="/hikes" element={<Hikes />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/articles" element={<Articles />} />
+          <Route path="/knowledge" element={<Knowledge />} />
         </Routes>
       </div>
     </BrowserRouter>

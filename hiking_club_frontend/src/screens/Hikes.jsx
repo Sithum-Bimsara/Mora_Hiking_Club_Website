@@ -4,9 +4,8 @@ import "../styles/Hikes.css";
 const Hikes = () => {
   return (
     <div className="hikes-container">
-      <h1 className="hikes-title">Hikes</h1>
+      <h1 style = {{fontSize : '50px'}} className="hikes-title">Hikes</h1>
 
-      {/* Available Hikes Section */}
       <div className="section">
         <h2>Available Hikes</h2>
         <div className="hike-card large">
