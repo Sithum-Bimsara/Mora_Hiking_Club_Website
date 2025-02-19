@@ -1,5 +1,36 @@
 # Mora Hiking Club Website
 
+## ✍️ : Set Up Gmail Authentication
+
+To send emails using **Nodemailer**, we need to configure Gmail authentication. Follow these steps carefully:
+
+1. **Go to your Google Account**  Manage Account  Security 
+2. **Enable 2-Step Verification**  (Mandatory for App Passwords)
+3. **Create an App Password** :
+   - Scroll down to **App Passwords** (Search if necessary )
+   - Click **Generate App Password**
+   - Enter the **app name** (e.g., "Nodemailer")
+   - Copy the **generated password** 
+
+📌 **What is an App Password?**
+An **App Password** is a unique code that allows less secure apps (like our Node.js server) to access your Gmail without using your main password. It ensures security while allowing email automation. 
+
+---
+
+##  ✍️ : Setup your .env file as this is , 
+```
+DB_HOST='localhost'
+DB_USER='root'
+DB_PASSWORD='your_password_here'
+DB_NAME='mora_hiking_club'
+PORT=8080
+
+EMAIL_USER=your_email.address
+EMAIL_PASS=Your_App_Password
+```
+
+
+
 ## Project Structure
 
 ```
