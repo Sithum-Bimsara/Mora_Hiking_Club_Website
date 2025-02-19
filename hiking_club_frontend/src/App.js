@@ -4,6 +4,7 @@ import Header from "./components/Header";
 import Homescreen from "./screens/Homescreen";  
 import "./App.css";  
 import Hikes from "./screens/Hikes";
+import Profile from "./screens/Profile";
 
 function App() {
   return ( 
@@ -13,6 +14,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Homescreen />} /> 
           <Route path="/hikes" element={<Hikes />} />
+          <Route path="/profile" element={<Profile />} />
         </Routes>
       </div>
     </BrowserRouter>
