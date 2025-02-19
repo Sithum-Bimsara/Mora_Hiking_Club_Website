@@ -58,6 +58,10 @@ const updateApplicationStatus = async (applicant_id, application_status) => {
     return result;
 };
 
+
+
+
+
 module.exports = {
     createApplicant,
     findApplicantByEmail,
