@@ -110,7 +110,7 @@ body {
 
 /* Background Image */
 .Homescreen {
-  background-image: url("../assets/images/background.png");  /* ✅ Use background image */
-  background-size: cover;   /* ✅ Ensure full coverage */
+  background-image: url("../assets/images/background.png");  
+  background-size: cover;   
   background-position: center;
 }
