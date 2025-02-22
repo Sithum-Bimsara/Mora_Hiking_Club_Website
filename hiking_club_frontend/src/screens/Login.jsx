@@ -12,7 +12,7 @@ const Login = () => {
                 <div className="login-content">
                     <h2>Login</h2>
                     <p>
-                        DON'T HAVE AN ACCOUNT? <a href="#">Sign Up</a>
+                        DON'T HAVE AN ACCOUNT? <a href="/register">Sign Up</a>
                     </p>
                     <input type="email" placeholder="Email" />
                     <input type="password" placeholder="Password" />
