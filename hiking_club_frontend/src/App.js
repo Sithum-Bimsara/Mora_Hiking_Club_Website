@@ -7,6 +7,7 @@ import Hikes from "./screens/Hikes";
 import Profile from "./screens/Profile";
 import Articles from "./screens/Articles";
 import Knowledge from "./screens/Knowledge";
+import Login from "./screens/Login";
 
 function App() {
   return ( 
@@ -19,6 +20,7 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/articles" element={<Articles />} />
           <Route path="/knowledge" element={<Knowledge />} />
+          <Route path="/login" element={<Login/>} />
         </Routes>
       </div>
     </BrowserRouter>
