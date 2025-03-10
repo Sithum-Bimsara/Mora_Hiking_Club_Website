@@ -84,7 +84,6 @@ const signup = async (req, res) => {
 };
 
 
-// Login controller
 const login = async (req, res) => {
     try {
         const { email, password } = req.body;
@@ -101,15 +100,17 @@ const login = async (req, res) => {
             return res.status(401).json({ error: "Invalid email or password" });
         }
 
-        // Generate JWT token
-        const token = jwt.sign(
-            { 
-                applicantId: applicant.applicant_id, 
-                full_name: applicant.full_name 
-            },
-            process.env.JWT_SECRET,
-            { expiresIn: process.env.JWT_EXPIRES_IN }
-        );
+        // Generate JWT token with member details
+        const tokenPayload = {
+            applicantId: applicant.applicant_id,
+            full_name: applicant.full_name,
+            member_id: applicant.member_id || null, 
+            role: applicant.role || "member",
+        };
+
+        const token = jwt.sign(tokenPayload, process.env.JWT_SECRET, {
+            expiresIn: process.env.JWT_EXPIRES_IN,
+        });
 
         // Return token in response
         res.status(200).json({ message: "Login successful", token });
@@ -117,6 +118,7 @@ const login = async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 };
+
 
 // Logout controller
 const logout = () => {

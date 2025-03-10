@@ -21,9 +21,14 @@ const createApplicant = async (application_status, password_hash, first_name, la
     return result;
 };
 
-// Find applicant by email (Login)
 const findApplicantByEmail = async (email) => {
-    const query = "SELECT applicant_id, full_name, email, password_hash FROM applicant WHERE email = ?";
+    const query = `
+        SELECT a.applicant_id, a.full_name, a.email, a.password_hash, 
+               m.member_id, m.role 
+        FROM applicant a
+        LEFT JOIN member m ON a.applicant_id = m.applicant_id
+        WHERE a.email = ?`;
+    
     const [result] = await db.execute(query, [email]);
     return result[0]; // Return the first matching applicant
 };
