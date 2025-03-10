@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-require("dotenv").config(); 
+require("dotenv").config();
 
 const authenticateUser = (req, res, next) => {
     const token = req.header("Authorization");
@@ -9,10 +9,9 @@ const authenticateUser = (req, res, next) => {
     }
 
     try {
-        // Remove "Bearer " prefix if present
         const decoded = jwt.verify(token.replace("Bearer ", ""), process.env.JWT_SECRET);
-        req.user = decoded; // Attach user data to request
-        next(); // Move to the next middleware/controller
+        req.user = decoded; // Attach user data (including role) to request
+        next();
     } catch (error) {
         res.status(401).json({ error: "Invalid or expired token" });
     }

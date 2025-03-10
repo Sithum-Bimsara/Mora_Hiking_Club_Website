@@ -1,7 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const feedbackController = require("../controllers/feedbackController");
-const authenticateUser = require("../middlewares/authMiddleware"); 
+const authenticateUser = require("../middlewares/authMiddleware");
+const authorizeAdmin = require("../middlewares/authorizeAdmin"); 
 
 router.post("/", authenticateUser,feedbackController.addFeedback);
 router.get("/event/:eventId", authenticateUser,feedbackController.getAllFeedbacksByEvent);
