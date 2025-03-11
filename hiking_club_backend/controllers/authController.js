@@ -1,18 +1,29 @@
 const applicantModel = require("../models/applicantModel");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const multer = require("multer");
 require("dotenv").config();
+
+// Configure multer for file uploads
+const upload = multer({ dest: "uploads/" });
 
 // Signup controller
 const signup = async (req, res) => {
+    // console.log(req.body);
     try {
+        const { body, file } = req;
+        
+        // Extract payment proof path from uploaded file
+        const paymentProofPath = file ? file.path : null;
+        body.payment_proof_link = paymentProofPath;
+
         const {
             password_hash, first_name, last_name, full_name, date_of_birth, NIC_no, gender, email, 
             contact_no, university_id, faculty, degree_program, year, bio_description, skills, 
             facebook_url, instagram_url, blood_type, first_aid_skills, injuries, 
-            long_term_medical_issues, medicines, payment_proof_link, emergency_relationship, 
+            long_term_medical_issues, medicines, emergency_relationship, 
             emergency_contact_name, emergency_contact_no_1, emergency_contact_no_2, emergency_address
-        } = req.body;
+        } = body;
 
         // Check if the email already exists
         const existingApplicant = await applicantModel.findApplicantByEmail(email);
@@ -28,7 +39,7 @@ const signup = async (req, res) => {
             hashedPassword, first_name, last_name, full_name, date_of_birth, NIC_no, gender, email, 
             contact_no, university_id, faculty, degree_program, year, bio_description, skills, 
             facebook_url, instagram_url, blood_type, first_aid_skills, injuries, 
-            long_term_medical_issues, medicines, payment_proof_link, emergency_relationship, 
+            long_term_medical_issues, medicines, paymentProofPath, emergency_relationship, 
             emergency_contact_name, emergency_contact_no_1, emergency_contact_no_2, emergency_address
         );
 
@@ -44,7 +55,6 @@ const signup = async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 };
-
 
 const login = async (req, res) => {
     try {
@@ -81,17 +91,14 @@ const login = async (req, res) => {
     }
 };
 
-
 // Logout controller
 const logout = () => {
     localStorage.removeItem("token");
     console.log("User logged out");
 };
 
-
-
 module.exports = {
-    signup,
+    signup: [upload.single("payment_proof_link"), signup], // Middleware for file upload before signup
     login,
     logout,
 };

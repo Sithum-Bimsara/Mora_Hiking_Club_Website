@@ -46,15 +46,6 @@ exports.updateApplicationStatus = async (req, res) => {
             if (member && member.email) {
                 const { email, first_name, member_id } = member;
                 sendApprovalEmail(email, first_name, member_id);
-
-                // await transporter.sendMail({
-                //     from: process.env.EMAIL_USER,
-                //     to: email,
-                //     subject: "🎉 Application Approved!",
-                //     text: `Dear ${first_name},\n\nCongratulations! Your application has been approved.Your member ID: ${member_id}\n\nBest regards,\nYour Team`,
-                // });
-
-                // console.log("Email sent successfully to:", email);
             } else {
                 console.log("No email found for applicant_id:", applicant_id);
             }
