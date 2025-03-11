@@ -7,78 +7,40 @@ require("dotenv").config();
 const signup = async (req, res) => {
     try {
         const {
-            application_status,
-            password_hash,
-            first_name,
-            last_name,
-            full_name,
-            date_of_birth,
-            NIC_no,
-            gender,
-            email,
-            contact_no,
-            university_id,
-            faculty,
-            degree_program,
-            year,
-            bio_description,
-            skills,
-            facebook_url,
-            instagram_url,
-            contact_person_id,
-            blood_type,
-            first_aid_skills,
-            injuries,
-            long_term_medical_issues,
-            medicines,
-            payment_proof_link
+            password_hash, first_name, last_name, full_name, date_of_birth, NIC_no, gender, email, 
+            contact_no, university_id, faculty, degree_program, year, bio_description, skills, 
+            facebook_url, instagram_url, blood_type, first_aid_skills, injuries, 
+            long_term_medical_issues, medicines, payment_proof_link, emergency_relationship, 
+            emergency_contact_name, emergency_contact_no_1, emergency_contact_no_2, emergency_address
         } = req.body;
 
-        
+        // Check if the email already exists
         const existingApplicant = await applicantModel.findApplicantByEmail(email);
         if (existingApplicant) {
             return res.status(400).json({ error: "A user with that email already exists." });
         }
-        
+
+        // Hash the password
         const hashedPassword = await bcrypt.hash(password_hash, 10);
-        
+
+        // Call the stored procedure
         await applicantModel.createApplicant(
-            application_status,
-            hashedPassword,
-            first_name,
-            last_name,
-            full_name,
-            date_of_birth,
-            NIC_no,
-            gender,
-            email,
-            contact_no,
-            university_id,
-            faculty,
-            degree_program,
-            year,
-            bio_description,
-            skills,
-            facebook_url,
-            instagram_url,
-            contact_person_id,
-            blood_type,
-            first_aid_skills,
-            injuries,
-            long_term_medical_issues,
-            medicines,
-            payment_proof_link
+            hashedPassword, first_name, last_name, full_name, date_of_birth, NIC_no, gender, email, 
+            contact_no, university_id, faculty, degree_program, year, bio_description, skills, 
+            facebook_url, instagram_url, blood_type, first_aid_skills, injuries, 
+            long_term_medical_issues, medicines, payment_proof_link, emergency_relationship, 
+            emergency_contact_name, emergency_contact_no_1, emergency_contact_no_2, emergency_address
         );
 
         res.status(201).json({ message: "Signup successful" });
     } catch (error) {
         console.error("Signup Error:", error);
 
-        // Handle database-specific duplicate entry error (example for MySQL)
+        // Handle duplicate entry error (specific to MySQL)
         if (error.code === 'ER_DUP_ENTRY') {
-            return res.status(400).json({ error: "Duplicate entry. A user with this information already exists." });
+            return res.status(400).json({ error: "Duplicate entry. A user with this email already exists." });
         }
-        
+
         res.status(500).json({ error: error.message });
     }
 };

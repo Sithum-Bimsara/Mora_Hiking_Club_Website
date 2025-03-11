@@ -1,23 +1,22 @@
 const db = require("../config/db");
 
-const createApplicant = async (application_status, password_hash, first_name, last_name, full_name
-    ,date_of_birth, NIC_no, gender, email, contact_no, university_id, 
-    faculty, degree_program, year, bio_description, skills, facebook_url, 
-    instagram_url, contact_person_id, blood_type, first_aid_skills, injuries, 
-    long_term_medical_issues, medicines, payment_proof_link) => {
-    const query = `INSERT INTO applicant (
-        application_status, password_hash, first_name, last_name, full_name
-        ,date_of_birth, NIC_no, gender, email, contact_no, university_id, 
-        faculty, degree_program, year, bio_description, skills, facebook_url, 
-        instagram_url, contact_person_id, blood_type, first_aid_skills, injuries, 
-        long_term_medical_issues, medicines, payment_proof_link
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+const createApplicant = async (
+    password_hash, first_name, last_name, full_name, date_of_birth, NIC_no, gender, email, 
+    contact_no, university_id, faculty, degree_program, year, bio_description, skills, 
+    facebook_url, instagram_url, blood_type, first_aid_skills, injuries, 
+    long_term_medical_issues, medicines, payment_proof_link, emergency_relationship, 
+    emergency_contact_name, emergency_contact_no_1, emergency_contact_no_2, emergency_address
+) => {
+    const query = `CALL AddNewApplicant(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`;
+    
+    const [result] = await db.execute(query, [
+        password_hash, first_name, last_name, full_name, date_of_birth, NIC_no, gender, email, 
+        contact_no, university_id, faculty, degree_program, year, bio_description, skills, 
+        facebook_url, instagram_url, blood_type, first_aid_skills, injuries, 
+        long_term_medical_issues, medicines, payment_proof_link, emergency_relationship, 
+        emergency_contact_name, emergency_contact_no_1, emergency_contact_no_2, emergency_address
+    ]);
 
-    const [result] = await db.execute(query, [application_status, password_hash, first_name, last_name, full_name
-        ,date_of_birth, NIC_no, gender, email, contact_no, university_id, 
-        faculty, degree_program, year, bio_description, skills, facebook_url, 
-        instagram_url, contact_person_id, blood_type, first_aid_skills, injuries, 
-        long_term_medical_issues, medicines, payment_proof_link]);
     return result;
 };
 

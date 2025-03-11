@@ -3,19 +3,6 @@ const memberModel = require("../models/memberModel");
 const { sendApprovalEmail } = require("../services/emailService");
 
 
-// Nodemailer transporter setup (Configure SMTP settings accordingly)
-// const transporter = nodemailer.createTransport({
-//     service: "gmail",
-//     host: 'smtp.gmail.com',
-//     secure: false,
-//     port: 587,
-//     auth: {
-//         user: process.env.EMAIL_USER, 
-//         pass: process.env.EMAIL_PASS, 
-//     },
-// });
-
-
 // Update applicant details (excluding application_status)
 exports.updateApplicantDetails = async (req, res) => {
     const { applicant_id } = req.params;
