@@ -56,7 +56,7 @@ const signup = async (req, res) => {
     }
 };
 
-const login = async (req, res) => {
+const login = async (req, res) => { 
     try {
         const { email, password } = req.body;
 
@@ -64,6 +64,11 @@ const login = async (req, res) => {
         const applicant = await applicantModel.findApplicantByEmail(email);
         if (!applicant) {
             return res.status(401).json({ error: "Invalid email or password" });
+        }
+
+        // Check if the applicant is a member
+        if (!applicant.member_id) {
+            return res.status(403).json({ error: "Access denied. You are not a registered member." });
         }
 
         // Verify password
@@ -76,7 +81,7 @@ const login = async (req, res) => {
         const tokenPayload = {
             applicantId: applicant.applicant_id,
             full_name: applicant.full_name,
-            member_id: applicant.member_id || null, 
+            member_id: applicant.member_id,
             role: applicant.role || "member",
         };
 
@@ -90,6 +95,8 @@ const login = async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 };
+
+
 
 // Logout controller
 const logout = () => {
