@@ -1,96 +1,54 @@
-body {
-  background-color: #f8f9fa; /* Light gray background */
-  margin: 0;
-  padding: 0;
-}
-
 .about-us {
-  background-color: #f8f9fa; /* Ensures the about section matches */
-  max-width: auto;
-  
   text-align: center;
-  padding-top: 150px;
+  padding-top: 100px;
 }
 
-
-.about-us h1 {
-  font-size: 2rem;
-  margin-bottom: 16px;
-  color: #2c3e50;
-}
-
-.about-us p {
-  font-size: 1.1rem;
+.aboutp {
+  padding: 0 50px;
+  text-align: justify;
   color: #555;
-  margin-bottom: 20px;
-  line-height: 1.5;
-  
+}
+
+.committee-section {
+  margin-bottom: 60px;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+[data-aos="fade-up"] {
+  opacity: 1 !important;
 }
 
 .committee-row {
   display: flex;
-  justify-content: center; /* Center align the members */
-  gap: 120px; /* Space between the photos */
-  margin-bottom: 30px; /* Add spacing between rows */
-  padding-bottom: none;
-}
-
-.committee-grid {
-  display: flex;
-  flex-wrap: wrap; /* Allow items to wrap onto next line */
   justify-content: center;
-  gap: 140px;
-  padding-top: 1px;
-  margin-top: none;
-  padding-top: none;
+  flex-wrap: wrap;
+  gap: 40px;
+  margin-bottom: 20px;
 }
 
 .committee-member {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 120px; /* Set width for each member */
-  margin-top: 20px;
-  transition: transform 0.3s ease-in-out;
+  width: 140px;
 }
 
 .member-photo {
-  width: 160px;
-  height: 160px;
+  width: 140px;
+  height: 140px;
   border-radius: 50%;
   object-fit: cover;
-  border: 4px solid #45AC32;
-  margin-bottom: 10px;
+  border: 3px solid #45ac32;
   transition: transform 0.3s ease-in-out;
 }
 
 .committee-member:hover .member-photo {
-  transform: scale(1.1); /* Scale up the photo on hover */
+  transform: scale(1.1);
 }
 
-.committee-member h2 {
-  font-size: 1.1rem;
-  color: #2c3e50;
-}
-
-.committee-member p {
+.committee-member h3 {
   font-size: 1rem;
-  color: #7f8c8d;
-  white-space: nowrap;
-}
-
-.committee-member h2 {
-  font-size: 1.1rem;
   color: #2c3e50;
-  white-space: nowrap; /* Prevent text from wrapping onto the next line */
-  text-overflow: ellipsis;
-  overflow: hidden; /* Hide overflow text */
-  max-width: 200px; /* Optionally, set a max width to ensure the name fits within the space */
-  text-align: center; /* Ensure text is centered */
-}
-
-.aboutp{
-  padding-left: 50px;
-  padding-right: 50px;
-  text-align: justify;
+  text-align: center;
 }
