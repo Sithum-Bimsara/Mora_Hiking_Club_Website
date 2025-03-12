@@ -1,0 +1,76 @@
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Sticky Header */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #e8e5d9;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 50px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+/* Logo */
+.logo {
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    height: 60px;
+}
+
+/* Navigation */
+.nav-links {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: black;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.nav-links a.active {
+    color: #045d42;
+}
+
+.nav-links a:hover {
+    color: #045d42;
+}
+
+/* Authentication Links */
+.auth-links {
+    display: flex;
+    gap: 15px;
+}
+
+/* Style both Login and Signup buttons */
+.auth-links .signup,
+.auth-links .login {
+    text-decoration: none;
+    font-weight: 500;
+    padding: 8px 15px;
+    border-radius: 20px;
+    background-color: #045d42 !important; /* Correct green */
+    color: white !important; /* White text */
+    border: none;
+    transition: background-color 0.3s, color 0.3s;
+    display: inline-block;
+}
+
+/* Hover effect: Slightly darker green */
+.auth-links .login:hover,
+.auth-links .signup:hover {
+    background-color: #42AC32 !important; /* Darker green */
+}

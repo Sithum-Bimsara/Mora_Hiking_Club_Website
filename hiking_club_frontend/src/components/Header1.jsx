@@ -2,9 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";  
 import "../styles/Header.css";
 import logo from "../assets/images/logo.png";  
-import userPhoto from "../assets/images/1.jpg";  
 
-const Header = () => {
+const Header1 = () => {
   return (
     <header className="header">
       <div className="logo-container">
@@ -18,15 +17,12 @@ const Header = () => {
         <a href="/knowledge">Knowledge</a>
       </nav>
       
-      <Link to="/profile" className="profile">
-        <img src={userPhoto} alt="User Profile" className="avatar" /> 
-        <div className="user-info">
-          <span className="name">User</span>
-          <span className="email">user@gmail.com</span>
-        </div>
-      </Link>
+      <div className="auth-links">
+        <Link to="/login" className="login">Login</Link>
+        <Link to="/register" className="signup">Sign Up</Link>
+      </div>
     </header>
   );
 };
 
-export default Header;
+export default Header1;
