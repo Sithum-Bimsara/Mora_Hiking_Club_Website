@@ -40,7 +40,7 @@ JWT_EXPIRES_IN=1h
 ```
 Mora_Hiking_Club_Website/
 │── backend/
-│ 
+│   │ 
 │   ├── config/
 │   │   ├── db.js                 # Database connection
 │   ├── controllers/
