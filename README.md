@@ -27,6 +27,10 @@ PORT=8080
 
 EMAIL_USER=your_email.address
 EMAIL_PASS=Your_App_Password
+
+JWT_SECRET=your_secret
+JWT_EXPIRES_IN=1h 
+
 ```
 
 
