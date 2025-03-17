@@ -11,97 +11,125 @@ const AdminArticles = () => {
     const [isAddingArticle, setisAddingArticle] = useState(false);
     const [isEditingArticle, setisEditingArticle] = useState(false); 
 
-    const [articleData, setArticleData] = useState({
-        topic: 'Article Topic',
-        description: 'Article Description',
-        memberId: '12345',
+    const [articleData, setArticleData] = useState([
+        {
+            topic: 'Article Title 1',
+            description: 'This is the description of the article 1.',
+            author: 'John Doe',
+            memberId: '12345',
+            images: [],
+            comments: [
+                { commenterName: 'John Doe', text: 'Great article!' },
+                { commenterName: 'Jane Smith', text: 'Very informative.' },
+            ],
+        },
+        {
+            topic: 'Article Title 2',
+            description: 'This is the description of the article 2.',
+            author: 'Alice Green',
+            memberId: '12346',
+            images: [],
+            comments: [
+                { commenterName: 'Alice Green', text: 'Interesting read.' },
+            ],
+        },
+        {
+            topic: 'Article Title 3',
+            description: 'This is the description of the article 3.',
+            author: 'Bob White',
+            memberId: '12347',
+            images: [],
+            comments: [
+                { commenterName: 'Bob White', text: 'Great insights!' },
+            ],
+        },
+    ]);
+
+    const [articleDataToEdit, setArticleDataToEdit] = useState({
+        topic: '',
+        description: '',
+        memberId: '',
         images: [],
+        comments: [],
     });
 
-    const initialData = {
-        topic: 'Article Title',
-        description: 'This is the description of the article.',
+    const initialDataAdd = {
         memberId: '12345',
-        images: [], // Array of image URLs
-        comments: [
-          { commenterName: 'John Doe', text: 'Great article!' },
-          { commenterName: 'Jane Smith', text: 'Very informative.' },
-        ],
-      };
-    
-      const initialDataAdd = {
-        memberId: '12345',
-      };
+    };
 
-    
-    
-      const handleBackAdd= () => {
+    const handleBackAdd = () => {
         setisAddingArticle(false);
-      };
-    
-      const handleSaveAdd = () => {
+    };
+
+    const handleSaveAdd = (newArticleData) => {
+        setArticleData((prevData) => [...prevData, newArticleData]);
         setisAddingArticle(false);
-      };
-    
+    };
 
     const handleSaveArticle = (data) => {
-        console.log('Saved Article:', data)
+        setArticleData((prevData) => 
+            prevData.map((article) =>
+                article.memberId === data.memberId ? { ...article, ...data } : article
+            )
+        );
         setisEditingArticle(false);
-      };
-    
-      const handleDeleteArticle = () => {
-        console.log('Deleted Article')
-        setisEditingArticle(false);
-      };
-    
-     const handleEditClickArticle = () => {
-        setisEditingArticle(true); 
-      };
-    
-      const handleAddClickArticle = () => {
-        setisAddingArticle(true);
-        console.log("isAddingArticle changed:", isAddingArticle);
-      }
-    
-    
-      const handleBackArticle = () => {
-        console.log('Back to previous page')
-        setisEditingArticle(false);
-      };
+    };
 
+    const handleDeleteArticle = () => {
+        setArticleData((prevData) => 
+            prevData.filter((article) => article.memberId !== articleDataToEdit.memberId)
+        );
+        setisEditingArticle(false);
+    };
+
+    const handleEditClickArticle = (data) => {
+        setisEditingArticle(true); 
+        setArticleDataToEdit(data); // set data to edit
+    };
+
+    const handleAddClickArticle = () => {
+        setisAddingArticle(true);
+    }
+
+    const handleBackArticle = () => {
+        setisEditingArticle(false);
+    };
+
+    // Filter articles based on search term
+    const filteredArticles = articleData.filter((article) => {
+        return (
+            article.topic.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            article.description.toLowerCase().includes(searchTerm.toLowerCase())||
+            article.author.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+    });
 
     return (
-        
         <div className="admin-articles">
             <div className="sidebar">
-                <AdminSideBar/>
+                <AdminSideBar />
             </div>
-        
 
             <div className="articles-content">
-
                 {isAddingArticle ? (
-                    // Show Add Article Form
                     <ArticleFormAdd
                         onSave={handleSaveAdd}
                         onBack={handleBackAdd}
                         initialData={initialDataAdd}
                     />
                 ) : isEditingArticle ? (
-                    // Show Edit Form
                     <ArticleFormEdit
                         onSave={handleSaveArticle}
                         onDelete={handleDeleteArticle}
                         onBack={handleBackArticle}
-                        initialData={initialData}
+                        initialData={articleDataToEdit}
                     />
                 ) : (
-                    // Show Articles List
                     <div>
                         <h2>Articles</h2>
                         <div className="articles-header">
                             <div className="add-new-article">
-                                <button onClick={() => handleAddClickArticle(initialData)}>Add an Article</button>
+                                <button onClick={handleAddClickArticle}>Add an Article</button>
                             </div>
                             <div className="search-bar">
                                 <input
@@ -110,7 +138,7 @@ const AdminArticles = () => {
                                     value={searchTerm}
                                     onChange={(e) => setSearchTerm(e.target.value)}
                                 />
-                                <button>Search</button>
+                                
                             </div>
                         </div>
 
@@ -124,16 +152,18 @@ const AdminArticles = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>topic</td>
-                                    <td>bla bla bla</td>
-                                    <td>imansha</td>
-                                    <td><button onClick={() => handleEditClickArticle(initialData)}>Edit</button></td>
-                                </tr>
+                                {filteredArticles.map((article) => (
+                                    <tr key={article.memberId}>
+                                        <td>{article.topic}</td>
+                                        <td>{article.description}</td>
+                                        <td>{article.author}</td>
+                                        <td><button onClick={() => handleEditClickArticle(article)}>Edit</button></td>
+                                    </tr>
+                                ))}
                             </tbody>
                         </table>
                     </div>
-                )}     
+                )}
             </div>
         </div>
     );
