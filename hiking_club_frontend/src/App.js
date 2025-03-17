@@ -50,6 +50,10 @@ import Knowledge from "./screens/Knowledge";
 import Login from "./screens/Login";
 import Register from "./screens/Register";
 import AboutUs from "./screens/AboutUs"; 
+import AdminArticles from "./screens/AdminArticles";
+import AdminKnowledge from "./screens/AdminKnowledge";
+import AdminHikes from "./screens/AdminHikes";
+import AdminDashboard from "./screens/AdminDashboard";
 
 function Layout() {
   const location = useLocation();
@@ -67,6 +71,10 @@ function Layout() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/about" element={<AboutUs />} />
+        <Route path="/AdminArticales" element={<AdminArticles />} />
+        <Route path="/AdminKnowledge" element={<AdminKnowledge />} />
+        <Route path="/AdminHikes" element={<AdminHikes />} />
+        <Route path="/AdminDashboard" element={<AdminDashboard />} />
       </Routes>
     </>
   );
