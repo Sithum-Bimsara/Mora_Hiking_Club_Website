@@ -1,6 +1,46 @@
+// import React from "react";
+// import { BrowserRouter, Routes, Route } from "react-router-dom";
+// import Header from "./components/Header";  
+// import Header1 from "./components/Header1";
+
+// import Homescreen from "./screens/Homescreen";  
+// import "./App.css";  
+// import Hikes from "./screens/Hikes";
+// import Profile from "./screens/Profile";
+// import Articles from "./screens/Articles";
+// import Knowledge from "./screens/Knowledge";
+// import Login from "./screens/Login";
+// import Register from "./screens/Register";
+// import AboutUs from "./screens/AboutUs"; 
+
+// function App() {
+//   return ( 
+//     <BrowserRouter>  
+//       <div className="App">
+//         <Header />  
+//         <Routes>
+//           <Route path="/" element={<Homescreen />} /> 
+//           <Route path="/hikes" element={<Hikes />} />
+//           <Route path="/profile" element={<Profile />} />
+//           <Route path="/articles" element={<Articles />} />
+//           <Route path="/knowledge" element={<Knowledge />} />
+//           <Route path="/login" element={<Login/>} />
+//           <Route path="/register" element={<Register/>} />
+//           <Route path="/about" element={<AboutUs/>} />
+
+           
+//         </Routes>
+//       </div>
+//     </BrowserRouter>
+//   );
+// }
+
+// export default App;
+
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import Header from "./components/Header";  
+import Header1 from "./components/Header1";  
 import Homescreen from "./screens/Homescreen";  
 import "./App.css";  
 import Hikes from "./screens/Hikes";
@@ -9,22 +49,41 @@ import Articles from "./screens/Articles";
 import Knowledge from "./screens/Knowledge";
 import Login from "./screens/Login";
 import Register from "./screens/Register";
+import AboutUs from "./screens/AboutUs"; 
+import AdminArticles from "./screens/AdminArticles";
+import AdminKnowledge from "./screens/AdminKnowledge";
+import AdminHikes from "./screens/AdminHikes";
+import AdminDashboard from "./screens/AdminDashboard";
+
+function Layout() {
+  const location = useLocation();
+  const isHomeScreen = location.pathname === "/";
+
+  return (
+    <>
+      {isHomeScreen ? <Header1 /> : <Header />}
+      <Routes>
+        <Route path="/" element={<Homescreen />} /> 
+        <Route path="/hikes" element={<Hikes />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/articles" element={<Articles />} />
+        <Route path="/knowledge" element={<Knowledge />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/about" element={<AboutUs />} />
+        <Route path="/AdminArticales" element={<AdminArticles />} />
+        <Route path="/AdminKnowledge" element={<AdminKnowledge />} />
+        <Route path="/AdminHikes" element={<AdminHikes />} />
+        <Route path="/AdminDashboard" element={<AdminDashboard />} />
+      </Routes>
+    </>
+  );
+}
 
 function App() {
-  return ( 
-    <BrowserRouter>  
-      <div className="App">
-        <Header />  
-        <Routes>
-          <Route path="/" element={<Homescreen />} /> 
-          <Route path="/hikes" element={<Hikes />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/articles" element={<Articles />} />
-          <Route path="/knowledge" element={<Knowledge />} />
-          <Route path="/login" element={<Login/>} />
-          <Route path="/register" element={<Register/>} />
-        </Routes>
-      </div>
+  return (
+    <BrowserRouter>
+      <Layout />
     </BrowserRouter>
   );
 }

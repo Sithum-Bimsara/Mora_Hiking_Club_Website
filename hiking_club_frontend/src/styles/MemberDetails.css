@@ -1,0 +1,43 @@
+.member-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
+    color: black;
+    
+  }
+
+  .member-form button {
+    background-color: #00796b;
+    color: white;
+    border: none;
+    border-radius:100px;
+    cursor: pointer;
+    margin-left: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    margin-top: 10px;
+  }
+
+  .member-form button:hover {
+    background-color: #005249;
+  }
+
+  
+  .member-form label {
+    display: block;
+    margin-bottom: 8px;
+  }
+  
+  .member-form input,
+  .member-form select {
+    display: block;
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
