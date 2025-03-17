@@ -11,8 +11,8 @@ const AdminSideBar = ({ onMenuSelect }) => {
     { name: "Hikes", path: "/AdminHikes" },
     { name: "Knowledge", path: "/AdminKnowledge" },
     { name: "Articles", path: "/AdminArticales" },
-    { name: "Profile", path: "/profile" },
-    { name: "Admins", path: "/admins" },
+    { name: "Profile", path: "/AdminProfile" },
+    { name: "Admins", path: "/Admins" },
   ];
 
   const handleClick = (item) => {
