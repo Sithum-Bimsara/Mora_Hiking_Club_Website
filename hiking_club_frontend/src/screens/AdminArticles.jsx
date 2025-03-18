@@ -9,99 +9,139 @@ const AdminArticles = () => {
     const [searchTerm, setSearchTerm] = useState("");
     const [editingMember, setEditingMember] = useState(null);
     const [isAddingArticle, setisAddingArticle] = useState(false);
-    const [isEditingArticle, setisEditingArticle] = useState(false); 
+    const [isEditingArticle, setisEditingArticle] = useState(false);
+    const [currentPage, setCurrentPage] = useState(0);
+    const articlesPerPage = 10;
 
-    const [articleData, setArticleData] = useState({
-        topic: 'Article Topic',
-        description: 'Article Description',
-        memberId: '12345',
+    const generateArticles = () => {
+        const articlesArray = [];
+        for (let i = 1; i <= 20; i++) {
+            articlesArray.push({
+                topic: `Article Title ${i}`,
+                description: `This is the description of the article ${i}.`,
+                author: `Author ${i}`,
+                memberId: (10000 + i).toString(),
+                images: [],
+                comments: [
+                    { commenterName: `Commenter ${i}`, text: `Comment on article ${i}` },
+                    { commenterName: `Commenter ${i + 1}`, text: `Another comment on article ${i}` },
+                ],
+            });
+        }
+        return articlesArray;
+    };
+
+    const [articleData, setArticleData] = useState(generateArticles());
+
+    const [articleDataToEdit, setArticleDataToEdit] = useState({
+        topic: '',
+        description: '',
+        memberId: '',
         images: [],
+        comments: [],
     });
 
-    const initialData = {
-        topic: 'Article Title',
-        description: 'This is the description of the article.',
+    const initialDataAdd = {
         memberId: '12345',
-        images: [], // Array of image URLs
-        comments: [
-          { commenterName: 'John Doe', text: 'Great article!' },
-          { commenterName: 'Jane Smith', text: 'Very informative.' },
-        ],
-      };
-    
-      const initialDataAdd = {
-        memberId: '12345',
-      };
+    };
 
-    
-    
-      const handleBackAdd= () => {
+    const handleBackAdd = () => {
         setisAddingArticle(false);
-      };
-    
-      const handleSaveAdd = () => {
+    };
+
+    const handleSaveAdd = (newArticleData) => {
+        setArticleData((prevData) => [...prevData, newArticleData]);
         setisAddingArticle(false);
-      };
-    
+    };
 
     const handleSaveArticle = (data) => {
-        console.log('Saved Article:', data)
+        setArticleData((prevData) => 
+            prevData.map((article) =>
+                article.memberId === data.memberId ? { ...article, ...data } : article
+            )
+        );
         setisEditingArticle(false);
-      };
-    
-      const handleDeleteArticle = () => {
-        console.log('Deleted Article')
-        setisEditingArticle(false);
-      };
-    
-     const handleEditClickArticle = () => {
-        setisEditingArticle(true); 
-      };
-    
-      const handleAddClickArticle = () => {
-        setisAddingArticle(true);
-        console.log("isAddingArticle changed:", isAddingArticle);
-      }
-    
-    
-      const handleBackArticle = () => {
-        console.log('Back to previous page')
-        setisEditingArticle(false);
-      };
+    };
 
+    const handleDeleteArticle = () => {
+        setArticleData((prevData) => 
+            prevData.filter((article) => article.memberId !== articleDataToEdit.memberId)
+        );
+        setisEditingArticle(false);
+    };
+
+    const handleEditClickArticle = (data) => {
+        setisEditingArticle(true); 
+        setArticleDataToEdit(data);
+    };
+
+    const handleAddClickArticle = () => {
+        setisAddingArticle(true);
+    }
+
+    const handleBackArticle = () => {
+        setisEditingArticle(false);
+    };
+
+    // Filter articles based on search term
+    const filteredArticles = articleData.filter((article) => {
+        return (
+            article.topic.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            article.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            article.author.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+    });
+
+    const totalPages = Math.ceil(filteredArticles.length / articlesPerPage);
+    const indexOfFirstArticle = currentPage * articlesPerPage;
+    const indexOfLastArticle = indexOfFirstArticle + articlesPerPage;
+    const currentArticles = filteredArticles.slice(indexOfFirstArticle, indexOfLastArticle);
+
+    const handleNextPage = () => {
+        if (currentPage < totalPages - 1) {
+            setCurrentPage(currentPage + 1);
+        }
+    };
+
+    const handlePreviousPage = () => {
+        if (currentPage > 0) {
+            setCurrentPage(currentPage - 1);
+        }
+    };
+
+    const handlePageChange = (event) => {
+        const pageNumber = Number(event.target.value) - 1;
+        if (pageNumber >= 0 && pageNumber < totalPages) {
+            setCurrentPage(pageNumber);
+        }
+    };
 
     return (
-        
         <div className="admin-articles">
             <div className="sidebar">
-                <AdminSideBar/>
+                <AdminSideBar />
             </div>
-        
 
             <div className="articles-content">
-
                 {isAddingArticle ? (
-                    // Show Add Article Form
                     <ArticleFormAdd
                         onSave={handleSaveAdd}
                         onBack={handleBackAdd}
                         initialData={initialDataAdd}
                     />
                 ) : isEditingArticle ? (
-                    // Show Edit Form
                     <ArticleFormEdit
                         onSave={handleSaveArticle}
                         onDelete={handleDeleteArticle}
                         onBack={handleBackArticle}
-                        initialData={initialData}
+                        initialData={articleDataToEdit}
                     />
                 ) : (
-                    // Show Articles List
                     <div>
                         <h2>Articles</h2>
                         <div className="articles-header">
                             <div className="add-new-article">
-                                <button onClick={() => handleAddClickArticle(initialData)}>Add an Article</button>
+                                <button onClick={handleAddClickArticle}>Add an Article</button>
                             </div>
                             <div className="search-bar">
                                 <input
@@ -110,7 +150,6 @@ const AdminArticles = () => {
                                     value={searchTerm}
                                     onChange={(e) => setSearchTerm(e.target.value)}
                                 />
-                                <button>Search</button>
                             </div>
                         </div>
 
@@ -124,16 +163,31 @@ const AdminArticles = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>topic</td>
-                                    <td>bla bla bla</td>
-                                    <td>imansha</td>
-                                    <td><button onClick={() => handleEditClickArticle(initialData)}>Edit</button></td>
-                                </tr>
+                                {currentArticles.map((article) => (
+                                    <tr key={article.memberId}>
+                                        <td>{article.topic}</td>
+                                        <td>{article.description}</td>
+                                        <td>{article.author}</td>
+                                        <td><button onClick={() => handleEditClickArticle(article)}>Edit</button></td>
+                                    </tr>
+                                ))}
                             </tbody>
                         </table>
+                        <div className="pagination">
+                            <button onClick={handlePreviousPage} disabled={currentPage === 0}>Back</button>
+                            <span> Page </span>
+                            <input
+                                type="number"
+                                value={currentPage + 1}
+                                onChange={handlePageChange}
+                                min="1"
+                                max={totalPages}
+                            />
+                            <span> of {totalPages} </span>
+                            <button onClick={handleNextPage} disabled={currentPage >= totalPages - 1}>Next</button>
+                        </div>
                     </div>
-                )}     
+                )}
             </div>
         </div>
     );
