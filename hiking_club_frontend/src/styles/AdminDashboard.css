@@ -37,38 +37,7 @@ table{
 .members-section {
     margin-top: 20px;
 }
-.members-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 20px;
-    
-}
 
-.members-header .search-bar{
-    display: flex;
-    gap: 10px;
-}
-
-
-.members-header button{
-    padding: 10px 30px;
-    background-color: #00796b;
-    color: white;
-    border: none;
-    border-radius: 100px;
-    cursor: pointer;
-}
-.members-header button:hover{
-    background-color: #005249;
-}
-
-.members-header input {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 100px;
-    font-size: small;
-}
 
 .members-table button {
     padding: 10px 30px;
@@ -106,9 +75,26 @@ table{
     background-color: black;
 }
 
-.search-container .search-input{
-    border-radius: 100px;
-    padding: 10px 30px;
-    border: 1px solid black;
+
+.pagination {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 20px;
+    gap: 10px;
+}
+.pagination input{
+    padding: 5px 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: small;
+    font-weight: bold;
+}
+.pagination button{
+    padding: 5px 15px;
+    background-color: #00796b;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: small;
 }
 

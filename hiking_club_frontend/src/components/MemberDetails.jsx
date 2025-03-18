@@ -20,6 +20,17 @@ const MemberForm = ({ memberData, onSave, onBack }) => {
   };
 
   const handleSave = () => {
+    // Validation to ensure required fields are not empty
+    if (
+      !member.firstName ||
+      !member.lastName ||
+      !member.fullName ||
+      !member.memberId
+    ) {
+      alert("Please fill in all the required fields.");
+      return;
+    }
+
     if (window.confirm("Are you sure you want to save these details?")) {
       onSave(member);
     }
@@ -69,7 +80,7 @@ const MemberForm = ({ memberData, onSave, onBack }) => {
         <label>
           Member ID:
           <input 
-            type="text" 
+            type="number" 
             name="memberId" 
             value={member.memberId} 
             onChange={handleChange} 

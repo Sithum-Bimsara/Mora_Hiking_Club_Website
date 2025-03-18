@@ -17,6 +17,8 @@
   .form-group {
     margin-bottom: 15px;
   }
+
+
   
   .form-group label {
     display: block;
@@ -74,6 +76,16 @@
     background-color: #005249;
   }
 
+  .pagination input{
+    border-radius: 100px;
+    padding: 10px 30px;
+    border: 1px solid black;
+    color: black;
+  }
+  .pagination span{
+    margin-top: 5px;
+    color: black;
+  }
 
 
   

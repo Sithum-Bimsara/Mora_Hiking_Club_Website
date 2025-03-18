@@ -9,41 +9,29 @@ const AdminArticles = () => {
     const [searchTerm, setSearchTerm] = useState("");
     const [editingMember, setEditingMember] = useState(null);
     const [isAddingArticle, setisAddingArticle] = useState(false);
-    const [isEditingArticle, setisEditingArticle] = useState(false); 
+    const [isEditingArticle, setisEditingArticle] = useState(false);
+    const [currentPage, setCurrentPage] = useState(0);
+    const articlesPerPage = 10;
 
-    const [articleData, setArticleData] = useState([
-        {
-            topic: 'Article Title 1',
-            description: 'This is the description of the article 1.',
-            author: 'John Doe',
-            memberId: '12345',
-            images: [],
-            comments: [
-                { commenterName: 'John Doe', text: 'Great article!' },
-                { commenterName: 'Jane Smith', text: 'Very informative.' },
-            ],
-        },
-        {
-            topic: 'Article Title 2',
-            description: 'This is the description of the article 2.',
-            author: 'Alice Green',
-            memberId: '12346',
-            images: [],
-            comments: [
-                { commenterName: 'Alice Green', text: 'Interesting read.' },
-            ],
-        },
-        {
-            topic: 'Article Title 3',
-            description: 'This is the description of the article 3.',
-            author: 'Bob White',
-            memberId: '12347',
-            images: [],
-            comments: [
-                { commenterName: 'Bob White', text: 'Great insights!' },
-            ],
-        },
-    ]);
+    const generateArticles = () => {
+        const articlesArray = [];
+        for (let i = 1; i <= 20; i++) {
+            articlesArray.push({
+                topic: `Article Title ${i}`,
+                description: `This is the description of the article ${i}.`,
+                author: `Author ${i}`,
+                memberId: (10000 + i).toString(),
+                images: [],
+                comments: [
+                    { commenterName: `Commenter ${i}`, text: `Comment on article ${i}` },
+                    { commenterName: `Commenter ${i + 1}`, text: `Another comment on article ${i}` },
+                ],
+            });
+        }
+        return articlesArray;
+    };
+
+    const [articleData, setArticleData] = useState(generateArticles());
 
     const [articleDataToEdit, setArticleDataToEdit] = useState({
         topic: '',
@@ -84,7 +72,7 @@ const AdminArticles = () => {
 
     const handleEditClickArticle = (data) => {
         setisEditingArticle(true); 
-        setArticleDataToEdit(data); // set data to edit
+        setArticleDataToEdit(data);
     };
 
     const handleAddClickArticle = () => {
@@ -99,10 +87,34 @@ const AdminArticles = () => {
     const filteredArticles = articleData.filter((article) => {
         return (
             article.topic.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            article.description.toLowerCase().includes(searchTerm.toLowerCase())||
+            article.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
             article.author.toLowerCase().includes(searchTerm.toLowerCase())
         );
     });
+
+    const totalPages = Math.ceil(filteredArticles.length / articlesPerPage);
+    const indexOfFirstArticle = currentPage * articlesPerPage;
+    const indexOfLastArticle = indexOfFirstArticle + articlesPerPage;
+    const currentArticles = filteredArticles.slice(indexOfFirstArticle, indexOfLastArticle);
+
+    const handleNextPage = () => {
+        if (currentPage < totalPages - 1) {
+            setCurrentPage(currentPage + 1);
+        }
+    };
+
+    const handlePreviousPage = () => {
+        if (currentPage > 0) {
+            setCurrentPage(currentPage - 1);
+        }
+    };
+
+    const handlePageChange = (event) => {
+        const pageNumber = Number(event.target.value) - 1;
+        if (pageNumber >= 0 && pageNumber < totalPages) {
+            setCurrentPage(pageNumber);
+        }
+    };
 
     return (
         <div className="admin-articles">
@@ -138,7 +150,6 @@ const AdminArticles = () => {
                                     value={searchTerm}
                                     onChange={(e) => setSearchTerm(e.target.value)}
                                 />
-                                
                             </div>
                         </div>
 
@@ -152,7 +163,7 @@ const AdminArticles = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {filteredArticles.map((article) => (
+                                {currentArticles.map((article) => (
                                     <tr key={article.memberId}>
                                         <td>{article.topic}</td>
                                         <td>{article.description}</td>
@@ -162,6 +173,19 @@ const AdminArticles = () => {
                                 ))}
                             </tbody>
                         </table>
+                        <div className="pagination">
+                            <button onClick={handlePreviousPage} disabled={currentPage === 0}>Back</button>
+                            <span> Page </span>
+                            <input
+                                type="number"
+                                value={currentPage + 1}
+                                onChange={handlePageChange}
+                                min="1"
+                                max={totalPages}
+                            />
+                            <span> of {totalPages} </span>
+                            <button onClick={handleNextPage} disabled={currentPage >= totalPages - 1}>Next</button>
+                        </div>
                     </div>
                 )}
             </div>

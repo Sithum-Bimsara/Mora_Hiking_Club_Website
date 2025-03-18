@@ -1,0 +1,40 @@
+.members-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+
+.members-header .search-bar{
+    display: flex;
+    gap: 10px;
+}
+
+
+.members-header button {
+    margin-right: 10px;
+    color: black;
+    background-color: white;
+    border: none;
+    font-size: large;
+
+}
+
+.members-header .active {
+    font-weight: bold;
+}
+
+.members-header button:hover {
+    cursor: pointer;
+    font-weight: bold ;
+}
+
+
+
+.members-header input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 100px;
+    font-size: small;
+}
