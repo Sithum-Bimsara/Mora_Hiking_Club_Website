@@ -66,11 +66,21 @@
     background-color: #00796b;
     color: white;
     border: none;
-    border-radius: 4px;
     cursor: pointer;
-    border-radius: 100px;
+    border-radius: 5px;
   }
-  
+  .form-buttons button[type="back-button"] {
+    background-color: #ccc;
+    color: black;
+  }
+
+  .form-buttons button[type="back-button"]:hover {
+    background-color: #999;
+  }
+  .form-buttons button[type="delete-button"] {
+    background-color: #ccc;
+    color: black;
+  }
   .form-buttons button:hover {
     background-color: #005249;
   }
@@ -116,6 +126,8 @@
   .comments-section{
     display: flex;
     flex-direction: column;
+    
+    gap: 10px;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 8px;
@@ -123,19 +135,26 @@
     color: black;
   }
   .comment {
-    margin-top: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 5px;
+    gap: 10px;
     margin-bottom: 15px;
+    border: #ddd solid 1px;
+    border-radius: 5px;
+  }
+  .comment p{
+    margin-top: 5px;
   }
 
   .comments-section button{
-    padding: 7px 15px;
-    background-color: #00796b;
-    color: white;
+    padding: 5px 15px;
+    background-color: #ccc;
+    color: black;
     border: none;
-    border-radius: 4px;
+    border-radius: 5px;
     cursor: pointer;
-    border-radius: 100px;
-    float: right;
   }
 
   .comments-section button:hover{

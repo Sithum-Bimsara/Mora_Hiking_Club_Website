@@ -22,9 +22,6 @@
   }
 
 
-table{
-    margin-top: 20px;
-}
 
 
 .articles-table{
@@ -57,10 +54,10 @@ table{
 
 
 .articles-header{
+    margin-top: 20px;
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    margin-bottom: 20px;
 }
 
 .articles-header button{
@@ -68,7 +65,7 @@ table{
     background-color: #00796b;
     color: white;
     border: none;
-    border-radius: 100px;
+    border-radius: 5px;
     cursor: pointer;
 }
 
@@ -77,9 +74,9 @@ table{
 }
 
 .articles-header input {
-    padding: 10px;
+    padding: 10px 30px;
     border: 1px solid #ccc;
-    border-radius: 100px;
+    border-radius: 5px;
     font-size: small;
 }
 
@@ -90,18 +87,25 @@ table{
 
 .articles-header .add-new-article{
     display: flex;  
-    margin-top: 10px;
 }
 
 .articles-table button{
     padding: 10px 30px;
-    background-color: #00796b;
-    color: white;
+    background: #ccc;
+    color: black;
     border: none;
-    border-radius: 100px;
+    border-radius: 5px;
     cursor: pointer; 
 }
 
 .articles-table button:hover{
-    background-color: #005249;
+    background-color: #999;
+}
+
+.pagination{
+    color: black;
+}
+
+.pagination span{
+    margin-top: 5px;
 }

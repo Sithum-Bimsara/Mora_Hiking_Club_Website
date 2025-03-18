@@ -1,0 +1,97 @@
+/* Global Reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.admin-events {
+    display: flex;
+    background: white;
+}
+  
+.events-content{
+    width: 100%;
+    margin-top: 150px; 
+    margin-left: 250px; 
+    padding: 20px;
+    min-height: 100vh;
+    color: white; 
+    overflow-y: auto;
+  }
+
+.events-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.events-header button{
+    color: white;
+    background-color: #00796b;
+    border: none;
+    padding: 10px 30px;
+    border-radius: 5px;
+}
+
+.events-header button:hover{
+    cursor: pointer;
+    background-color: #005249;
+}
+
+.events-header input{
+    padding: 10px 30px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+
+table{
+    margin-top: 20px;
+}
+
+.events-table{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.events-table th,
+.events-table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    color: black;
+}
+
+.events-table th{
+    background-color: #e8e5d9;
+    color: black;
+}
+
+
+/* Additional styling remains unchanged */
+.thead {
+    background-color: black;
+}
+
+.events-table button {
+    padding: 10px 20px;
+    background: #ccc;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.events-table button:hover{
+    background-color: #999;
+}
+
+
+.search-container .search-input{
+    border-radius: 100px;
+    padding: 10px 30px;
+    border: 1px solid black;
+}

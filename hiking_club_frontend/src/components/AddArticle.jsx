@@ -25,6 +25,7 @@ const ArticleFormAdd = ({ onSave, onBack, initialData }) => {
   }, [images]);
 
   const handleSave = () => {
+    
     // Validate required fields before saving
     if (!topic.trim()) {
       alert("Topic cannot be empty!");
@@ -115,10 +116,10 @@ const ArticleFormAdd = ({ onSave, onBack, initialData }) => {
       </div>
 
       <div className="form-buttons">
-        <button type="button" onClick={handleSave}>
+        <button type="save-button"  onClick={handleSave}>
           Save
         </button>
-        <button type="button" onClick={onBack}>Back</button>
+        <button type="back-button"  onClick={onBack}>Back</button>
       </div>
     </div>
   );

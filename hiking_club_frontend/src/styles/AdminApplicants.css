@@ -49,14 +49,14 @@ table{
 
 .applicants-table button{
     padding: 10px 30px;
-    background-color: #00796b;
-    color: white;
+    background: #ccc;
+    color: black;
     border: none;
-    border-radius: 100px;
+    border-radius: 5px;
     cursor: pointer; 
 }
 .admin-applicants button:hover{
-    background-color: #005249;
+    background-color: #999;
 }
 
 .applicants-table select{
