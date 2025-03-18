@@ -54,6 +54,7 @@ import AdminArticles from "./screens/AdminArticles";
 import AdminKnowledge from "./screens/AdminKnowledge";
 import AdminHikes from "./screens/AdminHikes";
 import AdminDashboard from "./screens/AdminDashboard";
+import AdminApplicants from "./screens/AdminApplicants";
 
 function Layout() {
   const location = useLocation();
@@ -75,6 +76,7 @@ function Layout() {
         <Route path="/AdminKnowledge" element={<AdminKnowledge />} />
         <Route path="/AdminHikes" element={<AdminHikes />} />
         <Route path="/AdminDashboard" element={<AdminDashboard />} />
+        <Route path="/AdminApplicants" element={<AdminApplicants />} />
       </Routes>
     </>
   );
