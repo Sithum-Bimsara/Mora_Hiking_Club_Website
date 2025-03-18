@@ -166,7 +166,7 @@ const AdminArticles = () => {
                                 {currentArticles.map((article) => (
                                     <tr key={article.memberId}>
                                         <td>{article.topic}</td>
-                                        <td>{article.description}</td>
+                                        <td>{article.description.slice(0, 50)} ...</td>
                                         <td>{article.author}</td>
                                         <td><button onClick={() => handleEditClickArticle(article)}>Edit</button></td>
                                     </tr>

@@ -19,12 +19,21 @@
     background-color: #00796b;
     color: white;
     border: none;
-    border-radius:100px;
+    border-radius:5px;
     cursor: pointer;
     margin-left: 10px;
     padding: 10px 20px;
     font-size: 16px;
     margin-top: 10px;
+  }
+
+  .member-form button[type="back-button"] {
+    background-color: #ccc;
+    color: black;
+  }
+
+  .member-form button[type="back-button"]:hover {
+    background-color: #999;
   }
 
   .member-form button:hover {

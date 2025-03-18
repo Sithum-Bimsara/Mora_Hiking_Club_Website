@@ -111,8 +111,8 @@ const MemberForm = ({ memberData, onSave, onBack }) => {
       </div>
 
       <div className="buttons">
-        <button onClick={handleSave}>Save</button>
-        <button onClick={onBack}>Back</button>
+        <button type="save-button" onClick={handleSave}>Save</button>
+        <button type="back-button" onClick={onBack}>Back</button>
       </div>
     </div>
   );
