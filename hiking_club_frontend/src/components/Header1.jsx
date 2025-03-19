@@ -15,7 +15,10 @@ const Header1 = () => {
         <a href="/articles">Articles</a>
         <a href="/hikes">Hikes</a>
         <a href="/knowledge">Knowledge</a>
+
+
         <a href="/AdminDashboard">AdminDashboard</a>
+
       </nav>
       
       <div className="auth-links">
