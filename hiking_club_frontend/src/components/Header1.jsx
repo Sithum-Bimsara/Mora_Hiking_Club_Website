@@ -14,11 +14,16 @@ const Header1 = () => {
       </div>
 
       <nav className="nav-links">
-        <Link to="/" className="active">Home</Link>
-        <Link to="/about">About Us</Link>
-        <Link to="/articles">Articles</Link>
-        <Link to="/hikes">Hikes</Link>
-        <Link to="/knowledge">Knowledge</Link>
+
+        <a href="/" className="active">Home</a>
+        <a href="/about">About Us</a>
+        <a href="/articles">Articles</a>
+        <a href="/hikes">Hikes</a>
+        <a href="/knowledge">Knowledge</a>
+
+
+        <a href="/AdminDashboard">AdminDashboard</a>
+
       </nav>
       
       <div className="auth-links">
