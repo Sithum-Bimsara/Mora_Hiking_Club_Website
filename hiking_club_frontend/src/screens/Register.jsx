@@ -443,7 +443,7 @@ const Register = () => {
                 <input
                   type="text"
                   name="kinship"
-                  value={formData.nameOfKin}
+                  value={formData.kinship}
                   onChange={handleChange}
                   required
                 />
