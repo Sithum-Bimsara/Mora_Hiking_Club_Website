@@ -4,67 +4,67 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 
 // Import images (replace with actual member images)
-import exec1 from "../assets/images/MORA HIKING CLUB.png";
-import exec2 from "../assets/images/MORA HIKING CLUB.png";
-import exec3 from "../assets/images/MORA HIKING CLUB.png";
-import exec4 from "../assets/images/MORA HIKING CLUB.png";
-import exec5 from "../assets/images/MORA HIKING CLUB.png";
-import exec6 from "../assets/images/MORA HIKING CLUB.png";
-import exec7 from "../assets/images/MORA HIKING CLUB.png";
-import exec8 from "../assets/images/MORA HIKING CLUB.png";
-import exec9 from "../assets/images/MORA HIKING CLUB.png";
+import exec1 from "../assets/images/1.png";
+import exec2 from "../assets/images/2.png";
+import exec3 from "../assets/images/3.png";
+import exec4 from "../assets/images/4.png";
+import exec5 from "../assets/images/5.png";
+import exec6 from "../assets/images/6.png";
+import exec7 from "../assets/images/7.png";
+import exec8 from "../assets/images/8.png";
+import exec9 from "../assets/images/9.png";
 
-import advisor1 from "../assets/images/MORA HIKING CLUB.png";
-import advisor2 from "../assets/images/MORA HIKING CLUB.png";
+import advisor1 from "../assets/images/10.png";
+import advisor2 from "../assets/images/11.png";
 
-import editor1 from "../assets/images/MORA HIKING CLUB.png";
-import editor2 from "../assets/images/MORA HIKING CLUB.png";
-import editor3 from "../assets/images/MORA HIKING CLUB.png";
-import editor4 from "../assets/images/MORA HIKING CLUB.png";
-import editor5 from "../assets/images/MORA HIKING CLUB.png";
+import admin1 from "../assets/images/5.png";
+import admin2 from "../assets/images/12.png";
+import admin3 from "../assets/images/13.png";
+import admin4 from "../assets/images/14.png";
+import admin5 from "../assets/images/15.png";
 
-import admin1 from "../assets/images/MORA HIKING CLUB.png";
-import admin2 from "../assets/images/MORA HIKING CLUB.png";
-import admin3 from "../assets/images/MORA HIKING CLUB.png";
-import admin4 from "../assets/images/MORA HIKING CLUB.png";
-import admin5 from "../assets/images/MORA HIKING CLUB.png";
+import finance1 from "../assets/images/6.png";
+import finance2 from "../assets/images/16.png";
+import finance3 from "../assets/images/17.png";
+import finance4 from "../assets/images/18.png";
+import finance5 from "../assets/images/19.png";
+import finance6 from "../assets/images/20.png";
 
-import finance1 from "../assets/images/MORA HIKING CLUB.png";
-import finance2 from "../assets/images/MORA HIKING CLUB.png";
-import finance3 from "../assets/images/MORA HIKING CLUB.png";
-import finance4 from "../assets/images/MORA HIKING CLUB.png";
-import finance5 from "../assets/images/MORA HIKING CLUB.png";
-import finance6 from "../assets/images/MORA HIKING CLUB.png";
+import media1 from "../assets/images/7.png";
+import media2 from "../assets/images/21.png";
+import media3 from "../assets/images/22.png";
+import media4 from "../assets/images/23.png";
+import media5 from "../assets/images/24.png";
+import media6 from "../assets/images/25.png";
+import media7 from "../assets/images/26.png";
 
-import media1 from "../assets/images/MORA HIKING CLUB.png";
-import media2 from "../assets/images/MORA HIKING CLUB.png";
-import media3 from "../assets/images/MORA HIKING CLUB.png";
-import media4 from "../assets/images/MORA HIKING CLUB.png";
-import media5 from "../assets/images/MORA HIKING CLUB.png";
-import media6 from "../assets/images/MORA HIKING CLUB.png";
-import media7 from "../assets/images/MORA HIKING CLUB.png";
+import health1 from "../assets/images/9.png";
+import health2 from "../assets/images/33.png";
+import health3 from "../assets/images/34.png";
+import health4 from "../assets/images/35.png";
+import health5 from "../assets/images/36.png";
+import health6 from "../assets/images/37.png";
 
-import health1 from "../assets/images/MORA HIKING CLUB.png";
-import health2 from "../assets/images/MORA HIKING CLUB.png";
-import health3 from "../assets/images/MORA HIKING CLUB.png";
-import health4 from "../assets/images/MORA HIKING CLUB.png";
-import health5 from "../assets/images/MORA HIKING CLUB.png";
-import health6 from "../assets/images/MORA HIKING CLUB.png";
+import research1 from "../assets/images/8.png";
+import research2 from "../assets/images/32.png";
+import research3 from "../assets/images/27.png";
+import research4 from "../assets/images/28.png";
+import research5 from "../assets/images/29.png";
+import research6 from "../assets/images/30.png";
+import research7 from "../assets/images/31.png";
 
-import research1 from "../assets/images/MORA HIKING CLUB.png";
-import research2 from "../assets/images/MORA HIKING CLUB.png";
-import research3 from "../assets/images/MORA HIKING CLUB.png";
-import research4 from "../assets/images/MORA HIKING CLUB.png";
-import research5 from "../assets/images/MORA HIKING CLUB.png";
-import research6 from "../assets/images/MORA HIKING CLUB.png";
-import research7 from "../assets/images/MORA HIKING CLUB.png";
+import editor1 from "../assets/images/2.png";
+import editor2 from "../assets/images/38.png";
+import editor3 from "../assets/images/39.png";
+import editor4 from "../assets/images/40.png";
+import editor5 from "../assets/images/41.png";
 
 // Committee Members Data
 const committeeMembers = {
   executive: [
-    { name: "Member 1", role: "Executive", photo: exec1 },
-    { name: "Member 2", role: "Executive", photo: exec2 },
-    { name: "Member 3", role: "Executive", photo: exec3 },
+    { name: "Nisal Rajapksha", role: "President", photo: exec1 },
+    { name: "Umaya Gunarathne", role: "Secretary", photo: exec2 },
+    { name: "Senior Lecturer ", role: "Executive", photo: exec3 },
     { name: "Member 4", role: "Executive", photo: exec4 },
     { name: "Member 5", role: "Executive", photo: exec5 },
     { name: "Member 6", role: "Executive", photo: exec6 },
@@ -76,13 +76,7 @@ const committeeMembers = {
     { name: "Advisor 1", role: "Advisor", photo: advisor1 },
     { name: "Advisor 2", role: "Advisor", photo: advisor2 }
   ],
-  editorial: [
-    { name: "Editor 1", role: "Editor", photo: editor1 },
-    { name: "Editor 2", role: "Editor", photo: editor2 },
-    { name: "Editor 3", role: "Editor", photo: editor3 },
-    { name: "Editor 4", role: "Editor", photo: editor4 },
-    { name: "Editor 5", role: "Editor", photo: editor5 }
-  ],
+  
   administration: [
     { name: "Admin 1", role: "Admin", photo: admin1 },
     { name: "Admin 2", role: "Admin", photo: admin2 },
@@ -96,7 +90,8 @@ const committeeMembers = {
     { name: "Finance 3", role: "Finance", photo: finance3 },
     { name: "Finance 4", role: "Finance", photo: finance4 },
     { name: "Finance 5", role: "Finance", photo: finance5 },
-    { name: "Finance 5", role: "Finance", photo: finance5 }
+    { name: "Finance 5", role: "Finance", photo: finance5 },
+    { name: "Finance 6", role: "Finance", photo: finance6 }
   ],
   media: [
     { name: "Media 1", role: "Media", photo: media1 },
@@ -122,7 +117,15 @@ const committeeMembers = {
     { name: "Research 4", role: "Research & Development", photo: research4 },
     { name: "Research 5", role: "Research & Development", photo: research5 },
     { name: "Research 6", role: "Research & Development", photo: research6 },
-    { name: "Research 6", role: "Research & Development", photo: research6 }
+    { name: "Research 7", role: "Research & Development", photo: research7 }
+  ],
+
+  editorial: [
+    { name: "Editor 1", role: "Editor", photo: editor1 },
+    { name: "Editor 2", role: "Editor", photo: editor2 },
+    { name: "Editor 3", role: "Editor", photo: editor3 },
+    { name: "Editor 4", role: "Editor", photo: editor4 },
+    { name: "Editor 5", role: "Editor", photo: editor5 }
   ]
 };
 
@@ -184,12 +187,13 @@ Embrace the trail, discover your potential, and let’s hike together!
 
       {renderCommittee("Executive Committee", committeeMembers.executive, 4)}
       {renderCommittee("Advisors", committeeMembers.advisors, 2)}
-      {renderCommittee("Editorial Panel", committeeMembers.editorial, 1)}
+      
       {renderCommittee("Administration Committee", committeeMembers.administration, 1)}
       {renderCommittee("Finance Committee", committeeMembers.finance, 1)}
       {renderCommittee("Media Committee", committeeMembers.media, 1)}
       {renderCommittee("Health & Safety Committee", committeeMembers.health, 1)}
       {renderCommittee("Research & Development Committee", committeeMembers.research, 1)}
+      {renderCommittee("Editorial Panel", committeeMembers.editorial, 1)}
     </div>
   );
 };
