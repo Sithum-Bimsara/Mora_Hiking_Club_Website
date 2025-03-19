@@ -49,6 +49,7 @@ const Register = () => {
     const { name, value, type, checked, files } = e.target;
   
     if (type === "checkbox") {
+
       if (name === "skills") {
         setFormData((prevData) => ({
           ...prevData,
@@ -73,6 +74,7 @@ const Register = () => {
       setFormData((prevData) => ({
         ...prevData,
         gender: value, // Keep as displayed ('Male', 'Female')
+
       }));
     } else {
       setFormData((prevData) => ({
@@ -81,6 +83,7 @@ const Register = () => {
       }));
     }
   };
+
   
 
   const handleSubmit = async (e) => {
@@ -143,6 +146,7 @@ const Register = () => {
     }
   };
   
+
 
   return (
     <div className="register-container">
@@ -393,6 +397,7 @@ const Register = () => {
                   name="bio"
                   value={formData.bio}
                   onChange={handleChange}
+
                   // minLength="100"
                   // required
                 />
@@ -434,6 +439,7 @@ const Register = () => {
               </div>
               <div className="form-group">
                 <label>Relationship with Guardian:</label>
+
                 <input
                   type="text"
                   name="kinship"
@@ -441,6 +447,7 @@ const Register = () => {
                   onChange={handleChange}
                   required
                 />
+
               </div>
               <div className="form-group">
                 <label>Guardian Contact Number:</label>
@@ -529,6 +536,7 @@ const Register = () => {
               <h3>Payment Details</h3>
               <div className="form-group">
                 <label>Upload Payment Receipt:</label>
+
                 <p>Please note that inorder to activate your membership you have to pay a fee of Rs 500 /= and upload the receipt here</p>
                 <input
                   type="file"

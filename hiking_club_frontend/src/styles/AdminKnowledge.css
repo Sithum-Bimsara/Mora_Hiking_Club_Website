@@ -1,0 +1,82 @@
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+.admin-knowledge {
+    display: flex;
+    background: white;
+}
+  
+.knowledge-content{
+    width: 100%;
+    margin-top: 150px; 
+    margin-left: 250px; 
+    padding: 20px;
+    min-height: 100vh;
+    color: white; 
+    overflow-y: auto;
+  }
+
+
+
+table{
+    margin-top: 20px;
+}
+
+
+
+
+.knowledge-table{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+
+.knowledge-table th,
+.knowledge-table td{
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    color: black;
+}
+
+.knowledge-table th{
+    background-color: #e8e5d9;
+    color: black;
+}
+
+
+.thead {
+    background-color: black;
+}
+
+
+.knowledge-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.knowledge-actions{
+    display: flex;
+    gap: 10px;
+}
+
+.knowledge-actions button {
+    padding: 10px 30px;
+    background-color: #00796b;
+    color: white;
+    border: none;
+    border-radius: 100px;
+    cursor: pointer;
+}
+
+.search-container .search-input{
+    border-radius: 5px;
+    padding: 10px 30px;
+}

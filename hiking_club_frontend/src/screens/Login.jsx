@@ -1,12 +1,15 @@
+
 import React, { useState } from "react";
 import "../styles/Login.css";
 import hikingImage from "../assets/images/hiker.jpg";
 import { useNavigate } from "react-router-dom";
 
+
 const Login = () => {
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+
     const [error, setError] = useState(""); // For error handling
 
     const handleSubmit = async (e) => {
@@ -39,6 +42,7 @@ const Login = () => {
             setError(err.message);
         }
     };
+
 
     return (
         <div className="login-container">
@@ -80,3 +84,4 @@ const Login = () => {
 };
 
 export default Login;
+*/}

@@ -40,39 +40,38 @@ JWT_EXPIRES_IN=1h
 ```
 Mora_Hiking_Club_Website/
 │── backend/
-│   ├── src/
-│   │   ├── config/
-│   │   │   ├── db.js                 # Database connection
-│   │   ├── controllers/
-│   │   │   ├── authController.js      # Authentication logic
-│   │   │   ├── adminController.js     # Admin management (two levels)
-│   │   │   ├── userController.js      # User-related functions
-│   │   │   ├── eventController.js     # Event-related logic
-│   │   │   ├── articleController.js   # Articles and comments
-│   │   │   ├── feedbackController.js  # Feedback management
-│   │   ├── models/
-│   │   │   ├── knowledgeModel.js      # Knowledge and categories
-│   │   │   ├── eventModel.js          # Events and categories
-│   │   │   ├── memberModel.js         # Members and applicants
-│   │   │   ├── articleModel.js        # Articles and comments
-│   │   │   ├── partnerModel.js        # Partners and event partners
-│   │   │   ├── feedbackModel.js       # Feedbacks
-│   │   ├── routes/
-│   │   │   ├── authRoutes.js          # Login, register, logout
-│   │   │   ├── adminRoutes.js         # Admin functionalities (Level 1 & 2)
-│   │   │   ├── userRoutes.js          # User routes
-│   │   │   ├── eventRoutes.js         # Event management
-│   │   │   ├── articleRoutes.js       # Articles & comments
-│   │   │   ├── feedbackRoutes.js      # Feedback management
-│   │   ├── middlewares/
-│   │   │   ├── authMiddleware.js      # Token verification
-│   │   │   ├── adminMiddleware.js     # Admin role verification
-│   │   ├── utils/
-│   │   │   ├── helpers.js             # Utility functions
-│   │   ├── app.js                     # Express server setup
-│   ├── package.json
-│   ├── .env
-│   ├── README.md
+│   │ 
+│   ├── config/
+│   │   ├── db.js                 # Database connection
+│   ├── controllers/
+│   │   ├── authController.js      # Authentication logic
+│   │   ├── userController.js      # User-related functions
+│   │   ├── eventController.js     # Event-related logic
+│   │   ├── articleController.js   # Articles and comments
+│   │   ├── feedbackController.js  # Feedback management
+│   ├── models/
+│   │   ├── knowledgeModel.js      # Knowledge and categories
+│   │   ├── eventModel.js          # Events and categories
+│   │   ├── memberModel.js         # Members and applicants
+│   │   ├── articleModel.js        # Articles and comments
+│   │   ├── partnerModel.js        # Partners and event partners
+│   │   ├── feedbackModel.js       # Feedbacks
+│   ├── routes/
+│   │   ├── authRoutes.js          # Login, register, logout
+│   │   ├── userRoutes.js          # User routes
+│   │   ├── eventRoutes.js         # Event management
+│   │   ├── articleRoutes.js       # Articles & comments
+│   │   ├── feedbackRoutes.js      # Feedback management
+│   ├── middlewares/
+│   │   ├── authMiddleware.js      # Token verification
+│   │   ├── adminMiddleware.js     # Admin role verification
+│   ├── utils/
+│   │   ├── helpers.js             # Utility functions
+├── server.js                     # Express server setup
+├── package.json
+├── .env
+│
+│
 │── frontend/
 │   ├── src/
 │   │   ├── components/
