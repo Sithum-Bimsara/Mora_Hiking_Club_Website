@@ -393,8 +393,8 @@ const Register = () => {
                   name="bio"
                   value={formData.bio}
                   onChange={handleChange}
-                  minLength="100"
-                  required
+                  // minLength="100"
+                  // required
                 />
               </div>
               <div className="form-group">
@@ -434,20 +434,13 @@ const Register = () => {
               </div>
               <div className="form-group">
                 <label>Relationship with Guardian:</label>
-                <div className="checkbox-group">
-                  {["Father", "Mother", "Other"].map((relation) => (
-                    <label key={relation}>
-                      <input
-                        type="checkbox"
-                        name="kinship"
-                        value={relation}
-                        checked={formData.kinship.includes(relation)}
-                        onChange={handleChange}
-                      />
-                      {relation}
-                    </label>
-                  ))}
-                </div>
+                <input
+                  type="text"
+                  name="kinship"
+                  value={formData.nameOfKin}
+                  onChange={handleChange}
+                  required
+                />
               </div>
               <div className="form-group">
                 <label>Guardian Contact Number:</label>

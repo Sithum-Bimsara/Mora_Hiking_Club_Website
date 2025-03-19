@@ -26,6 +26,8 @@ const Login = () => {
 
             if (!response.ok) {
                 throw new Error(data.error || "Login failed");
+            } else {
+                alert("Login Successful!");
             }
 
             // Store token in localStorage
