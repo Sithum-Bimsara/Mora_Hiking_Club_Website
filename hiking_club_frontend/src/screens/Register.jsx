@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 import "../styles/Register.css";
 
 const Register = () => {
@@ -48,16 +49,32 @@ const Register = () => {
     const { name, value, type, checked, files } = e.target;
   
     if (type === "checkbox") {
-      setFormData((prevData) => ({
-        ...prevData,
-        skills: checked
-          ? [...prevData.skills, value]
-          : prevData.skills.filter((skill) => skill !== value),
-      }));
+
+      if (name === "skills") {
+        setFormData((prevData) => ({
+          ...prevData,
+          skills: checked
+            ? [...prevData.skills, value]
+            : prevData.skills.filter((skill) => skill !== value),
+        }));
+      } else if (name === "kinship") {
+        setFormData((prevData) => ({
+          ...prevData,
+          kinship: checked
+            ? [...prevData.kinship, value]
+            : prevData.kinship.filter((k) => k !== value),
+        }));
+      }
     } else if (type === "file") {
       setFormData((prevData) => ({
         ...prevData,
-        [name]: files[0], // Store the uploaded file
+        [name]: files[0], // Store the actual file object
+      }));
+    } else if (name === "gender") {
+      setFormData((prevData) => ({
+        ...prevData,
+        gender: value, // Keep as displayed ('Male', 'Female')
+
       }));
     } else {
       setFormData((prevData) => ({
@@ -67,11 +84,69 @@ const Register = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form Data:", formData);
-    alert("Form submitted successfully!");
+  
+    // Convert gender to lowercase
+    const formattedGender = formData.gender.toLowerCase();
+  
+    // Create FormData for file upload
+    const formDataToSend = new FormData();
+  
+    formDataToSend.append("password_hash", formData.password);
+    formDataToSend.append("first_name", formData.firstName);
+    formDataToSend.append("last_name", formData.lastName);
+    formDataToSend.append("full_name", formData.fullName);
+    formDataToSend.append("date_of_birth", formData.dateOfBirth);
+    formDataToSend.append("NIC_no", formData.nationalIdCardNo);
+    formDataToSend.append("gender", formattedGender);
+    formDataToSend.append("email", formData.email);
+    formDataToSend.append("contact_no", formData.contactNo);
+    formDataToSend.append("university_id", formData.universityRegistrationNo);
+    formDataToSend.append("faculty", formData.faculty);
+    formDataToSend.append("degree_program", formData.degreeProgram);
+    formDataToSend.append("year", formData.level);
+    formDataToSend.append("bio_description", formData.bio);
+    formDataToSend.append("skills", JSON.stringify(formData.skills)); // Store skills as JSON array
+    formDataToSend.append("facebook_url", formData.facebookUrl);
+    formDataToSend.append("instagram_url", formData.instagramUrl);
+    formDataToSend.append("blood_type", formData.bloodType);
+    formDataToSend.append("first_aid_skills", formData.firstAidSkills);
+    formDataToSend.append("injuries", formData.injuries);
+    formDataToSend.append("long_term_medical_issues", formData.longTermMedicalIssues);
+    formDataToSend.append("medicines", formData.medicines);
+    formDataToSend.append("emergency_relationship", formData.kinship);
+    formDataToSend.append("emergency_contact_name", formData.nameOfKin);
+    formDataToSend.append("emergency_contact_no_1", formData.kinContactNo);
+    formDataToSend.append("emergency_contact_no_2", "");
+    formDataToSend.append("emergency_address", formData.kinAddress);
+  
+    // Handle file upload
+    if (formData.paymentReceipt) {
+      formDataToSend.append("payment_proof_link", formData.paymentReceipt);
+    }
+  
+    try {
+      const response = await axios.post("http://localhost:8080/api/auth/signup", formDataToSend, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+  
+      if (response.status === 201) {
+        alert("Registration successful!");
+      } else {
+        alert("Registration failed. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error during registration:", error);
+      alert("Error submitting form. Please try again.");
+    }
   };
+  
+
 
   return (
     <div className="register-container">
@@ -322,8 +397,9 @@ const Register = () => {
                   name="bio"
                   value={formData.bio}
                   onChange={handleChange}
-                  minLength="100"
-                  required
+
+                  // minLength="100"
+                  // required
                 />
               </div>
               <div className="form-group">
@@ -363,20 +439,15 @@ const Register = () => {
               </div>
               <div className="form-group">
                 <label>Relationship with Guardian:</label>
-                <div className="checkbox-group">
-                  {["Father", "Mother", "Other"].map((relation) => (
-                    <label key={relation}>
-                      <input
-                        type="checkbox"
-                        name="kinship"
-                        value={relation}
-                        checked={formData.kinship.includes(relation)}
-                        onChange={handleChange}
-                      />
-                      {relation}
-                    </label>
-                  ))}
-                </div>
+
+                <input
+                  type="text"
+                  name="kinship"
+                  value={formData.nameOfKin}
+                  onChange={handleChange}
+                  required
+                />
+
               </div>
               <div className="form-group">
                 <label>Guardian Contact Number:</label>
@@ -465,7 +536,8 @@ const Register = () => {
               <h3>Payment Details</h3>
               <div className="form-group">
                 <label>Upload Payment Receipt:</label>
-                <p>Plaese note that inorder to activate your membership you have to pay a fee of Rs 500 /= and upload the receipt here</p>
+
+                <p>Please note that inorder to activate your membership you have to pay a fee of Rs 500 /= and upload the receipt here</p>
                 <input
                   type="file"
                   name="paymentReceipt"

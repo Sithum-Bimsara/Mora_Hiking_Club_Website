@@ -53,6 +53,13 @@ import AboutUs from "./screens/AboutUs";
 import Footer from "./components/Footer";
 import Header2 from "./components/Header2";
 
+import AdminArticles from "./screens/AdminArticles";
+import AdminKnowledge from "./screens/AdminKnowledge";
+import AdminEvents from "./screens/AdminEvents";
+import AdminDashboard from "./screens/AdminDashboard";
+import AdminApplicants from "./screens/AdminApplicants";
+
+
 function Layout() {
   const location = useLocation();
   const isHomeScreen = location.pathname === "/";
@@ -69,6 +76,13 @@ function Layout() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/about" element={<AboutUs />} />
+
+        <Route path="/AdminArticales" element={<AdminArticles />} />
+        <Route path="/AdminKnowledge" element={<AdminKnowledge />} />
+        <Route path="/AdminEvents" element={<AdminEvents />} />
+        <Route path="/AdminDashboard" element={<AdminDashboard />} />
+        <Route path="/AdminApplicants" element={<AdminApplicants />} />
+
       </Routes>
       <div>
       <Footer />
