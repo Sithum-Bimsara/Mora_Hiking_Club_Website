@@ -33,11 +33,13 @@ const findApplicantByEmail = async (email) => {
 };
 
 
-// Find applicant by email (Login)
-const findApplicantDetailsByEmail = async (email) => {
-    const query = "SELECT full_name FROM applicant WHERE email = ?";
-    const [result] = await db.execute(query, [email]);
-    return result[0];
+// Get all applicants by status
+const getApplicantsByStatus = async (status) => {
+    const [rows] = await db.execute(
+        "SELECT applicant_id, first_name, last_name, email, application_status FROM applicant WHERE application_status = ?",
+        [status]
+    );
+    return rows;
 };
 
 // Update applicant details (excluding application_status)
@@ -56,11 +58,23 @@ const updateApplicantDetails = async (applicant_id, updates) => {
     values.push(applicant_id);
 
     if (values.length === 1) {
-        throw new Error("No valid fields to update.");
+        return 0; // No valid fields to update
     }
 
     const [result] = await db.execute(query, values);
-    return result;
+    return result.affectedRows;
+};
+
+// Function to check if an applicant exists
+const getApplicantById = async (applicant_id) => {
+    const [rows] = await db.execute("SELECT * FROM applicant WHERE applicant_id = ?", [applicant_id]);
+    return rows.length > 0 ? rows[0] : null;
+};
+
+// Function to check if an applicant exists
+const getMemberById = async (member_id) => {
+    const [rows] = await db.execute("SELECT * FROM member WHERE member_id = ?", [member_id]);
+    return rows.length > 0 ? rows[0] : null;
 };
 
 // Update application_status separately
@@ -79,4 +93,7 @@ module.exports = {
     findApplicantByEmail,
     updateApplicantDetails,
     updateApplicationStatus,
+    getApplicantById,
+    getApplicantsByStatus,
+    getMemberById
 };
