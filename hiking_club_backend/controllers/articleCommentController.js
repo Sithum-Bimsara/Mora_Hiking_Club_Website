@@ -1,28 +1,41 @@
-const commentModel = require("../models/articleCommentModel");
+const ArticleCommentModel = require("../models/articleCommentModel");
 
-// Create a comment
-const createComment = async (req, res) => {
+
+// Get all comments of a specific article
+exports.getCommentsByArticle = async (req, res) => {
+    try {
+        const { article_id } = req.params;
+        const comments = await ArticleCommentModel.getCommentsByArticle(article_id);
+        res.json(comments);
+    } catch (error) {
+        res.status(500).json({ error: "Failed to retrieve comments" });
+    }
+};
+
+// Create a comment for an article
+exports.createComment = async (req, res) => {
     try {
         const { article_id, commenter_name, comment } = req.body;
-        await commentModel.createComment(article_id, commenter_name, comment);
-        res.status(201).json({ message: "Comment added successfully" });
+        const newComment = await ArticleCommentModel.createComment(article_id, commenter_name, comment);
+        res.status(201).json(newComment);
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        res.status(500).json({ error: "Failed to create comment" });
     }
 };
 
 // Delete a comment
-const deleteComment = async (req, res) => {
+exports.deleteComment = async (req, res) => {
     try {
         const { id } = req.params;
-        await commentModel.deleteComment(id);
-        res.status(200).json({ message: "Comment deleted successfully" });
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
-};
+        const deleted = await ArticleCommentModel.deleteComment(id);
 
-module.exports = {
-    createComment,
-    deleteComment
-};
+        if (!deleted) {
+            return res.status(404).json({ error: "Comment not found" });
+        }
+
+        res.json({ message: "Comment deleted successfully" });
+    } catch (error) {
+        res.status(500).json({ error: "Failed to delete comment" });
+    }
+}
+

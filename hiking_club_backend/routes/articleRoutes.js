@@ -5,9 +5,10 @@ const authenticateUser = require("../middlewares/authMiddleware");
 const authorizeAdmin = require("../middlewares/authorizeAdmin");
 
 router.get("/",  articleController.getAllArticles);
-router.get("/:articleId/comments", articleController.getArticleWithComments);
+router.get("/:id/comments", articleController.getArticleWithComments);
+router.get("/with-comments", articleController.getAllArticlesWithComments);
 router.post("/",authenticateUser, authorizeAdmin,  articleController.createArticle);
-router.put("/:articleId", authenticateUser, authorizeAdmin, articleController.updateArticle);
-router.delete("/:articleId",authenticateUser, authorizeAdmin,  articleController.deleteArticle);
+router.put("/:id", authenticateUser, authorizeAdmin, articleController.updateArticle);
+router.delete("/:id",authenticateUser, authorizeAdmin,  articleController.deleteArticle);
 
 module.exports = router;
