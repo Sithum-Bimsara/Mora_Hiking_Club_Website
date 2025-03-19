@@ -1,0 +1,91 @@
+.footer-container {
+    background-color: #073b32;
+    color: white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 40px 20px;
+    flex-wrap: wrap;
+    text-align: left;
+  }
+  
+  .logo-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .logo {
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .logo span {
+    display: block;
+    font-size: 16px;
+  }
+  
+  .social-icons {
+    margin-top: 10px;
+    font-size: 24px;
+    display: flex;
+    gap: 15px;
+  }
+  
+  .footer-links h3,
+  .contact-info h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  .footer-links ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .footer-links li {
+    margin: 5px 0;
+    cursor: pointer;
+  }
+  
+  .contact-info p {
+    margin: 5px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+.footer-links link{
+    text-decoration: none;
+    color: white;
+}
+
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .footer-links li {
+    margin: 5px 0;
+  }
+  
+  .footer-link {
+    text-decoration: none; /* Removes underline */
+    color: white; /* Makes text white */
+    font-weight: normal; /* Ensures normal font weight */
+  }
+  
+  .footer-link:hover {
+    text-decoration: underline; /* Adds underline on hover for better UX */
+  }
+  
+  .social-icons svg {
+    margin: 0 10px;
+    font-size: 1em;
+    color: white; /* Set the icon color to white */
+  }
+  
+  .social-icons a {
+    color: white; /* Ensure the anchor tags don't override the icon color */
+  }
+  

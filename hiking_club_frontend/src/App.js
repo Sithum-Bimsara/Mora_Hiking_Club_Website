@@ -50,6 +50,8 @@ import Knowledge from "./screens/Knowledge";
 import Login from "./screens/Login";
 import Register from "./screens/Register";
 import AboutUs from "./screens/AboutUs"; 
+import Footer from "./components/Footer";
+import Header2 from "./components/Header2";
 
 function Layout() {
   const location = useLocation();
@@ -68,6 +70,9 @@ function Layout() {
         <Route path="/register" element={<Register />} />
         <Route path="/about" element={<AboutUs />} />
       </Routes>
+      <div>
+      <Footer />
+      </div>
     </>
   );
 }
