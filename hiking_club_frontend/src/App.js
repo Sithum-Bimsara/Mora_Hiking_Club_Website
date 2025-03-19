@@ -50,6 +50,8 @@ import Knowledge from "./screens/Knowledge";
 import Login from "./screens/Login";
 import Register from "./screens/Register";
 import AboutUs from "./screens/AboutUs"; 
+import Footer from "./components/Footer";
+import Header2 from "./components/Header2";
 
 import AdminArticles from "./screens/AdminArticles";
 import AdminKnowledge from "./screens/AdminKnowledge";
@@ -82,6 +84,9 @@ function Layout() {
         <Route path="/AdminApplicants" element={<AdminApplicants />} />
 
       </Routes>
+      <div>
+      <Footer />
+      </div>
     </>
   );
 }

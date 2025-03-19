@@ -8,14 +8,18 @@ const Header = () => {
   return (
     <header className="header">
       <div className="logo-container">
-        <img src={logo} alt="MÓRA HIKING CLUB Logo" className="logo" />
+        {/* Wrap logo inside Link to navigate to homepage */}
+        <Link to="/">
+          <img src={logo} alt="MÓRA HIKING CLUB Logo" className="logo" />
+        </Link>
       </div>
+
       <nav className="nav-links">
-        <a href="/" className="active">Home</a>
-        <a href="/about">About Us</a>
-        <a href="/articles">Articles</a>
-        <a href="/hikes">Hikes</a>
-        <a href="/knowledge">Knowledge</a>
+        <Link to="/" className="active">Home</Link>
+        <Link to="/about">About Us</Link>
+        <Link to="/articles">Articles</Link>
+        <Link to="/hikes">Hikes</Link>
+        <Link to="/knowledge">Knowledge</Link>
       </nav>
       
       <Link to="/profile" className="profile">
