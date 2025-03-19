@@ -6,15 +6,14 @@
 }
 
 .admin-applicants {
-    display: flex;
-    background: white;
+    background-color: white;
 }
+
   
 .applicants-content{
+    padding-left:250px;
+    padding-top: 170px;
     width: 100%;
-    margin-top: 150px; 
-    margin-left: 250px; 
-    padding: 20px;
     min-height: 100vh;
     color: white; 
     overflow-y: auto;
@@ -28,6 +27,7 @@ table{
 .applicants-table{
     width: 100%;
     border-collapse: collapse;
+    background-color: white;
 }
 
 .applicants-table th,
@@ -55,7 +55,7 @@ table{
     border-radius: 5px;
     cursor: pointer; 
 }
-.admin-applicants button:hover{
+.admin-applicants table button:hover{
     background-color: #999;
 }
 
@@ -63,4 +63,12 @@ table{
     padding: 5px 15px;
     border-radius: 10px;
     cursor: pointer;
+}
+
+@media(max-width: 768px){
+    .applicants-content{    
+        padding-left: 20px;
+        padding-top:190px;
+    }
+    
 }

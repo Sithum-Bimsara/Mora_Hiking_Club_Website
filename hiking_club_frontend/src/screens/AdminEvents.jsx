@@ -78,6 +78,7 @@ const AdminEvents = () => {
             <div className="sidebar">
                 <AdminSideBar />
             </div>
+            <div className="events-container">
             {addEvent ? (
                 <AddEvent event={selectedEvent} onBack={handleBackToEvents} onSave={handleSaveEvent} onDelete={handleDeleteEvent} />
             ) : (
@@ -120,6 +121,7 @@ const AdminEvents = () => {
                     </div>
                 </div>
             )}
+            </div>
         </div>
     );
 };

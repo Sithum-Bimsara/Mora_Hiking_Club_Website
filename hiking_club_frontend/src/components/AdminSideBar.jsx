@@ -21,8 +21,8 @@ const AdminSideBar = ({ onMenuSelect }) => {
 
   return (
     <div className="sidebar">
-      <h2 className="logo">MORA Hiking Club</h2>
       <nav className="menu">
+      <div className="menu-back">
         {menuItems.map((item) => (
           <button
             key={item.name}
@@ -34,6 +34,7 @@ const AdminSideBar = ({ onMenuSelect }) => {
             {item.name}
           </button>
         ))}
+      </div>
       </nav>
     </div>
   );

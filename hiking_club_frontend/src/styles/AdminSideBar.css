@@ -1,5 +1,7 @@
 /* Sidebar Container */
-.sidebar {
+.menu-back {
+    display: flex;
+    flex-direction: column;
     margin-left: 25px;
     margin-top: 150px; /* Removed margin-top: 150px to align with the top as in the screenshot */
     width: 200px; /* Adjusted to match the screenshot's sidebar width */
@@ -13,34 +15,79 @@
     box-sizing: border-box;
     background-color: white;
   }
+
   
-  /* Logo */
-  .logo {
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 20px;
-    color: #333;
-  }
-  
-  /* Menu Container */
-  .menu {
-    display: flex;
-    flex-direction: column;
-  }
+
   
   /* Menu Buttons */
   .menu-item {
-    display: block;
+    width: 150px;
     margin: 5px 0;
     padding: 15px;
     color: #333;
-    background: none; /* Ensure no default button background */
-    border: none; /* Remove default button border */
-    text-align: left; /* Align text to the left like a link */
+    border: none;
+    text-align: left; 
     font-size: 16px; /* Match font size from screenshot */
     cursor: pointer; /* Pointer cursor for buttons */
     border-radius: 6px;
     transition: background 0.3s ease;
+    background-color: white;
+  }
+
+  
+  /* Active Menu Item */
+  .active-item {
+    background: #00796b;
+    color: white;
+    font-weight: bold;
+  }
+  /* Hover Effect for Menu Buttons */
+  .menu-item:not(.active-item):hover  {
+    background: #ddd;
+  }
+  
+  /* Optional: Remove default button focus outline if desired */
+  .menu-item:focus {
+    outline: none;
+  }
+
+  @media (max-width: 768px) {
+
+    
+    .menu-back {
+      margin-top: 130px;
+      display: flex;
+      flex-direction: row;
+      gap: 0px;
+      margin-left: 0px;
+      margin-right: 0px;
+      margin-bottom: 0px;
+      padding: 20px;
+      border-radius: 5px;
+      max-height: 5px;
+      width: 100%;
+      align-items: center;
+      border:none;
+
+    }
+
+    
+  /* Menu Buttons */
+  .menu-item {
+    margin: 0px 0px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 0px;
+    padding-right: 0px;
+    min-width: 65px;
+    text-align: center;
+    color: #333;
+    font-size:0.8em; 
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+    background-color: white;
+    
   }
 
  
@@ -60,4 +107,6 @@
   /* Optional: Remove default button focus outline if desired */
   .menu-item:focus {
     outline: none;
+  }
+
   }

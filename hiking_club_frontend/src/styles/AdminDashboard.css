@@ -98,3 +98,12 @@ table{
     font-size: small;
 }
 
+@media (max-width: 768px){
+    
+    .dashboard-content{
+        margin-left: 0px;
+        font-size: 0.7em;
+    }
+    
+}
+
