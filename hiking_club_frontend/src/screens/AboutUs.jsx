@@ -64,69 +64,68 @@ const committeeMembers = {
   executive: [
     { name: "Nisal Rajapksha", role: "President", photo: exec1 },
     { name: "Umaya Gunarathne", role: "Secretary", photo: exec2 },
-    { name: "Senior Lecturer ", role: "Executive", photo: exec3 },
-    { name: "Member 4", role: "Executive", photo: exec4 },
-    { name: "Member 5", role: "Executive", photo: exec5 },
-    { name: "Member 6", role: "Executive", photo: exec6 },
-    { name: "Member 7", role: "Executive", photo: exec7 },
-    { name: "Member 8", role: "Executive", photo: exec8 },
-    { name: "Member 9", role: "Executive", photo: exec9 }
+    { name: "Senior Lecturer Dr. Suranga Jayasena ", role: "Senior Treasurer", photo: exec3 },
+    { name: "Dulmi Jayarathna", role: "Assistant Secretary", photo: exec4 },
+    { name: "Dokula Perera", role: "Vice President - Administration", photo: exec5 },
+    { name: "Duvindu Sahan", role: "Vice President - Finance", photo: exec6 },
+    { name: "Kaveesha Kapuruge", role: "Vice President - Media", photo: exec7 },
+    { name: "Lakshara Alwis", role: "Vice President - Research & Development", photo: exec8 },
+    { name: "Thishala Thathsarani", role: "Vice President - Health & Safety", photo: exec9 }
   ],
   advisors: [
-    { name: "Advisor 1", role: "Advisor", photo: advisor1 },
-    { name: "Advisor 2", role: "Advisor", photo: advisor2 }
+    { name: "Harshana Wijesekara", role: "", photo: advisor1 },
+    { name: "Tharindi Hennkende", role: "", photo: advisor2 }
   ],
   
   administration: [
-    { name: "Admin 1", role: "Admin", photo: admin1 },
-    { name: "Admin 2", role: "Admin", photo: admin2 },
-    { name: "Admin 3", role: "Admin", photo: admin3 },
-    { name: "Admin 4", role: "Admin", photo: admin4 },
-    { name: "Admin 5", role: "Admin", photo: admin5 }
+    { name: "Dokula Perera", role: "Vice President", photo: admin1 },
+    { name: "Nipun malinga", role: "Committee Member", photo: admin2 },
+    { name: "Banula Gunathilaka", role: "Committee Member", photo: admin3 },
+    { name: "Dulani Rashodya", role: "Committee Member", photo: admin4 },
+    { name: "Vihanga Athapaththu", role: "Committee Member", photo: admin5 }
   ],
   finance: [
-    { name: "Finance 1", role: "Finance", photo: finance1 },
-    { name: "Finance 2", role: "Finance", photo: finance2 },
-    { name: "Finance 3", role: "Finance", photo: finance3 },
-    { name: "Finance 4", role: "Finance", photo: finance4 },
-    { name: "Finance 5", role: "Finance", photo: finance5 },
-    { name: "Finance 5", role: "Finance", photo: finance5 },
-    { name: "Finance 6", role: "Finance", photo: finance6 }
+    { name: "Duvindu Sahan", role: "Vice President", photo: finance1 },
+    { name: "Himash Ruwanga", role: "Committee Member", photo: finance2 },
+    { name: "Dananjaya Bandara", role: "Committee Member", photo: finance3 },
+    { name: "Mishel Kulathunga", role: "Committee Member", photo: finance4 },
+    { name: "Rashini Dias", role: "Committee Member", photo: finance5 },
+    { name: "Nimna Aberathna", role: "Committee Membere", photo: finance6 }
   ],
   media: [
-    { name: "Media 1", role: "Media", photo: media1 },
-    { name: "Media 2", role: "Media", photo: media2 },
-    { name: "Media 3", role: "Media", photo: media3 },
-    { name: "Media 4", role: "Media", photo: media4 },
-    { name: "Media 5", role: "Media", photo: media5 },
-    { name: "Media 6", role: "Media", photo: media6 },
-    { name: "Media 7", role: "Media", photo: media7 }
+    { name: "Kaveesha Kapuruge", role: "Vice President", photo: media1 },
+    { name: "Suweka sansiluni", role: "Committee Member", photo: media2 },
+    { name: "Gagani Dewolage", role: "Committee Member", photo: media3 },
+    { name: "Hasarangi withanawasam", role: "Committee Member", photo: media4 },
+    { name: "Yasanjala Ravinatha", role: "Committee Member", photo: media5 },
+    { name: "Sasinindu Kalhara", role: "Committee Member", photo: media6 },
+    { name: "Dawood mohamed asriff", role: "Committee Member", photo: media7 }
   ],
   health: [
-    { name: "Health 1", role: "Health & Safety", photo: health1 },
-    { name: "Health 2", role: "Health & Safety", photo: health2 },
-    { name: "Health 3", role: "Health & Safety", photo: health3 },
-    { name: "Health 4", role: "Health & Safety", photo: health4 },
-    { name: "Health 5", role: "Health & Safety", photo: health5 },
-    { name: "Health 6", role: "Health & Safety", photo: health6 }
+    { name: "Thishala Thathsarani", role: "Vice President", photo: health1 },
+    { name: "Dulaj sathsara", role: "Committee Member", photo: health2 },
+    { name: "Sathish chanaka", role: "Committee Member", photo: health3 },
+    { name: "Dilini kodithuwakku", role: "Committee Member", photo: health4 },
+    { name: "Dinusha Dahanayake", role: "Committee Member", photo: health5 },
+    { name: "Dinuka Malitha", role: "Committee Member", photo: health6 }
   ],
   research: [
-    { name: "Research 1", role: "Research & Development", photo: research1 },
-    { name: "Research 2", role: "Research & Development", photo: research2 },
-    { name: "Research 3", role: "Research & Development", photo: research3 },
-    { name: "Research 4", role: "Research & Development", photo: research4 },
-    { name: "Research 5", role: "Research & Development", photo: research5 },
-    { name: "Research 6", role: "Research & Development", photo: research6 },
-    { name: "Research 7", role: "Research & Development", photo: research7 }
+    { name: "Lakshara Alwis", role: "Vice President", photo: research1 },
+    { name: "Hasith sathsara", role: "Committee Member", photo: research2 },
+    { name: "Mirasa kethaka", role: "Committee Member", photo: research3 },
+    { name: "Madhuragavan Raveendran", role: "Committee Member", photo: research4 },
+    { name: "Keshani Mahanama", role: "Committee Member", photo: research5 },
+    { name: "Induwara Ilukkumbura", role: "Committee Member", photo: research6 },
+    { name: "Kavindu Lakshan", role: "Committee Member", photo: research7 }
   ],
 
   editorial: [
-    { name: "Editor 1", role: "Editor", photo: editor1 },
-    { name: "Editor 2", role: "Editor", photo: editor2 },
-    { name: "Editor 3", role: "Editor", photo: editor3 },
-    { name: "Editor 4", role: "Editor", photo: editor4 },
-    { name: "Editor 5", role: "Editor", photo: editor5 }
-  ]
+    { name: "Dulmi Jayarathne", role: "Assistant Secretary", photo: editor1 },
+    { name: "Theoda Hettiarachchi ", role: "Senior Editor", photo: editor2 },
+    { name: "Imesh Yasindu", role: "Junior Editor", photo: editor3 },
+    { name: "Kavisha Parindi", role: "Junior Editor", photo: editor4 },
+    { name: "Helani Rajapaksha", role: "Junior Editor", photo: editor5 }
+  ] 
 };
 
 const AboutUs = () => {
