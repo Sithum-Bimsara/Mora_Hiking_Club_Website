@@ -4,10 +4,12 @@ const knowledgeController = require("../controllers/knowledgeController");
 const authenticateUser = require("../middlewares/authMiddleware"); 
 const authorizeAdmin = require("../middlewares/authorizeAdmin");
 
-router.post("/", authenticateUser, knowledgeController.createKnowledge);
-router.put("/:id", authenticateUser, knowledgeController.updateKnowledge);
-router.delete("/:id", authenticateUser, knowledgeController.deleteKnowledge);
-router.get("/",  knowledgeController.getAllKnowledgeWithCategory);
-router.get("/:id", authenticateUser, knowledgeController.getKnowledgeByIdWithCategory);
+
+router.get("/", knowledgeController.getAllKnowledge); 
+router.get("/:topic", knowledgeController.getKnowledgeByTopic);
+router.post("/", authenticateUser, authorizeAdmin,  knowledgeController.createKnowledge);
+router.put("/:id", authenticateUser, authorizeAdmin, knowledgeController.updateKnowledge);
+router.delete("/:id", authenticateUser, authorizeAdmin, knowledgeController.deleteKnowledge);
+
 
 module.exports = router;
