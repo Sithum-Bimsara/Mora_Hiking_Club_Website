@@ -77,7 +77,6 @@ table{
 }
 
 .search-container .search-input{
-    border-radius: 100px;
+    border-radius: 5px;
     padding: 10px 30px;
-    border: 1px solid black;
 }

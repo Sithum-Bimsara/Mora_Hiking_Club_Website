@@ -9,7 +9,7 @@ const AdminSideBar = ({ onMenuSelect }) => {
   const menuItems = [
     { name: "Dashboard", path: "/AdminDashboard" },
     { name: "Applicants", path: "/AdminApplicants" },
-    { name: "Event", path: "/AdminHikes" },
+    { name: "Event", path: "/AdminEvents" },
     { name: "Articles", path: "/AdminArticales" },
     { name: "Knowledge", path: "/AdminKnowledge" },
   ];

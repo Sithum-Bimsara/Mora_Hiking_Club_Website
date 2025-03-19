@@ -41,15 +41,15 @@ table{
 
 .members-table button {
     padding: 10px 30px;
-    background-color: #00796b;
-    color: white;
+    background: #ccc;
+    color: black;
     border: none;
-    border-radius: 100px;
+    border-radius: 5px;
     cursor: pointer;
 }
 
 .members-table button:hover {
-    background-color: #005249;
+    background-color: #999;
 }
 
 .members-table{
@@ -84,7 +84,7 @@ table{
 }
 .pagination input{
     padding: 5px 15px;
-    border-radius: 10px;
+    border-radius: 5px;
     cursor: pointer;
     font-size: small;
     font-weight: bold;

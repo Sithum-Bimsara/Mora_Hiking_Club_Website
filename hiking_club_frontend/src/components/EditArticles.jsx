@@ -148,9 +148,9 @@ const ArticleFormEdit = ({ onSave, onDelete, onBack, initialData }) => {
       </div>
 
       <div className="form-buttons">
-        <button type="button" onClick={handleSave}>Save</button>
-        <button type="button" onClick={handleBack}>Back</button>
-        <button type="button" className="delete" onClick={handleDelete}>Delete</button>
+        <button type="save-button" onClick={handleSave}>Save</button>
+        <button type="back-button" onClick={handleBack}>Back</button>
+        <button type="delete-button" className="delete" onClick={handleDelete}>Delete</button>
       </div>
     </div>
   );

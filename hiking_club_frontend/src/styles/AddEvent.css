@@ -1,0 +1,82 @@
+.add-event {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 150px;
+    margin-left: 250px;
+    max-width: 1000px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    overflow-y: auto;
+}
+
+.add-event h1 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+}
+
+.add-event form {
+    width: 100%;
+    gap: 10px;
+}
+
+.add-event label {
+    margin-top: 10px;
+    text-align: left;
+    font-size: 16px;
+    font-weight: 600;
+    color: #555;
+}
+
+.add-event input {
+    margin-bottom: 10px;
+    margin-top: 5px;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    width: 100%;
+}
+
+.add-event input:focus {
+    border-color: #00796b;
+}
+
+.add-event button {
+    background-color: #ccc;
+    color: black;
+    gap: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.add-event .button-container {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+}
+
+.button-container button[type="save-button"] {
+    background-color: #00796b;
+    color: white;
+  }
+
+  
+  .button-container button:hover {
+    background-color: #005249;
+  }
+  
+  .button-container button[type="delete-button"]:hover {
+    background-color: red;
+  }
+
+  .button-container button[type="back-button"]:hover {
+    background-color: #999;
+  }
