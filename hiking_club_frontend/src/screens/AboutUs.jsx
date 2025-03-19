@@ -53,7 +53,7 @@ import research5 from "../assets/images/29.png";
 import research6 from "../assets/images/30.png";
 import research7 from "../assets/images/31.png";
 
-import editor1 from "../assets/images/2.png";
+import editor1 from "../assets/images/4.png";
 import editor2 from "../assets/images/38.png";
 import editor3 from "../assets/images/39.png";
 import editor4 from "../assets/images/40.png";
