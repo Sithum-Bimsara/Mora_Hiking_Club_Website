@@ -1,4 +1,4 @@
-.members-header {
+.dashboard-header .members-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -6,35 +6,41 @@
 }
 
 
-.members-header .search-bar{
+.dashboard-header.members-header .search-bar{
     display: flex;
     gap: 10px;
 }
 
 
-.members-header button {
+.dashboard-header .members-header button {
     margin-right: 10px;
     color: black;
     background-color: white;
     border: none;
     font-size: large;
-
+    
 }
 
-.members-header .active {
+.dashboard-header .members-header .active {
     font-weight: bold;
 }
 
-.members-header button:hover {
+.dashboard-header .members-header button:hover {
     cursor: pointer;
     font-weight: bold ;
 }
 
 
 
-.members-header input {
+.dashboard-header .members-header input {
     padding: 10px 30px;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: small;
+}
+
+@media (max-width: 768px) {
+    .dashboard-header .members-header button{
+        font-size: 1em;
+    }
 }
