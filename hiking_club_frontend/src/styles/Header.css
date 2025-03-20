@@ -1,81 +1,133 @@
 /* Basic Reset */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  /* Sticky Header */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Sticky Header */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #e8e5d9;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 30px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+/* Logo */
+.logo {
+  height: 50px;
+}
+
+/* Navigation */
+.nav-links {
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: black;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.nav-links a.active,
+.nav-links a:hover {
+  color: #045d42;
+}
+
+.nav-links a.active {
+  color: #045d42 !important;
+  font-weight: bold;
+  border-bottom: 2px solid #045d42; /* Optional: underline effect */
+}
+
+/* Profile Section */
+.profile {
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+
+.profile:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.name {
+  font-weight: bold;
+}
+
+.email {
+  font-size: 12px;
+  color: #555;
+}
+
+/* --- RESPONSIVE STYLES --- */
+
+/* Hamburger Menu */
+.menu-toggle {
+  display: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
   .header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-color: #e8e5d9;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 8px 50px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
+      padding: 10px 20px;
   }
-  
-  /* Logo */
-  .logo {
-    font-size: 20px;
-    font-weight: bold;
-    letter-spacing: 2px;
-    height: 60px;
-  }
-  
-  /* Navigation */
+
+  /* Hide nav links initially */
   .nav-links {
-    display: flex;
-    gap: 20px;
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 70px;
+      right: 0;
+      width: 100%;
+      background-color: #e8e5d9;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+      padding: 15px 0;
+      text-align: center;
+      transition: all 0.3s ease-in-out;
   }
-  
-  .nav-links a {
-    text-decoration: none;
-    color: black;
-    font-weight: 500;
-    transition: color 0.3s;
+
+  /* Show when toggled */
+  .nav-links.active {
+      display: flex;
   }
-  
-  .nav-links a.active {
-    color: #045d42;
+
+  /* Show menu toggle */
+  .menu-toggle {
+      display: block;
   }
-  
-  .nav-links a:hover {
-    color: #045d42;
-  }
-  
-  /* Profile Section */
+
+  /* Profile section remains visible */
   .profile {
-    display: flex;
-    align-items: center;
-    padding: 10px;
-    border: 1px solid black;
-    border-radius: 50px;
+      position: absolute;
+      top: 10px;
+      right: 15px;
   }
-  
-  .avatar {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: gray;
-    margin-right: 10px;
-  }
-  
-  .user-info {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .name {
-    font-weight: bold;
-  }
-  
-  .email {
-    font-size: 12px;
-  }
-  
+}

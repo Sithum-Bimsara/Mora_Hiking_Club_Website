@@ -1,5 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "../styles/Profile.css";
+
+const skillsList = [
+  "Photography",
+  "Videography",
+  "Photo Editing",
+  "Video Editing",
+  "First Aid",
+  "Article Writing",
+  "Sponsorship Hunting",
+  "Fund Raising",
+  "Event Planning",
+  "Risk Management",
+  "Graphic Designing",
+  "Web Designing",
+];
 
 const Profile = () => {
   const [profileImage, setProfileImage] = useState(null);
@@ -8,6 +23,7 @@ const Profile = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [userLog, setUserLog] = useState("Hi, I am Sasmitha Jayasinghe");
   const [userHistory, setUserHistory] = useState("Mehe giya ahare giya");
+  const modalRef = useRef(null);
 
   const [userDetails, setUserDetails] = useState({
     application_status: "Pending",
@@ -25,7 +41,7 @@ const Profile = () => {
     degree_program: "Software Engineering",
     year: "Final Year",
     bio_description: "Passionate developer.",
-    skills: "JavaScript, React, Node.js",
+    skills: [], // Updated to be an array
     facebook_url: "https://facebook.com/johndoe",
     instagram_url: "https://instagram.com/johndoe",
     contact_person_id: "CP123",
@@ -48,6 +64,35 @@ const Profile = () => {
   const handleChange = (e) => {
     setUserDetails({ ...userDetails, [e.target.name]: e.target.value });
   };
+
+  // Handle checkbox selection for skills
+  const handleSkillChange = (skill) => {
+    setUserDetails((prevDetails) => ({
+      ...prevDetails,
+      skills: prevDetails.skills.includes(skill)
+        ? prevDetails.skills.filter((s) => s !== skill) // Remove skill if already selected
+        : [...prevDetails.skills, skill], // Add skill if not selected
+    }));
+  };
+
+  // Close modal when clicking outside of it
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (modalRef.current && !modalRef.current.contains(event.target)) {
+        setIsModalOpen(false);
+      }
+    };
+
+    if (isModalOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isModalOpen]);
 
   return (
     <div className="profile-container">
@@ -79,6 +124,9 @@ const Profile = () => {
               onClick={() => setIsModalOpen(true)}
             >
               Edit Details
+            </button>
+            <button className="logout-button" onClick={handleLogout}>
+              Logout
             </button>
           </div>
 
@@ -142,21 +190,40 @@ const Profile = () => {
       {/* Editable Details Modal */}
       {isModalOpen && (
         <div className="modal">
-          <div className="modal-content">
+          <div className="modal-content" ref={modalRef}>
             <h3>Edit Details</h3>
             <div className="modal-body">
-              {Object.keys(userDetails).map((key) => (
-                <div key={key}>
-                  <label>{key.replace(/_/g, " ")}</label>
-                  <input
-                    type={key === "password_hash" ? "password" : "text"}
-                    name={key}
-                    value={userDetails[key]}
-                    onChange={handleChange}
-                    disabled={["first_name", "last_name", "full_name", "email"].includes(key)} // Disable specific fields
-                  />
-                </div>
-              ))}
+              {Object.keys(userDetails)
+                .filter((key) => key !== "password_hash" && key !== "application_status" && key !== "skills") // Exclude specific fields
+                .map((key) => (
+                  <div key={key}>
+                    <label>{key.replace(/_/g, " ")}</label>
+                    <input
+                      type="text"
+                      name={key}
+                      value={userDetails[key]}
+                      onChange={handleChange}
+                      disabled={["first_name", "last_name", "full_name", "email"].includes(key)}
+                    />
+                  </div>
+
+                ))}
+
+              {/* Skills Section with Checkboxes */}
+              <div className="skills-section">
+                <h4>Skills</h4>
+                {skillsList.map((skill) => (
+                  <label key={skill} className="skill-checkbox">
+                    <input
+                      type="checkbox"
+                      checked={userDetails.skills.includes(skill)}
+                      onChange={() => handleSkillChange(skill)}
+                    />
+                    {skill}
+                  </label>
+                ))}
+              </div>
+
             </div>
 
             <button
