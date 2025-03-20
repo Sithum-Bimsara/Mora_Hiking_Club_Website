@@ -1,16 +1,17 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
-import AdminHeader from "./components/AdminHeader";  
-import Header from "./components/Header";  
-import Homescreen from "./screens/Homescreen";  
-import "./App.css";  
+import AdminHeader from "./components/AdminHeader";
+import MemberHeader from "./components/MemberHeader";
+import Header from "./components/Header";
+import Homescreen from "./screens/Homescreen";
+import "./App.css";
 import Hikes from "./screens/Hikes";
 import Profile from "./screens/Profile";
 import Articles from "./screens/Articles";
 import Knowledge from "./screens/Knowledge";
 import Login from "./screens/Login";
 import Register from "./screens/Register";
-import AboutUs from "./screens/AboutUs"; 
+import AboutUs from "./screens/AboutUs";
 import Footer from "./components/Footer";
 
 // Admin Screens
@@ -26,26 +27,29 @@ import HikeDetails from "./screens/HikeDetails";
 // Layout Component
 function Layout() {
   const location = useLocation();
-  const isHomeScreen = location.pathname === "/";
-  const isLogin = location.pathname === "/login";
-  const isRegister= location.pathname === "/register";
-  const isAboutUs= location.pathname === "/about";
-  const isArticles= location.pathname === "/articles";
-  const isHikes= location.pathname === "/hikes";
-  const isKnowledge= location.pathname === "/knowledge";
+  const [role, setRole] = useState(localStorage.getItem("role"));
+
+  useEffect(() => {
+    setRole(localStorage.getItem("role"));
+  }, [location.pathname]);
+
+  // Determine which header to show
+  let HeaderComponent = Header;
+  if (role === "super_admin") {
+    HeaderComponent = AdminHeader
+  } else if (role === "admin") {
+    HeaderComponent = AdminHeader;
+  } else if (role === "member") {
+    HeaderComponent = MemberHeader;
+  }
 
   return (
     <>
-      {/* Conditionally render Header1 for HomeScreen and Header for other pages */}
-      {(isHomeScreen || isLogin || isRegister || isAboutUs || isArticles || isHikes || isKnowledge) ? <Header /> : <AdminHeader />}
-
-
-
-      {/* Routes for all pages */}
+      <HeaderComponent />
       <Routes>
-        <Route path="/" element={<Homescreen />} /> 
+        <Route path="/" element={<Homescreen />} />
         <Route path="/hikes" element={<Hikes />} />
-        <Route path="/hike-details/:id" element={<HikeDetails />} /> {/* Add this route */}
+        <Route path="/hike-details/:id" element={<HikeDetails />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/articles" element={<Articles />} />
         <Route path="/knowledge" element={<Knowledge />} />
@@ -60,8 +64,6 @@ function Layout() {
         <Route path="/AdminDashboard" element={<AdminDashboard />} />
         <Route path="/AdminApplicants" element={<AdminApplicants />} />
       </Routes>
-
-      {/* Footer */}
       <Footer />
     </>
   );

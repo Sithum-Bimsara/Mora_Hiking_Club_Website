@@ -4,7 +4,7 @@ import "../styles/Header.css";
 import logo from "../assets/images/logo.png";  
 import userPhoto from "../assets/images/1.jpg";  
 
-const Header = () => {
+const AdminHeader = () => {
   const location = useLocation(); // Get the current location (path)
 
   // Function to check if the current link is the active page
@@ -26,7 +26,7 @@ const Header = () => {
         <Link to="/articles" className={isActive("/articles")}>Articles</Link>
         <Link to="/hikes" className={isActive("/hikes")}>Hikes</Link>
         <Link to="/knowledge" className={isActive("/knowledge")}>Knowledge</Link>
-        <Link to="/admindashboard" className={isActive("/admindashboard")}>AdminDashboard</Link>
+        <Link to="/admindashboard" className={isActive("/admindashboard")}>Admin Dashboard</Link>
       </nav>
       
       <Link to="/profile" className="profile">
@@ -40,4 +40,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default AdminHeader;

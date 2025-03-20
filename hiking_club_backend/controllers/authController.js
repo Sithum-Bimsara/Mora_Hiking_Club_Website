@@ -83,6 +83,7 @@ const login = async (req, res) => {
             applicantId: applicant.applicant_id,
             full_name: applicant.full_name,
             member_id: applicant.member_id,
+            // role: applicant.role,
             role: applicant.role || "member",
         };
 
@@ -91,7 +92,7 @@ const login = async (req, res) => {
         });
 
         // Return token in response
-        res.status(200).json({ message: "Login successful", token });
+        res.status(200).json({ message: "Login successful", token, role: applicant.role });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }

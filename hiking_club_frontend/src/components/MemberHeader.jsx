@@ -3,9 +3,10 @@ import { Link } from "react-router-dom";
 import "../styles/Header.css";
 import logo from "../assets/images/logo.png";
 import { FaBars, FaTimes } from "react-icons/fa"; // Icons for menu toggle
+import userPhoto from "../assets/images/1.jpg";  
 
-const Header2 = () => {
-  const [menuOpen, setMenuOpen] = useState(false);
+const MemberHeader = () => {
+  // const [menuOpen, setMenuOpen] = useState(false);
 
   return (
     <header className="header">
@@ -13,12 +14,12 @@ const Header2 = () => {
         <img src={logo} alt="MÓRA HIKING CLUB Logo" className="logo" />
       </div>
 
-      {/* Hamburger Menu Icon */}
+      {/* Hamburger Menu Icon
       <div className="menu-icon" onClick={() => setMenuOpen(!menuOpen)}>
         {menuOpen ? <FaTimes /> : <FaBars />}
-      </div>
+      </div> */}
 
-      <nav className={`nav-links ${menuOpen ? "open" : ""}`}>
+      <nav className={`nav-links`}>
         <a href="/" className="active">Home</a>
         <a href="/about">About Us</a>
         <a href="/articles">Articles</a>
@@ -34,12 +35,8 @@ const Header2 = () => {
         </div>
       </Link>
 
-      {/* <div className={`auth-links ${menuOpen ? "open" : ""}`}>
-        <Link to="/login" className="login">Login</Link>
-        <Link to="/register" className="signup">Sign Up</Link>
-      </div> */}
     </header>
   );
 };
 
-export default Header2;
+export default MemberHeader;

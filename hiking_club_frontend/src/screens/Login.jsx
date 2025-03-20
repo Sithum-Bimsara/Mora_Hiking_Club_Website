@@ -1,48 +1,32 @@
-
 import React, { useState } from "react";
 import "../styles/Login.css";
 import hikingImage from "../assets/images/hiker.jpg";
 import { useNavigate } from "react-router-dom";
-
+import axios from "axios";
 
 const Login = () => {
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-
-    const [error, setError] = useState(""); // For error handling
+    const [error, setError] = useState("");
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setError(""); // Reset errors before a new request
+        setError("");
 
         try {
-            const response = await fetch("http://localhost:8080/api/auth/login", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ email, password }),
-            });
+            const response = await axios.post("http://localhost:8080/api/auth/login", { email, password });
+            const { token, role } = response.data;
 
-            const data = await response.json();
-
-            if (!response.ok) {
-                throw new Error(data.error || "Login failed");
-            } else {
-                alert("Login Successful!");
-            }
-
-            // Store token in localStorage
-            localStorage.setItem("token", data.token);
-
-            // Redirect to home page or dashboard
+            localStorage.setItem("token", token);
+            localStorage.setItem("role", role);
+            console.log(role);
+            alert("Login Successful!");
             navigate("/");
         } catch (err) {
-            setError(err.message);
+            setError(err.response?.data?.error || "Login failed");
         }
     };
-
 
     return (
         <div className="login-container">
@@ -52,7 +36,7 @@ const Login = () => {
                     <p>
                         DIDN'T HAVE AN ACCOUNT? <a href="/register">Sign Up</a>
                     </p>
-                    {error && <p className="error-message">{error}</p>} {/* Display error message */}
+                    {error && <p className="error-message">{error}</p>}
                     <form onSubmit={handleSubmit}>
                         <label htmlFor="email">Email</label>
                         <input
@@ -84,4 +68,3 @@ const Login = () => {
 };
 
 export default Login;
-
