@@ -277,3 +277,36 @@
     opacity: 1;
   }
 }
+
+.skill-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Adds space between text and checkbox */
+  cursor: pointer;
+}
+
+.skill-checkbox input {
+  width: 16px;
+  height: 16px;
+}
+.skills-label {
+  font-weight: normal; /* Remove bold effect */
+  font-size: 16px; /* Match input label font size */
+  color: #333; /* Ensure consistency with other labels */
+}
+.logout-button {
+  background-color: #dc3545; /* Red color for logout */
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 10px 15px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.logout-button:hover {
+  background-color: #c82333;
+}
