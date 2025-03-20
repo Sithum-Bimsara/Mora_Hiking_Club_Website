@@ -2,7 +2,7 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background-color: #e8e5d9;
+  background-color: white;
 }
 
 /* Hero Section */
@@ -38,36 +38,34 @@ body {
 /* Statistics Section */
 .statistics {
   text-align: center;
-  background-color: #fff;
-  padding: 50px;
-  margin: 20px auto;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 60px 20px;
+  margin: 40px auto;
+  max-width: 900px;
 }
 
 .stats-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 30px;
-  margin-top: 20px;
+  gap: 50px;
+  margin-top: 30px;
 }
-
 .stat {
   text-align: center;
-  transition: transform 0.3s ease-in-out; /* Smooth transition for hover */
-  cursor: pointer; /* Pointer cursor on hover */
+  transition: transform 0.3s ease-in-out;
 }
+
 
 /* Hover Effect on Stats */
 .stat:hover {
-  transform: scale(1.1);  /* Enlarging the stat on hover */
-  transition: 0.3s ease-in-out;
+  transform: scale(1.1);
 }
 
 .stat h3 {
-  font-size: 35px;
-  font-weight: bold;
+  font-size: 50px;
+  font-weight: 700;
+  color: #045d42;
+  margin-bottom: 5px;
 }
 
 .stathead{
@@ -78,9 +76,10 @@ body {
   font-size: 20px;
 }
 .stat p {
-  font-size: 16px;
-  color: #666;
+  font-size: 18px;
+  color: #555;
 }
+
 
 .divider {
   width: 2px;
@@ -110,8 +109,14 @@ body {
 @media (max-width: 768px) {
   .stats-container {
     flex-direction: column;
-    gap: 15px;
+    gap: 20px;
   }
+
+  .stat {
+    width: 100%;
+    max-width: 280px;
+  }
+
 
   .divider {
     display: none;
@@ -158,3 +163,5 @@ body {
 .handbook-button:hover {
   background-color: #0056b3;
 }
+
+
