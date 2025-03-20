@@ -63,9 +63,10 @@ const AdminApplicants = () => {
     };
 
     const handleApplicant = (applicant) => {
-        setSelectedApplicant(applicant);
+        setSelectedApplicant(applicant.applicant_id);  
         setIsSelectingApplicant(true);
     };
+    
 
     const handleBack = () => {
         setIsSelectingApplicant(false);
@@ -108,7 +109,7 @@ const AdminApplicants = () => {
             </div>
 
             {isSelectingApplicant ? (
-                <ApplicantDetails applicant={selectedApplicant} onBack={handleBack} />
+                <ApplicantDetails applicantId={selectedApplicant} onBack={handleBack} />
             ) : (
                 <div className="applicants-content">
                     <h2>New Applicants</h2>

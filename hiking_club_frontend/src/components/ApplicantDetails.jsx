@@ -1,24 +1,68 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import "../styles/ApplicantDetails.css";
 
-const ApplicantDetails = ({ applicant, onBack }) => {
-    if (!applicant) return <p>No applicant selected.</p>;
+const ApplicantDetails = ({ applicantId, onBack }) => {
+    const [applicant, setApplicant] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        if (!applicantId) return;  // Prevent API call if ID is missing
+        console.log("Fetching details for applicant_id:", applicantId);
+        const fetchApplicantDetails = async () => {
+            try {
+                const token = localStorage.getItem("token");
+                const response = await axios.get(`http://localhost:8080/api/applicants/${applicantId}`, {
+                    headers: { Authorization: `Bearer ${token}` }
+                });
     
+                setApplicant(response.data);
+            } catch (err) {
+                console.error("Error fetching applicant details:", err);
+                setError("Failed to load applicant details.");
+            } finally {
+                setLoading(false);
+            }
+        };
+    
+        fetchApplicantDetails();
+    }, [applicantId]);  // Only run when `applicantId` changes
+    
+
+    if (loading) return <p>Loading applicant details...</p>;
+    if (error) return <p>{error}</p>;
+    if (!applicant) return <p>No applicant details available.</p>;
+
     return (
         <div className="ApplicantDetails">
             <h2>Applicant Details</h2>
             <div className="ApplicantInfo">
-                <p>First Name: {applicant.firstName}</p>
-                <p>Last Name: {applicant.lastName}</p>
-                <p>Full Name: {applicant.name}</p>
-                <p>Birthdate: {applicant.birthdate || "N/A"}</p>
-                <p>Phone Number: {applicant.phone || "N/A"}</p>
-                <p>Email: {applicant.email || "N/A"}</p>  
-                <p>Skills: {applicant.skills || "N/A"}</p>  
-                <p>Status: {applicant.status}</p>
+                <p><strong>First Name:</strong> {applicant.first_name || "N/A"}</p>
+                <p><strong>Last Name:</strong> {applicant.last_name || "N/A"}</p>
+                <p><strong>Full Name:</strong> {applicant.full_name || "N/A"}</p>
+                <p><strong>Date of Birth:</strong> {applicant.date_of_birth || "N/A"}</p>
+                <p><strong>NIC Number:</strong> {applicant.NIC_no || "N/A"}</p>
+                <p><strong>Gender:</strong> {applicant.gender || "N/A"}</p>
+                <p><strong>Email:</strong> {applicant.email || "N/A"}</p>
+                <p><strong>Contact No:</strong> {applicant.contact_no || "N/A"}</p>
+                <p><strong>University ID:</strong> {applicant.university_id || "N/A"}</p>
+                <p><strong>Faculty:</strong> {applicant.faculty || "N/A"}</p>
+                <p><strong>Degree Program:</strong> {applicant.degree_program || "N/A"}</p>
+                <p><strong>Year:</strong> {applicant.year || "N/A"}</p>
+                <p><strong>Bio Description:</strong> {applicant.bio_description || "N/A"}</p>
+                <p><strong>Skills:</strong> {applicant.skills || "N/A"}</p>
+                <p><strong>Facebook:</strong> {applicant.facebook_url ? <a href={applicant.facebook_url} target="_blank" rel="noopener noreferrer">View Profile</a> : "N/A"}</p>
+                <p><strong>Instagram:</strong> {applicant.instagram_url ? <a href={applicant.instagram_url} target="_blank" rel="noopener noreferrer">View Profile</a> : "N/A"}</p>
+                <p><strong>Blood Type:</strong> {applicant.blood_type || "N/A"}</p>
+                <p><strong>First Aid Skills:</strong> {applicant.first_aid_skills ? "Yes" : "No"}</p>
+                <p><strong>Injuries:</strong> {applicant.injuries || "None"}</p>
+                <p><strong>Long-Term Medical Issues:</strong> {applicant.long_term_medical_issues || "None"}</p>
+                <p><strong>Medicines:</strong> {applicant.medicines || "N/A"}</p>
+                {/* <p><strong>Payment Proof:</strong> {applicant.payment_proof_link ? <a href={applicant.payment_proof_link} target="_blank" rel="noopener noreferrer">View Proof</a> : "N/A"}</p> */}
             </div>
-            
-            <button onClick={onBack} className="back-button">Back</button>        
+
+            <button onClick={onBack} className="back-button">Back</button>
         </div>
     );
 };
