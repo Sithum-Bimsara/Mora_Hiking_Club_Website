@@ -6,10 +6,10 @@ import userPhoto from "../assets/images/1.jpg";
 
 const Header = () => {
   const location = useLocation(); 
-  const [menuOpen, setMenuOpen] = useState(false); // State for menu toggle
+  const [menuOpen, setMenuOpen] = useState(false);
 
   // Function to check if the current link is active
-  const isActive = (path) => location.pathname === path ? "active" : "";
+  const isActive = (path) => location.pathname.startsWith(path) ? "active" : "";
 
   return (
     <header className="header">
