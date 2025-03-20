@@ -39,8 +39,14 @@ body {
 .statistics {
   text-align: center;
   padding: 60px 20px;
-  margin: 40px auto;
-  max-width: 900px;
+  margin: 0;
+  width: 100vw;
+  min-height: auto;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .stats-container {
@@ -48,13 +54,26 @@ body {
   justify-content: center;
   align-items: center;
   gap: 50px;
-  margin-top: 30px;
+  margin-top: 0;
 }
+
 .stat {
   text-align: center;
   transition: transform 0.3s ease-in-out;
+  padding: 0 20px;
+  position: relative;
 }
 
+.stat:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  right: -25px; /* Adjust based on gap */
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2px;
+  height: 50px; /* Adjust height as needed */
+  background-color: #000; /* Adjust color if needed */
+}
 
 /* Hover Effect on Stats */
 .stat:hover {
