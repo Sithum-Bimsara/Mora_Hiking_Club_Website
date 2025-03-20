@@ -9,6 +9,7 @@
 .admin-dashboard {
     display: flex;
     background: white;
+    overflow-y: auto;
 }
   
 .dashboard-content{
@@ -18,7 +19,6 @@
     padding: 20px;
     min-height: 100vh;
     color: white; 
-    overflow-y: auto;
   }
 
 

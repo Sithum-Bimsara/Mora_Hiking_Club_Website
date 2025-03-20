@@ -3,13 +3,13 @@
     display: flex;
     flex-direction: column;
     margin-left: 25px;
-    margin-top: 150px; /* Removed margin-top: 150px to align with the top as in the screenshot */
-    width: 200px; /* Adjusted to match the screenshot's sidebar width */
-    height: 100vh;
+    margin-top: 120px; 
+    width: 200px;
+    height: 100%;
     background: white;
     padding: 20px;
     border-right: 2px solid #ddd;
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     box-sizing: border-box;
