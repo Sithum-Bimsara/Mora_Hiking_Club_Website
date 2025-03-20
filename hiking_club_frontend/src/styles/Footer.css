@@ -22,6 +22,7 @@ html, body {
 
 /* Ensure the footer stays at the bottom */
 .footer-container {
+
   background-color: #073b32;
   color: white;
   display: flex;
@@ -58,6 +59,7 @@ html, body {
   display: flex;
   gap: 15px;
 }
+
 
 .footer-links h3,
 .contact-info h3 {

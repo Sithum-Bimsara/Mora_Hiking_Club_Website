@@ -2,7 +2,8 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background-color: #e8e5d9;
+  background-color: white;
+  overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
 /* Hero Section */
@@ -38,36 +39,53 @@ body {
 /* Statistics Section */
 .statistics {
   text-align: center;
-  background-color: #fff;
-  padding: 50px;
-  margin: 20px auto;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 60px 20px;
+  margin: 0;
+  width: 100vw;
+  min-height: auto;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .stats-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 30px;
-  margin-top: 20px;
+  gap: 50px;
+  margin-top: 0;
 }
 
 .stat {
   text-align: center;
-  transition: transform 0.3s ease-in-out; /* Smooth transition for hover */
-  cursor: pointer; /* Pointer cursor on hover */
+  transition: transform 0.3s ease-in-out;
+  padding: 0 20px;
+  position: relative;
+}
+
+.stat:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  right: -25px; /* Adjust based on gap */
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2px;
+  height: 50px; /* Adjust height as needed */
+  background-color: #000; /* Adjust color if needed */
 }
 
 /* Hover Effect on Stats */
 .stat:hover {
-  transform: scale(1.1);  /* Enlarging the stat on hover */
-  transition: 0.3s ease-in-out;
+  transform: scale(1.1);
 }
 
 .stat h3 {
-  font-size: 35px;
-  font-weight: bold;
+  font-size: 50px;
+  font-weight: 700;
+  color: #045d42;
+  margin-bottom: 5px;
 }
 
 .stathead{
@@ -78,9 +96,10 @@ body {
   font-size: 20px;
 }
 .stat p {
-  font-size: 16px;
-  color: #666;
+  font-size: 18px;
+  color: #555;
 }
+
 
 .divider {
   width: 2px;
@@ -110,8 +129,14 @@ body {
 @media (max-width: 768px) {
   .stats-container {
     flex-direction: column;
-    gap: 15px;
+    gap: 20px;
   }
+
+  .stat {
+    width: 100%;
+    max-width: 280px;
+  }
+
 
   .divider {
     display: none;
@@ -158,3 +183,5 @@ body {
 .handbook-button:hover {
   background-color: #0056b3;
 }
+
+

@@ -11,7 +11,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 50px;
+  padding: 20px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background: linear-gradient(135deg, #f9f9f9, #eef2f3);
   min-height: 100vh;
@@ -19,7 +19,8 @@
 
 /* Title */
 .profile-title {
-  margin-top: 60px; /* Increase margin-top to create space */
+  margin-top: 60px;
+  /* Increase margin-top to create space */
   font-size: 45px;
   font-weight: 700;
   color: #2e4057;
@@ -182,7 +183,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden; /* Prevent outer scrollbar */
+  overflow: hidden;
+  /* Prevent outer scrollbar */
 }
 
 /* Modal Content */
@@ -192,10 +194,12 @@
   border-radius: 15px;
   width: 400px;
   max-height: 80vh;
-  overflow: hidden; /* Ensure no external scrollbar */
+  overflow: hidden;
+  /* Ensure no external scrollbar */
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
   animation: fadeIn 0.4s ease;
 }
+
 .modal h3 {
   text-align: center;
   margin-bottom: 20px;
@@ -251,7 +255,7 @@
   color: white;
   padding: 12px;
   font-size: 16px;
-  margin-top: 5px;
+  margin-top: 1px;
   border: none;
   border-radius: 30px;
   cursor: pointer;
@@ -268,6 +272,7 @@
   0% {
     opacity: 0;
   }
+
   100% {
     opacity: 1;
   }

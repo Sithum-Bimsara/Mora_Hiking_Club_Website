@@ -159,17 +159,31 @@ input[type="file"] {
 /* Checkbox Group Styles */
 .checkbox-group {
   display: flex;
-  flex-wrap: wrap; /* Allow wrapping to the next line if needed */
-  gap: 10px; /* Space between checkboxes */
+  flex-wrap: wrap; /* Allow skills to wrap to the next line */
+  gap: 5px; /* Space between checkboxes */
+  align-items: flex-start; /* Align items to the top */
+  justify-content: flex-start; /* Align items to the left */
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
 }
 
 .checkbox-group label {
-  display: flex;
+  display: inline-flex;
   align-items: center; /* Align checkbox and text vertically */
-  gap: 5px; /* Space between checkbox and text */
+  gap: 0px; /* Small gap between checkbox and text */
+  margin: 0; /* Remove default margin */
+  padding-right:180px; /* Remove default padding */
   font-weight: normal;
   white-space: nowrap; /* Prevent text from wrapping */
+  min-width: 150px; /* Minimum width for each skill */
+  max-width: 200px; /* Maximum width for each skill */
 }
+
+.checkbox-group input[type="checkbox"] {
+  margin-right: 5px; /* Space between checkbox and label text */
+}
+
+
 
 /* Password Field Styles */
 .password-field {
@@ -194,4 +208,8 @@ input[type="file"] {
 
 .toggle-password-button:hover {
   background-color: #ddd;
+}
+
+.Eligibility{
+  text-align: left;
 }

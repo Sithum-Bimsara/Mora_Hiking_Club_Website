@@ -67,16 +67,28 @@ table{
     gap: 10px;
 }
 
+.knowledge-content h2{
+    margin-bottom: 10px;
+}
+
 .knowledge-actions button {
     padding: 10px 30px;
     background-color: #00796b;
     color: white;
     border: none;
-    border-radius: 100px;
+    border-radius: 5px;
     cursor: pointer;
 }
 
-.search-container .search-input{
-    border-radius: 5px;
+.knowledge-actions input{
     padding: 10px 30px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+@media(max-width: 768px){
+    .knowledge-content{
+        margin-left: 0px;
+        margin-top: 170px;
+    }
 }

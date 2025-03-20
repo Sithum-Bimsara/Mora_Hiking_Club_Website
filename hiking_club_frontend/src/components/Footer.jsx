@@ -40,13 +40,13 @@ const Footer = () => {
 
       <div className="contact-info">
         <h3>Contact</h3>
-        <p>Phone: +669 4398 4920</p>
+        <p>Phone: Nisal Rajapaksha (President) : 0764340435</p>
         <p>Email: morahikingclub@gmail.com</p>
         <p>Address: Mora Hiking Club
 University of Moratuwa,
 Katubedda 10400,
 Sri Lanka.</p>
-        <p><FaClock /> Sat - Fri (9.00am - 9.00pm)</p>
+    
       </div>
     </footer>
   );

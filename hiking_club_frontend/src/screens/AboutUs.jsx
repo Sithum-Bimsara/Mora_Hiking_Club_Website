@@ -79,7 +79,7 @@ const committeeMembers = {
   
   administration: [
     { name: "Dokula Perera", role: "Vice President", photo: admin1 },
-    { name: "Nipun malinga", role: "Committee Member", photo: admin2 },
+    { name: "Nipun Malinga", role: "Committee Member", photo: admin2 },
     { name: "Banula Gunathilaka", role: "Committee Member", photo: admin3 },
     { name: "Dulani Rashodya", role: "Committee Member", photo: admin4 },
     { name: "Vihanga Athapaththu", role: "Committee Member", photo: admin5 }
@@ -94,25 +94,25 @@ const committeeMembers = {
   ],
   media: [
     { name: "Kaveesha Kapuruge", role: "Vice President", photo: media1 },
-    { name: "Suweka sansiluni", role: "Committee Member", photo: media2 },
+    { name: "Suweka Sansiluni", role: "Committee Member", photo: media2 },
     { name: "Gagani Dewolage", role: "Committee Member", photo: media3 },
-    { name: "Hasarangi withanawasam", role: "Committee Member", photo: media4 },
+    { name: "Hasarangi Withanawasam", role: "Committee Member", photo: media4 },
     { name: "Yasanjala Ravinatha", role: "Committee Member", photo: media5 },
     { name: "Sasinindu Kalhara", role: "Committee Member", photo: media6 },
-    { name: "Dawood mohamed asriff", role: "Committee Member", photo: media7 }
+    { name: "Dawood Mohamed Asriff", role: "Committee Member", photo: media7 }
   ],
   health: [
     { name: "Thishala Thathsarani", role: "Vice President", photo: health1 },
-    { name: "Dulaj sathsara", role: "Committee Member", photo: health2 },
-    { name: "Sathish chanaka", role: "Committee Member", photo: health3 },
-    { name: "Dilini kodithuwakku", role: "Committee Member", photo: health4 },
+    { name: "Dulaj Sathsara", role: "Committee Member", photo: health2 },
+    { name: "Sathish Chanaka", role: "Committee Member", photo: health3 },
+    { name: "Dilini Kodithuwakku", role: "Committee Member", photo: health4 },
     { name: "Dinusha Dahanayake", role: "Committee Member", photo: health5 },
     { name: "Dinuka Malitha", role: "Committee Member", photo: health6 }
   ],
   research: [
     { name: "Lakshara Alwis", role: "Vice President", photo: research1 },
-    { name: "Hasith sathsara", role: "Committee Member", photo: research2 },
-    { name: "Mirasa kethaka", role: "Committee Member", photo: research3 },
+    { name: "Hasith Sathsara", role: "Committee Member", photo: research2 },
+    { name: "Mirasa Kethaka", role: "Committee Member", photo: research3 },
     { name: "Madhuragavan Raveendran", role: "Committee Member", photo: research4 },
     { name: "Keshani Mahanama", role: "Committee Member", photo: research5 },
     { name: "Induwara Ilukkumbura", role: "Committee Member", photo: research6 },

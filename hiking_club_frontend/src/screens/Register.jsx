@@ -157,6 +157,14 @@ const Register = () => {
             Already have an account? <a className="login-link" href="/login">Login</a>
           </p>
 
+          <p className="Eligibility">
+          Eligibility: <br /><br />
+● Undergraduates from the 21,22, 23 and 24 batches,<br />
+● Undergraduates from faculty of architecture and faculty of medicine of the 20 th batch. <br /><br />
+
+Please only proceed if you meet these requirements
+          </p>
+
           <form onSubmit={handleSubmit}>
             {/* Personal Details Section */}
             <div className="section">
@@ -362,35 +370,35 @@ const Register = () => {
             <div className="section">
               <h3>Club Details</h3>
               <div className="form-group">
-                <label>Skills:</label>
-                <div className="checkbox-group">
-                  {[
-                    "Photography",
-                    "Videography",
-                    "Photo Editing",
-                    "Video Editing",
-                    "First Aid",
-                    "Article Writing",
-                    "Sponsorship Hunting",
-                    "Fund Raising",
-                    "Event Planning",
-                    "Risk Management",
-                    "Designing (Photoshop, Coraldraw, Illustrator)",
-                    "Web Designing and Development (HTML, PHP, CSS, JS)",
-                  ].map((skill) => (
-                    <label key={skill}>
-                      <input
-                        type="checkbox"
-                        name="skills"
-                        value={skill}
-                        checked={formData.skills.includes(skill)}
-                        onChange={handleChange}
-                      />
-                      {skill}
-                    </label>
-                  ))}
-                </div>
+              <label>Skills:</label>
+              <div className="checkbox-group">
+                {[
+                  "Photography",
+                  "Videography",
+                  "Photo Editing",
+                  "Video Editing",
+                  "First Aid",
+                  "Article Writing",
+                  "Sponsorship Hunting",
+                  "Fund Raising",
+                  "Event Planning",
+                  "Risk Management",
+                  "Graphic Designing",
+                  "Web Designing",
+                ].map((skill) => (
+                  <label key={skill}>
+                    <input
+                      type="checkbox"
+                      name="skills"
+                      value={skill}
+                      checked={formData.skills.includes(skill)}
+                      onChange={handleChange}
+                    />
+                    {skill}
+                  </label>
+                ))}
               </div>
+            </div>
               <div className="form-group">
                 <label>Bio:</label>
                 <textarea
@@ -536,9 +544,14 @@ const Register = () => {
               <h3>Payment Details</h3>
               <div className="form-group">
                 <label>Upload Payment Receipt:</label>
-
+<br />
                 <p>Please note that inorder to activate your membership you have to pay a fee of Rs 500 /= and upload the receipt here</p>
-                <input
+                <br /><p>Name: T. D. Sahan
+                <br />
+Account Number: 94254272   <br />
+Bank: BOC <br />
+Branch: Avissawella</p>
+                <br />    <input
                   type="file"
                   name="paymentReceipt"
                   onChange={handleChange}

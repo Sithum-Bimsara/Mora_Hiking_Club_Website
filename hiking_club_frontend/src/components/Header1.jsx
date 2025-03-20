@@ -1,34 +1,37 @@
-import React from "react";
-import { Link } from "react-router-dom";  
+import React, { useState } from "react";
+import { NavLink } from "react-router-dom";  
 import "../styles/Header.css";
 import logo from "../assets/images/logo.png";  
 
 const Header1 = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <header className="header">
       <div className="logo-container">
-        {/* Wrap logo inside Link to navigate to homepage */}
-        <Link to="/">
+        <NavLink to="/">
           <img src={logo} alt="MÓRA HIKING CLUB Logo" className="logo" />
-        </Link>
+        </NavLink>
       </div>
 
-      <nav className="nav-links">
+      {/* Menu Toggle for Mobile */}
+      <div className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)}>
+        ☰
+      </div>
 
-        <a href="/" className="active">Home</a>
-        <a href="/about">About Us</a>
-        <a href="/articles">Articles</a>
-        <a href="/hikes">Hikes</a>
-        <a href="/knowledge">Knowledge</a>
-
-
-        <a href="/AdminDashboard">AdminDashboard</a>
-
+      {/* Navigation Links */}
+      <nav className={`nav-links ${menuOpen ? "active" : ""}`}>
+        <NavLink to="/" end>Home</NavLink>
+        <NavLink to="/about">About Us</NavLink>
+        <NavLink to="/articles">Articles</NavLink>
+        <NavLink to="/hikes">Hikes</NavLink>
+        <NavLink to="/knowledge">Knowledge</NavLink>
       </nav>
       
+      {/* Authentication Links */}
       <div className="auth-links">
-        <Link to="/login" className="login">Login</Link>
-        <Link to="/register" className="signup">Sign Up</Link>
+        <NavLink to="/login" className="login">Login</NavLink>
+        <NavLink to="/register" className="signup">Sign Up</NavLink>
       </div>
     </header>
   );
