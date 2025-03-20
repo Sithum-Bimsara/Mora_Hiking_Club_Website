@@ -1,0 +1,157 @@
+.knowledge-edit-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.knowledge-edit-form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: black;
+}
+
+.form-group textarea {
+    resize: vertical;
+    height: 150px;
+}
+
+.form-group input[type="file"] {
+    padding: 5px;
+}
+
+.image-preview {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.image-preview img {
+    border-radius: 10px;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+
+.knowledge-edit-form .form-buttons {
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.knowledge-edit-form .form-buttons button {
+    padding: 10px 20px;
+    background-color: #00796b;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.form-buttons button[type="back-button"],
+.form-buttons button[type="delete-button"] {
+    background-color: #ccc;
+    color: black;
+}
+
+.form-buttons button:hover {
+    background-color: #005249;
+}
+
+.form-buttons button[type="delete-button"]:hover {
+    background-color: red;
+}
+
+.image-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.image-container img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border: 1px solid #ddd;
+}
+
+.image-container button {
+    margin-top: 5px;
+    padding: 5px 10px;
+    background-color: #00796b;
+    color: white;
+    border: none;
+    border-radius: 100px;
+    cursor: pointer;
+}
+
+.image-container button:hover {
+    background-color: red;
+}
+
+.comments-section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    color: black;
+}
+
+.comment {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 5px;
+    gap: 10px;
+    margin-bottom: 15px;
+    border: #ddd solid 1px;
+    border-radius: 5px;
+}
+
+.comment p {
+    margin-top: 5px;
+}
+
+.comments-section button {
+    padding: 5px 15px;
+    background-color: #ccc;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.comments-section button:hover {
+    background-color: red;
+}

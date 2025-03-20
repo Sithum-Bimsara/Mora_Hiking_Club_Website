@@ -28,6 +28,14 @@
     margin-top: 20px;
 }
 
+
+    
+
+table .action-buttons{
+    display: flex;
+    gap: 10px;
+}
+
 .events-header button{
     color: white;
     background-color: #00796b;
@@ -76,7 +84,7 @@ table{
     background-color: black;
 }
 
-.events-table button {
+.events-table .act-btn {
     padding: 10px 20px;
     background: #ccc;
     color: black;
@@ -85,8 +93,20 @@ table{
     cursor: pointer;
 }
 
-.events-table button:hover{
+.events-table .act-btn:hover{
     background-color: #999;
+}
+
+.event-name-button{
+    background-color: white; 
+    border: none;
+    cursor: pointer;
+    font-size: large;
+
+}
+
+.event-name-button:hover{
+    font-weight: bold;
 }
 
 
@@ -100,6 +120,15 @@ table{
     .events-container{
         margin-left: 0px;
         margin-top: 170px;
+        font-size: 0.7em;
+    }
+
+    .events-table .act-btn{
+        padding: 5px 5px;
+    }
+    
+    .event-name-button{
+        font-size: small;
     }
     
     

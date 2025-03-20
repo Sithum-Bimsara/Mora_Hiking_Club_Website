@@ -1,16 +1,25 @@
-
-// AdminEvents.js
 import React, { useState } from "react";
 import AdminSideBar from "../components/AdminSideBar";
 import AddEvent from "../components/AddEvent";
+import AddParticipants from "../components/AddParticipants";
+import EventDetails from "../components/EventDetails"; // Import EventDetails
 import "../styles/AdminEvents.css";
 
-const initialEvents = Array.from({ length: 20 }, (_, i) => ({
+const numberOfEvents = 20;
+
+const initialEvents = Array.from({ length: numberOfEvents }, (_, i) => ({
     id: i + 1,
     category: `Event ${i + 1}`,
     place: `Location ${i + 1}`,
     date: `2025-04-${String((i % 30) + 1).padStart(2, "0")}`,
-    partners: `Partner ${i + 1}, Partner B${i + 1}`
+    partners: `Partner ${i + 1}, Partner B${i + 1}`,
+    participants: [
+        { id: 10001, name: "Participant 1", status: "accepted" },
+        { id: 20005, name: "Participant 2", status: "pending" },
+        { id: 35256, name: "Participant 3", status: "rejected" },
+        { id: 4576, name: "Participant 4", status: "pending" },
+        { id: 5567, name: "Participant 5", status: "accepted" },
+    ],
 }));
 
 const AdminEvents = () => {
@@ -18,6 +27,8 @@ const AdminEvents = () => {
     const [searchTerm, setSearchTerm] = useState("");
     const [selectedEvent, setSelectedEvent] = useState(null);
     const [addEvent, setAddEvent] = useState(false);
+    const [addParticipants, setAddParticipants] = useState(false);
+    const [showDetails, setShowDetails] = useState(false); // Track event details visibility
     const [currentPage, setCurrentPage] = useState(0);
     const eventsPerPage = 10;
 
@@ -31,17 +42,30 @@ const AdminEvents = () => {
         setAddEvent(true);
     };
 
+    const handleAddParticipants = (event) => {
+        setSelectedEvent(event);
+        setAddParticipants(true);
+    };
+
+    const handleViewDetails = (event) => {
+        setSelectedEvent(event);
+        setShowDetails(true);
+    };
+
     const handleBackToEvents = () => {
         setAddEvent(false);
+        setAddParticipants(false);
+        setShowDetails(false);
     };
 
     const handleSaveEvent = (newEvent) => {
-        if (selectedEvent) {
-            setEvents(events.map(e => (e.id === selectedEvent.id ? { ...e, ...newEvent } : e)));
-        } else {
-            setEvents([...events, { ...newEvent, id: events.length + 1 }]);
-        }
+        setEvents(events.map(e => (e.id === newEvent.id ? newEvent : e)));
         setAddEvent(false);
+    };
+
+    const handleSaveParticipants = (updatedEvent) => {
+        setEvents(events.map(e => (e.id === updatedEvent.id ? updatedEvent : e)));
+        setAddParticipants(false);
     };
 
     const handleDeleteEvent = (eventToDelete) => {
@@ -52,13 +76,6 @@ const AdminEvents = () => {
     const handleSearch = (e) => {
         setSearchTerm(e.target.value.toLowerCase());
         setCurrentPage(0);
-    };
-
-    const handlePageChange = (e) => {
-        let page = Number(e.target.value) - 1;
-        if (page >= 0 && page < totalPages) {
-            setCurrentPage(page);
-        }
     };
 
     const filteredEvents = events.filter(event =>
@@ -79,48 +96,67 @@ const AdminEvents = () => {
                 <AdminSideBar />
             </div>
             <div className="events-container">
-            {addEvent ? (
-                <AddEvent event={selectedEvent} onBack={handleBackToEvents} onSave={handleSaveEvent} onDelete={handleDeleteEvent} />
-            ) : (
-                <div className="events-content">
-                    <h2>Events</h2>
-                    <div className="events-header">
-                        <button className="addEvent" onClick={handleAddEvent}>Add Event</button>
-                        <input type="text" placeholder="Search an Event" onChange={handleSearch} />
-                    </div>
-                    <table className="events-table">
-                        <thead>
-                            <tr>
-                                <th>Event Category</th>
-                                <th>Place</th>
-                                <th>Date</th>
-                                <th>Event Partners</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {displayedEvents.map(event => (
-                                <tr key={event.id}>
-                                    <td>{event.category}</td>
-                                    <td>{event.place}</td>
-                                    <td>{event.date}</td>
-                                    <td>{event.partners}</td>
-                                    <td>
-                                        <button onClick={() => handleEditEvent(event)} className="editEvent">Edit</button>
-                                    </td>
+                {addEvent ? (
+                    <AddEvent 
+                        event={selectedEvent} 
+                        onBack={handleBackToEvents} 
+                        onSave={handleSaveEvent} 
+                        onDelete={handleDeleteEvent} 
+                    />
+                ) : addParticipants ? (
+                    <AddParticipants 
+                        event={selectedEvent} 
+                        onBack={handleBackToEvents} 
+                        onSave={handleSaveParticipants} 
+                    />
+                ) : showDetails ? ( // Show event details when selected
+                    <EventDetails 
+                        event={selectedEvent} 
+                        onBack={handleBackToEvents} 
+                    />
+                ) : (
+                    <div className="events-content">
+                        <h2>Events</h2>
+                        <div className="events-header">
+                            <button className="addEvent" onClick={handleAddEvent}>Add Event</button>
+                            <input type="text" placeholder="Search an Event" onChange={handleSearch} />
+                        </div>
+                        <table className="events-table">
+                            <thead>
+                                <tr>
+                                    <th>Event Category</th>
+                                    <th>Place</th>
+                                    <th>Date</th>
+                                    <th>Event Partners</th>
+                                    <th>Action</th>
                                 </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                    <div className="pagination">
-                        <button onClick={() => setCurrentPage(Math.max(currentPage - 1, 0))} disabled={currentPage === 0}>Back</button>
-                        <span> Page </span>
-                        <input type="number" value={currentPage + 1} onChange={handlePageChange} min="1" max={totalPages} />
-                        <span> of {totalPages} </span>
-                        <button onClick={() => setCurrentPage(Math.min(currentPage + 1, totalPages - 1))} disabled={currentPage >= totalPages - 1}>Next</button>
+                            </thead>
+                            <tbody>
+                                {displayedEvents.map(event => (
+                                    <tr key={event.id}>
+                                        <td>
+                                            <button className="event-name-button" onClick={() => handleViewDetails(event)}>
+                                                {event.category}
+                                            </button>
+                                        </td>
+                                        <td>{event.place}</td>
+                                        <td>{event.date}</td>
+                                        <td>{event.partners}</td>
+                                        <td className="action-buttons">
+                                            <button onClick={() => handleEditEvent(event)} className="editEvent act-btn">Edit</button>
+                                            <button onClick={() => handleAddParticipants(event)} className="AddParticipants act-btn">Manage Participants</button>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                        <div className="pagination">
+                            <button onClick={() => setCurrentPage(Math.max(currentPage - 1, 0))} disabled={currentPage === 0}>Back</button>
+                            <span> Page {currentPage + 1} of {totalPages} </span>
+                            <button onClick={() => setCurrentPage(Math.min(currentPage + 1, totalPages - 1))} disabled={currentPage >= totalPages - 1}>Next</button>
+                        </div>
                     </div>
-                </div>
-            )}
+                )}
             </div>
         </div>
     );
