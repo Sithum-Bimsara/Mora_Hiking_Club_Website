@@ -29,7 +29,7 @@ const getAllMembers = async () => {
     const [rows] = await db.execute(`
         SELECT 
             a.email, 
-            a.first_name, 
+            a.full_name, 
             m.member_id, 
             m.role, 
             m.membership_type

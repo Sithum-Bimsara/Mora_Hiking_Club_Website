@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import AdminSideBar from "../components/AdminSideBar";
 import MemberForm from "../components/MemberDetails";
 import DashboardComponent from "../components/DashboardComponent";
+import axios from "axios";
 import "../styles/AdminDashboard.css";
 
 const AdminDashboard = () => {
@@ -9,31 +10,42 @@ const AdminDashboard = () => {
     const [editingMember, setEditingMember] = useState(null);
     const [currentPage, setCurrentPage] = useState(0);
     const [filter, setFilter] = useState("all");
+    const [members, setMembers] = useState([]);
     const membersPerPage = 10;
     
-    const generateMembers = () => {
-        const membersArray = [];
-        for (let i = 0; i < 100; i++) {
-            membersArray.push({
-                firstName: `FirstName ${i + 1}`,
-                lastName: `LastName ${i + 1}`,
-                fullName: `FirstName ${i + 1} LastName ${i + 1}`,
-                memberId: (10000 + i).toString(),
-                role: i % 2 === 0 ? "Member" : "Admin",
-                memberType: i % 2 === 0 ? "Fellow Member" : "Regular Member",
-            });
-        }
-        return membersArray;
-    };
-    
-    const [members, setMembers] = useState(generateMembers());
+    // Fetch members from the backend on component mount
+    useEffect(() => {
+        const fetchMembers = async () => {
+            try {
+                const token = localStorage.getItem("token");
+                const response = await axios.get("http://localhost:8080/api/members", {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                });
+                // Map the API data to our frontend format if needed
+                const formattedMembers = response.data.map(member => ({
+                    email: member.email,
+                    fullName: member.full_name,
+                    memberId: member.member_id,
+                    role: member.role,
+                    memberType: member.membership_type
+                }));
+                setMembers(formattedMembers);
+            } catch (error) {
+                console.error("Error fetching members:", error);
+            }
+        };
+        fetchMembers();
+    }, []);
 
     const handleEditClick = (member) => {
         setEditingMember(member);
     };
 
     const handleSave = (updatedMember) => {
-        updatedMember.fullName = `${updatedMember.fullName}`.trim();
+        // In a complete integration, you might send an update to the backend here.
+        updatedMember.fullName = updatedMember.fullName.trim();
         setMembers((prevMembers) =>
             prevMembers.map((m) =>
                 m.memberId === updatedMember.memberId ? updatedMember : m
@@ -59,10 +71,11 @@ const AdminDashboard = () => {
     const filteredMembers = members.filter(member => {
         return (
             (filter === "all" || 
-            (filter === "admins" && member.role === "Admin") || 
-            (filter === "fellows" && member.memberType === "Fellow Member")) &&
+             (filter === "admins" && member.role === "admin") || 
+             (filter === "fellows" && member.memberType === "fellow member")
+            ) &&
             (member.fullName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            member.memberId.includes(searchTerm))
+             member.memberId.includes(searchTerm))
         );
     });
 
@@ -121,7 +134,7 @@ const AdminDashboard = () => {
                                 <tbody>
                                     {currentMembers.map((member) => (
                                         <tr key={member.memberId}>
-                                            <td>{member.firstName} {member.lastName}</td>
+                                            <td>{member.fullName}</td>
                                             <td>{member.memberId}</td>
                                             <td>{member.role}</td>
                                             <td>{member.memberType}</td>

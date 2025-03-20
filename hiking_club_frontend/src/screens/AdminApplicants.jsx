@@ -80,7 +80,7 @@ const AdminApplicants = () => {
     
             // Convert to lowercase to match database ENUM values
             const formattedStatus = newStatus.toLowerCase(); 
-            console.log(formattedStatus);
+            // console.log(formattedStatus);
             await axios.put(`http://localhost:8080/api/applicants/${applicant_id}/status`, 
                 { application_status: formattedStatus }, // Send lowercase value
                 {
