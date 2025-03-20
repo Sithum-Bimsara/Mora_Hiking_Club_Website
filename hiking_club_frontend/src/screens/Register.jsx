@@ -544,9 +544,14 @@ Please only proceed if you meet these requirements
               <h3>Payment Details</h3>
               <div className="form-group">
                 <label>Upload Payment Receipt:</label>
-
+<br />
                 <p>Please note that inorder to activate your membership you have to pay a fee of Rs 500 /= and upload the receipt here</p>
-                <input
+                <br /><p>Name: T. D. Sahan
+                <br />
+Account Number: 94254272   <br />
+Bank: BOC <br />
+Branch: Avissawella</p>
+                <br />    <input
                   type="file"
                   name="paymentReceipt"
                   onChange={handleChange}
