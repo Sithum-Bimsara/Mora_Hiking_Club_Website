@@ -157,6 +157,14 @@ const Register = () => {
             Already have an account? <a className="login-link" href="/login">Login</a>
           </p>
 
+          <p className="Eligibility">
+          Eligibility: <br /><br />
+● Undergraduates from the 21,22, 23 and 24 batches,<br />
+● Undergraduates from faculty of architecture and faculty of medicine of the 20 th batch. <br /><br />
+
+Please only proceed if you meet these requirements
+          </p>
+
           <form onSubmit={handleSubmit}>
             {/* Personal Details Section */}
             <div className="section">
