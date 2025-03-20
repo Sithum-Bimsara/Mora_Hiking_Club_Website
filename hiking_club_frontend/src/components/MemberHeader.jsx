@@ -26,10 +26,18 @@ const Header2 = () => {
         <a href="/knowledge">Knowledge</a>
       </nav>
 
-      <div className={`auth-links ${menuOpen ? "open" : ""}`}>
+      <Link to="/profile" className="profile">
+        <img src={userPhoto} alt="User Profile" className="avatar" /> 
+        <div className="user-info">
+          <span className="name">User</span>
+          <span className="email">user@gmail.com</span>
+        </div>
+      </Link>
+
+      {/* <div className={`auth-links ${menuOpen ? "open" : ""}`}>
         <Link to="/login" className="login">Login</Link>
         <Link to="/register" className="signup">Sign Up</Link>
-      </div>
+      </div> */}
     </header>
   );
 };

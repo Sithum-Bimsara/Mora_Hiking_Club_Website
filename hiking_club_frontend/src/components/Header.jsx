@@ -1,15 +1,9 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";  
+import { Link } from "react-router-dom";  
 import "../styles/Header.css";
 import logo from "../assets/images/logo.png";  
-import userPhoto from "../assets/images/1.jpg";  
 
-const Header = () => {
-  const location = useLocation(); // Get the current location (path)
-
-  // Function to check if the current link is the active page
-  const isActive = (path) => location.pathname === path ? "active" : "";
-
+const Header1 = () => {
   return (
     <header className="header">
       <div className="logo-container">
@@ -20,24 +14,24 @@ const Header = () => {
       </div>
 
       <nav className="nav-links">
-        {/* Add active class dynamically based on current path */}
-        <Link to="/" className={isActive("/")}>Home</Link>
-        <Link to="/about" className={isActive("/about")}>About Us</Link>
-        <Link to="/articles" className={isActive("/articles")}>Articles</Link>
-        <Link to="/hikes" className={isActive("/hikes")}>Hikes</Link>
-        <Link to="/knowledge" className={isActive("/knowledge")}>Knowledge</Link>
-        <Link to="/admindashboard" className={isActive("/admindashboard")}>Admin Dashboard</Link>
+
+        <a href="/" className="active">Home</a>
+        <a href="/about">About Us</a>
+        <a href="/articles">Articles</a>
+        <a href="/hikes">Hikes</a>
+        <a href="/knowledge">Knowledge</a>
+
+
+        {/* <a href="/AdminDashboard">AdminDashboard</a> */}
+
       </nav>
       
-      <Link to="/profile" className="profile">
-        <img src={userPhoto} alt="User Profile" className="avatar" /> 
-        <div className="user-info">
-          <span className="name">User</span>
-          <span className="email">user@gmail.com</span>
-        </div>
-      </Link>
+      <div className="auth-links">
+        <Link to="/login" className="login">Login</Link>
+        <Link to="/register" className="signup">Sign Up</Link>
+      </div>
     </header>
   );
 };
 
-export default Header;
+export default Header1;

@@ -1,46 +1,7 @@
-// import React from "react";
-// import { BrowserRouter, Routes, Route } from "react-router-dom";
-// import Header from "./components/Header";  
-// import Header1 from "./components/Header1";
-
-// import Homescreen from "./screens/Homescreen";  
-// import "./App.css";  
-// import Hikes from "./screens/Hikes";
-// import Profile from "./screens/Profile";
-// import Articles from "./screens/Articles";
-// import Knowledge from "./screens/Knowledge";
-// import Login from "./screens/Login";
-// import Register from "./screens/Register";
-// import AboutUs from "./screens/AboutUs"; 
-
-// function App() {
-//   return ( 
-//     <BrowserRouter>  
-//       <div className="App">
-//         <Header />  
-//         <Routes>
-//           <Route path="/" element={<Homescreen />} /> 
-//           <Route path="/hikes" element={<Hikes />} />
-//           <Route path="/profile" element={<Profile />} />
-//           <Route path="/articles" element={<Articles />} />
-//           <Route path="/knowledge" element={<Knowledge />} />
-//           <Route path="/login" element={<Login/>} />
-//           <Route path="/register" element={<Register/>} />
-//           <Route path="/about" element={<AboutUs/>} />
-
-           
-//         </Routes>
-//       </div>
-//     </BrowserRouter>
-//   );
-// }
-
-// export default App;
-
 import React from "react";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import AdminHeader from "./components/AdminHeader";  
 import Header from "./components/Header";  
-import Header1 from "./components/Header1";  
 import Homescreen from "./screens/Homescreen";  
 import "./App.css";  
 import Hikes from "./screens/Hikes";
@@ -76,7 +37,7 @@ function Layout() {
   return (
     <>
       {/* Conditionally render Header1 for HomeScreen and Header for other pages */}
-      {(isHomeScreen || isLogin || isRegister || isAboutUs || isArticles || isHikes || isKnowledge) ? <Header1 /> : <Header />}
+      {(isHomeScreen || isLogin || isRegister || isAboutUs || isArticles || isHikes || isKnowledge) ? <Header /> : <AdminHeader />}
 
 
 
