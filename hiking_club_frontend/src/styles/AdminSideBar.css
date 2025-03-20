@@ -1,112 +1,112 @@
 /* Sidebar Container */
 .menu-back {
+  display: flex;
+  flex-direction: column;
+  margin-left: 25px;
+  margin-top: 120px; 
+  width: 200px;
+  height: 100%;
+  background: white;
+  padding: 20px;
+  border-right: 2px solid #ddd;
+  position: absolute;
+  top: 0;
+  left: 0;
+  box-sizing: border-box;
+  background-color: white;
+}
+
+
+
+
+/* Menu Buttons */
+.menu-item {
+  width: 150px;
+  margin: 5px 0;
+  padding: 15px;
+  color: #333;
+  border: none;
+  text-align: left; 
+  font-size: 16px; /* Match font size from screenshot */
+  cursor: pointer; /* Pointer cursor for buttons */
+  border-radius: 6px;
+  transition: background 0.3s ease;
+  background-color: white;
+}
+
+
+/* Active Menu Item */
+.active-item {
+  background: #00796b;
+  color: white;
+  font-weight: bold;
+}
+/* Hover Effect for Menu Buttons */
+.menu-item:not(.active-item):hover  {
+  background: #ddd;
+}
+
+/* Optional: Remove default button focus outline if desired */
+.menu-item:focus {
+  outline: none;
+}
+
+@media (max-width: 768px) {
+
+  
+  .menu-back {
+    margin-top: 130px;
     display: flex;
-    flex-direction: column;
-    margin-left: 25px;
-    margin-top: 120px; 
-    width: 200px;
-    height: 100%;
-    background: white;
+    flex-direction: row;
+    gap: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
     padding: 20px;
-    border-right: 2px solid #ddd;
-    position: absolute;
-    top: 0;
-    left: 0;
-    box-sizing: border-box;
-    background-color: white;
-  }
-
-  
-
-  
-  /* Menu Buttons */
-  .menu-item {
-    width: 150px;
-    margin: 5px 0;
-    padding: 15px;
-    color: #333;
-    border: none;
-    text-align: left; 
-    font-size: 16px; /* Match font size from screenshot */
-    cursor: pointer; /* Pointer cursor for buttons */
-    border-radius: 6px;
-    transition: background 0.3s ease;
-    background-color: white;
-  }
-
-  
-  /* Active Menu Item */
-  .active-item {
-    background: #00796b;
-    color: white;
-    font-weight: bold;
-  }
-  /* Hover Effect for Menu Buttons */
-  .menu-item:not(.active-item):hover  {
-    background: #ddd;
-  }
-  
-  /* Optional: Remove default button focus outline if desired */
-  .menu-item:focus {
-    outline: none;
-  }
-
-  @media (max-width: 768px) {
-
-    
-    .menu-back {
-      margin-top: 130px;
-      display: flex;
-      flex-direction: row;
-      gap: 0px;
-      margin-left: 0px;
-      margin-right: 0px;
-      margin-bottom: 0px;
-      padding: 20px;
-      border-radius: 5px;
-      max-height: 5px;
-      width: 100%;
-      align-items: center;
-      border:none;
-
-    }
-
-    
-  /* Menu Buttons */
-  .menu-item {
-    margin: 0px 0px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    padding-left: 0px;
-    padding-right: 0px;
-    min-width: 65px;
-    text-align: center;
-    color: #333;
-    font-size:0.8em; 
-    cursor: pointer;
     border-radius: 5px;
-    transition: background 0.3s ease;
-    background-color: white;
-    
-  }
-
- 
-  
-  /* Hover Effect for Menu Buttons */
-  .menu-item:not(.active-item):hover  {
-    background: #ddd;
-  }
-  
-  /* Active Menu Item */
-  .active-item {
-    background: #00796b;
-    color: white;
-    font-weight: bold;
-  }
-  
-  /* Optional: Remove default button focus outline if desired */
-  .menu-item:focus {
-    outline: none;
-  }
+    max-height: 5px;
+    width: 100%;
+    align-items: center;
+    border:none;
 
   }
+
+  
+/* Menu Buttons */
+.menu-item {
+  margin: 0px 0px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 0px;
+  padding-right: 0px;
+  min-width: 65px;
+  text-align: center;
+  color: #333;
+  font-size:0.8em; 
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background 0.3s ease;
+  background-color: white;
+  
+}
+
+
+
+/* Hover Effect for Menu Buttons */
+.menu-item:not(.active-item):hover  {
+  background: #ddd;
+}
+
+/* Active Menu Item */
+.active-item {
+  background: #00796b;
+  color: white;
+  font-weight: bold;
+}
+
+/* Optional: Remove default button focus outline if desired */
+.menu-item:focus {
+  outline: none;
+}
+
+}
