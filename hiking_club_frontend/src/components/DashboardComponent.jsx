@@ -11,7 +11,7 @@ const DashboardComponent = ({ searchTerm, handleSearchChange, handleFilterChange
 
     return (
         <div className="dashboard-header">
-            <h2>Dashboard</h2>
+            <h2>Members</h2>
             <div className="members-header">
                 <button 
                     className={selectedFilter === "all" ? "active" : ""} 

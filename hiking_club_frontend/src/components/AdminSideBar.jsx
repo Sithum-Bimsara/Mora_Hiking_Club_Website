@@ -7,7 +7,7 @@ const AdminSideBar = ({ onMenuSelect }) => {
   const location = useLocation(); 
 
   const menuItems = [
-    { name: "Dashboard", path: "/AdminDashboard" },
+    { name: "Members", path: "/AdminDashboard" },
     { name: "Applicants", path: "/AdminApplicants" },
     { name: "Event", path: "/AdminEvents" },
     { name: "Articles", path: "/AdminArticales" },
@@ -21,8 +21,8 @@ const AdminSideBar = ({ onMenuSelect }) => {
 
   return (
     <div className="sidebar">
-      <h2 className="logo">MORA Hiking Club</h2>
       <nav className="menu">
+      <div className="menu-back">
         {menuItems.map((item) => (
           <button
             key={item.name}
@@ -34,6 +34,7 @@ const AdminSideBar = ({ onMenuSelect }) => {
             {item.name}
           </button>
         ))}
+      </div>
       </nav>
     </div>
   );

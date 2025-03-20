@@ -94,6 +94,8 @@ const AdminApplicants = () => {
             <div className="sidebar">
                 <AdminSideBar />
             </div>
+
+            
             {isSelectingApplicant ? (
                 <ApplicantDetails applicant={selectedApplicant} onBack={handleBack} />
             ) : (
@@ -156,6 +158,7 @@ const AdminApplicants = () => {
                     </div>
                 </div>
             )}
+            
         </div>
     );
 };

@@ -34,8 +34,8 @@ const AdminKnowledge = () => {
                 <AdminSideBar/>
             </div>
             <div className="knowledge-content">
+                <h2>Knowledge</h2>
                 <div className="knowledge-header">
-                    <h2>Knowledge</h2>
                     <div className="knowledge-actions">
                         <button className="add-new-btn">Add New</button>
                         <div className="search-container">
