@@ -42,6 +42,10 @@
 .nav-links a:hover {
     color: #045d42;
 }
+.nav-links a.active {
+    color: #045d42 !important;
+    font-weight: bold;
+}
 
 /* Auth Links */
 .auth-links {

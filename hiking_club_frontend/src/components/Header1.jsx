@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";  
+import { NavLink } from "react-router-dom";  
 import "../styles/Header.css";
 import logo from "../assets/images/logo.png";  
 
@@ -9,9 +9,9 @@ const Header1 = () => {
   return (
     <header className="header">
       <div className="logo-container">
-        <Link to="/">
+        <NavLink to="/">
           <img src={logo} alt="MÓRA HIKING CLUB Logo" className="logo" />
-        </Link>
+        </NavLink>
       </div>
 
       {/* Menu Toggle for Mobile */}
@@ -21,17 +21,17 @@ const Header1 = () => {
 
       {/* Navigation Links */}
       <nav className={`nav-links ${menuOpen ? "active" : ""}`}>
-        <a href="/" className="active">Home</a>
-        <a href="/about">About Us</a>
-        <a href="/articles">Articles</a>
-        <a href="/hikes">Hikes</a>
-        <a href="/knowledge">Knowledge</a>
+        <NavLink to="/" end>Home</NavLink>
+        <NavLink to="/about">About Us</NavLink>
+        <NavLink to="/articles">Articles</NavLink>
+        <NavLink to="/hikes">Hikes</NavLink>
+        <NavLink to="/knowledge">Knowledge</NavLink>
       </nav>
       
       {/* Authentication Links */}
       <div className="auth-links">
-        <Link to="/login" className="login">Login</Link>
-        <Link to="/register" className="signup">Sign Up</Link>
+        <NavLink to="/login" className="login">Login</NavLink>
+        <NavLink to="/register" className="signup">Sign Up</NavLink>
       </div>
     </header>
   );
