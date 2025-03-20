@@ -1,49 +1,55 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import AdminSideBar from "../components/AdminSideBar";
 import ApplicantDetails from "../components/ApplicantDetails";
+import axios from "axios";  // Import axios for API calls
 import "../styles/AdminApplicants.css";
-
-const initialApplicants = [
-    { id: 1, name: "John Doe", firstName: "John", lastName: "Doe", birthdate: "1990-01-01", phone: "123-456-7890", email: "johndoe@example.com", skills: "React, Node.js", status: "Pending" },
-];
 
 const AdminApplicants = () => {
     const [searchTerm, setSearchTerm] = useState("");
     const [isSelectingApplicant, setIsSelectingApplicant] = useState(false);
     const [selectedApplicant, setSelectedApplicant] = useState(null);
-    const [applicants, setApplicants] = useState(initialApplicants);
-    const [currentPage, setCurrentPage] = useState(0);  // zero-based indexing
+    const [applicants, setApplicants] = useState([]);
+    const [currentPage, setCurrentPage] = useState(0);
     const applicantsPerPage = 10;
-    const totalPages = Math.ceil(applicants.length / applicantsPerPage);
+
+    // Fetch applicants from backend
+    useEffect(() => {
+        const fetchApplicants = async () => {
+            try {
+                const response = await axios.get("http://localhost:8080/api/applicants");  // Adjust URL if needed
+                setApplicants(response.data);
+            } catch (error) {
+                console.error("Error fetching applicants:", error);
+            }
+        };
+
+        fetchApplicants();
+    }, []);
 
     const handleSearchChange = (event) => {
         setSearchTerm(event.target.value);
         setCurrentPage(0);
     };
 
-    const filteredApplicants = applicants.filter((applicant) => {
-        return (
-            applicant.firstName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            applicant.lastName.toLowerCase().includes(searchTerm.toLowerCase())
-        );
-    });
+    const filteredApplicants = applicants.filter((applicant) =>
+        applicant.first_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        applicant.last_name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
 
-    // Calculate the current applicants based on the page
     const indexOfLastApplicant = (currentPage + 1) * applicantsPerPage;
     const indexOfFirstApplicant = indexOfLastApplicant - applicantsPerPage;
     const currentApplicants = filteredApplicants.slice(indexOfFirstApplicant, indexOfLastApplicant);
-   
-    // Change page to previous
+
+    const totalPages = Math.ceil(filteredApplicants.length / applicantsPerPage);
+
     const handlePreviousPage = () => {
         if (currentPage > 0) setCurrentPage(currentPage - 1);
     };
 
-    // Change page to next
     const handleNextPage = () => {
         if (currentPage < totalPages - 1) setCurrentPage(currentPage + 1);
     };
 
-    // Handle page number input change
     const handlePageChange = (e) => {
         let newPage = parseInt(e.target.value) - 1;
         if (newPage >= 0 && newPage < totalPages) {
@@ -61,12 +67,20 @@ const AdminApplicants = () => {
         setSelectedApplicant(null);
     };
 
-    const handleStatusChange = (id, newStatus) => {
-        setApplicants((prevApplicants) =>
-            prevApplicants.map((applicant) =>
-                applicant.id === id ? { ...applicant, status: newStatus } : applicant
-            )
-        );
+    // Function to update application status in backend
+    const handleStatusChange = async (id, newStatus) => {
+        try {
+            await axios.put(`http://localhost:8080/api/applicants/${id}/status`, { application_status: newStatus });
+
+            // Update local state after successful request
+            setApplicants((prevApplicants) =>
+                prevApplicants.map((applicant) =>
+                    applicant.id === id ? { ...applicant, application_status: newStatus } : applicant
+                )
+            );
+        } catch (error) {
+            console.error("Error updating status:", error);
+        }
     };
 
     return (
@@ -75,7 +89,6 @@ const AdminApplicants = () => {
                 <AdminSideBar />
             </div>
 
-            
             {isSelectingApplicant ? (
                 <ApplicantDetails applicant={selectedApplicant} onBack={handleBack} />
             ) : (
@@ -100,10 +113,10 @@ const AdminApplicants = () => {
                         <tbody>
                             {currentApplicants.map((applicant) => (
                                 <tr key={applicant.id}>
-                                    <td>{applicant.firstName + " " + applicant.lastName}</td>
+                                    <td>{applicant.first_name + " " + applicant.last_name}</td>
                                     <td>
                                         <select
-                                            value={applicant.status}
+                                            value={applicant.application_status}
                                             onChange={(e) => handleStatusChange(applicant.id, e.target.value)}
                                         >
                                             <option value="Pending">Pending</option>
@@ -126,7 +139,7 @@ const AdminApplicants = () => {
                         <span> Page </span>
                         <input
                             type="number"
-                            value={currentPage + 1}  // Convert zero-based index to user-friendly 1-based number
+                            value={currentPage + 1}
                             onChange={handlePageChange}
                             min="1"
                             max={totalPages}
@@ -138,8 +151,8 @@ const AdminApplicants = () => {
                     </div>
                 </div>
             )}
-            
         </div>
     );
 };
+
 export default AdminApplicants;
