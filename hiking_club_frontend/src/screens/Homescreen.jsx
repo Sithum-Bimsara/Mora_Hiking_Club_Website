@@ -83,11 +83,12 @@ const Homescreen = () => {
           Learn everything about our club rules, hiking guidelines, and safety measures to ensure a great hiking experience.
         </p>
         <button
-          className="handbook-button"
-          onClick={() => window.open("/assets/MHC_Handbook.pdf", "_blank","noopener,noreferrer")}
-        >
-          Read Handbook
-        </button>
+      className="handbook-button"
+      onClick={() => window.open("https://drive.google.com/file/d/1V8IJOlqd875_zBpsFJgdThfEukZnI492/view?usp=drive_link", "_blank", "noopener,noreferrer")}
+    >
+      Read Handbook
+    </button>
+
       </section>
     </div>
   );
