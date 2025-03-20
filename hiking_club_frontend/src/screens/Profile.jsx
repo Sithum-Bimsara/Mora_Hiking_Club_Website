@@ -4,10 +4,10 @@ import "../styles/Profile.css";
 const Profile = () => {
   const [profileImage, setProfileImage] = useState(null);
   const [isEditingLog, setIsEditingLog] = useState(false);
-  const [isEditingHistory, setIsEditingHistory] = useState(false);
+  const [isEditingbio, setIsEditingbio] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [userLog, setUserLog] = useState("Hi, I am Sasmitha Jayasinghe");
-  const [userHistory, setUserHistory] = useState("Mehe giya ahare giya");
+  const [userLog, setUserLog] = useState("");
+  const [userbio, setUserbio] = useState("");
 
   const [userDetails, setUserDetails] = useState({
     application_status: "Pending",
@@ -115,24 +115,24 @@ const Profile = () => {
 
           <br />
 
-          {/* Editable User History */}
-          <h4>My History</h4>
+          {/* Editable User bio */}
+          <h4>My Bio</h4>
           <div className="user-log">
-            {isEditingHistory ? (
+            {isEditingbio ? (
               <textarea
-                value={userHistory}
-                onChange={(e) => setUserHistory(e.target.value)}
+                value={userbio}
+                onChange={(e) => setUserbio(e.target.value)}
                 className="editable-input"
               />
             ) : (
-              <p>{userHistory}</p>
+              <p>{userbio}</p>
             )}
           </div>
           <button
             className="edit-button"
-            onClick={() => setIsEditingHistory(!isEditingHistory)}
+            onClick={() => setIsEditingbio(!isEditingbio)}
           >
-            {isEditingHistory ? "Save" : "Edit History"}
+            {isEditingbio ? "Save" : "Edit bio"}
           </button>
 
           <div className="divider"></div>
