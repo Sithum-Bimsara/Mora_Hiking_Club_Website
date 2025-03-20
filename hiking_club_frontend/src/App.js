@@ -66,12 +66,18 @@ import HikeDetails from "./screens/HikeDetails";
 function Layout() {
   const location = useLocation();
   const isHomeScreen = location.pathname === "/";
-  const isLogin = location.pathname === "/";
+  const isLogin = location.pathname === "/login";
+  const isRegister= location.pathname === "/register";
+  const isAboutUs= location.pathname === "/about";
+  const isArticles= location.pathname === "/articles";
+  const isHikes= location.pathname === "/hikes";
+  const isKnowledge= location.pathname === "/knowledge";
 
   return (
     <>
       {/* Conditionally render Header1 for HomeScreen and Header for other pages */}
-      {isHomeScreen || isLogin? <Header1 /> : <Header />}
+      {(isHomeScreen || isLogin || isRegister || isAboutUs || isArticles || isHikes || isKnowledge) ? <Header1 /> : <Header />}
+
 
 
       {/* Routes for all pages */}
