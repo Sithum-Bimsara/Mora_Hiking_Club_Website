@@ -10,31 +10,31 @@ const Profile = () => {
   const [userbio, setUserbio] = useState("");
 
   const [userDetails, setUserDetails] = useState({
-    application_status: "Pending",
-    password_hash: "",
-    first_name: "John",
-    last_name: "Doe",
-    full_name: "John Doe",
-    date_of_birth: "1990-01-01",
-    NIC_no: "123456789V",
-    gender: "Male",
-    email: "xx@email.com",
-    contact_no: "+123456789",
-    university_id: "U123456",
-    faculty: "Engineering",
-    degree_program: "Software Engineering",
-    year: "Final Year",
-    bio_description: "Passionate developer.",
-    skills: "JavaScript, React, Node.js",
-    facebook_url: "https://facebook.com/johndoe",
-    instagram_url: "https://instagram.com/johndoe",
-    contact_person_id: "CP123",
-    blood_type: "O+",
-    first_aid_skills: "CPR",
-    injuries: "None",
-    long_term_medical_issues: "None",
-    medicines: "None",
-    payment_proof_link: "N/A",
+    // application_status: "Pending",
+    // password_hash: "",
+    First_Name: "John",
+    Last_Name: "Doe",
+    Full_Name: "John Doe",
+    Date_of_Birth: "1990-01-01",
+    NIC_nnumber: "123456789V",
+    Gender: "Male",
+    Email: "xx@email.com",
+    Contact_Number: "+123456789",
+    University_Index_Number: "U123456",
+    Faculty: "Engineering",
+    Degree_Program: "Software Engineering",
+    Year: "Final Year",
+    // bio_description: "Passionate developer.",
+    Skills: "JavaScript, React, Node.js",
+    Facebook_url: "https://facebook.com/johndoe",
+    Instagram_url: "https://instagram.com/johndoe",
+    // contact_person_id: "CP123",
+    Blood_Type: "O+",
+    First_Aid_Skills: "CPR",
+    Injuries: "None",
+    Long_Term_Medical_Issues: "None",
+    Medicines: "None",
+    // payment_proof_link: "N/A",
   });
 
   const handleImageChange = (event) => {
@@ -149,7 +149,7 @@ const Profile = () => {
                 <div key={key}>
                   <label>{key.replace(/_/g, " ")}</label>
                   <input
-                    type={key === "password_hash" ? "password" : "text"}
+                    // type={key === "password_hash" ? "password" : "text"}
                     name={key}
                     value={userDetails[key]}
                     onChange={handleChange}

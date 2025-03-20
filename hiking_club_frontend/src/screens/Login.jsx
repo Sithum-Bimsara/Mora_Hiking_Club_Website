@@ -20,7 +20,7 @@ const Login = () => {
 
             localStorage.setItem("token", token);
             localStorage.setItem("role", role);
-            console.log(role);
+            // console.log(role);
             alert("Login Successful!");
             navigate("/");
         } catch (err) {

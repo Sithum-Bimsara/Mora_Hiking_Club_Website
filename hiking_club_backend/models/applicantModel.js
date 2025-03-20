@@ -20,6 +20,13 @@ const createApplicant = async (
     return result;
 };
 
+const getAllApplicants = async () => {
+    const [rows] = await db.execute(
+        "SELECT * FROM applicant "
+    );
+    return rows;
+};
+
 const findApplicantByEmail = async (email) => {
     const query = `
         SELECT a.applicant_id, a.full_name, a.email, a.password_hash, 
@@ -95,5 +102,6 @@ module.exports = {
     updateApplicationStatus,
     getApplicantById,
     getApplicantsByStatus,
-    getMemberById
+    getMemberById,
+    getAllApplicants
 };

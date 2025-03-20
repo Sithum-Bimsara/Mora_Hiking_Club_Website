@@ -3,6 +3,21 @@ const memberModel = require("../models/memberModel");
 const { sendApprovalEmail } = require("../services/emailService");
 
 
+exports.getAllApplicants = async (req, res) => {
+    try {
+        const applicants = await applicantModel.getAllApplicants();
+
+        if (applicants.length === 0) {
+            return res.status(404).json({ error: "No applicants found" });
+        }
+
+        res.status(200).json(applicants);
+    } catch (error) {
+        console.error("Error fetching applicants:", error);
+        res.status(500).json({ error: "Internal server error" });
+    }
+};
+
 // Get all applicants with pending status
 exports.getPendingApplicants = async (req, res) => {
     try {

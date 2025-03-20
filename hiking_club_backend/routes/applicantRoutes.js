@@ -15,4 +15,6 @@ router.put("/:member_id", authenticateUser, applicantController.updateApplicantD
 // Update application status using applicant_id (sends email when approved) - Protected Route
 router.put("/:applicant_id/status", authenticateUser, authorizeAdmin , applicantController.updateApplicationStatus);
 
+router.get("/", authenticateUser, authorizeAdmin,  applicantController.getAllApplicants);
+
 module.exports = router;
