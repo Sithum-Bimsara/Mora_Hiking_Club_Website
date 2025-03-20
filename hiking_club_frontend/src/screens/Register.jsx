@@ -362,35 +362,35 @@ const Register = () => {
             <div className="section">
               <h3>Club Details</h3>
               <div className="form-group">
-                <label>Skills:</label>
-                <div className="checkbox-group">
-                  {[
-                    "Photography",
-                    "Videography",
-                    "Photo Editing",
-                    "Video Editing",
-                    "First Aid",
-                    "Article Writing",
-                    "Sponsorship Hunting",
-                    "Fund Raising",
-                    "Event Planning",
-                    "Risk Management",
-                    "Designing (Photoshop, Coraldraw, Illustrator)",
-                    "Web Designing and Development (HTML, PHP, CSS, JS)",
-                  ].map((skill) => (
-                    <label key={skill}>
-                      <input
-                        type="checkbox"
-                        name="skills"
-                        value={skill}
-                        checked={formData.skills.includes(skill)}
-                        onChange={handleChange}
-                      />
-                      {skill}
-                    </label>
-                  ))}
-                </div>
+              <label>Skills:</label>
+              <div className="checkbox-group">
+                {[
+                  "Photography",
+                  "Videography",
+                  "Photo Editing",
+                  "Video Editing",
+                  "First Aid",
+                  "Article Writing",
+                  "Sponsorship Hunting",
+                  "Fund Raising",
+                  "Event Planning",
+                  "Risk Management",
+                  "Graphic Designing",
+                  "Web Designing",
+                ].map((skill) => (
+                  <label key={skill}>
+                    <input
+                      type="checkbox"
+                      name="skills"
+                      value={skill}
+                      checked={formData.skills.includes(skill)}
+                      onChange={handleChange}
+                    />
+                    {skill}
+                  </label>
+                ))}
               </div>
+            </div>
               <div className="form-group">
                 <label>Bio:</label>
                 <textarea
