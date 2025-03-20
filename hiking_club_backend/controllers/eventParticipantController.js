@@ -1,53 +1,58 @@
 const eventParticipantModel = require("../models/eventParticipantModel");
 
-// Add an event participant
-const addEventParticipant = async (req, res) => {
+// Register a member for an event
+exports.registerParticipant = async (req, res) => {
+    const { event_id, member_id } = req.body;
+    
     try {
-        const { event_id, member_id, participation_status } = req.body;
-        await eventParticipantModel.addEventParticipant(event_id, member_id, participation_status);
-        res.status(201).json({ message: "Event participant added successfully" });
+        const response = await eventParticipantModel.registerParticipant(event_id, member_id);
+        res.status(201).json(response);
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+};
+
+// Remove a member from an event
+exports.removeParticipant = async (req, res) => {
+    const { event_id, member_id } = req.body;
+    try {
+        const response = await eventParticipantModel.removeParticipant(event_id, member_id);
+        res.status(200).json(response);
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
 };
 
-// Update event participant status
-const updateEventParticipantStatus = async (req, res) => {
+// Update participation status
+exports.updateParticipationStatus = async (req, res) => {
+    const { event_id, member_id, status } = req.body;
     try {
-        const { event_id, member_id } = req.params;
-        const { participation_status } = req.body;
-        await eventParticipantModel.updateEventParticipantStatus(event_id, member_id, participation_status);
-        res.status(200).json({ message: "Event participant status updated successfully" });
+        const response = await eventParticipantModel.updateParticipationStatus(event_id, member_id, status);
+        res.status(200).json(response);
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
 };
 
-// Delete an event participant
-const deleteEventParticipant = async (req, res) => {
+// Get all selected participants
+exports.getSelectedParticipants = async (req, res) => {
+    const { event_id } = req.params;
+
     try {
-        const { event_id, member_id } = req.params;
-        await eventParticipantModel.deleteEventParticipant(event_id, member_id);
-        res.status(200).json({ message: "Event participant deleted successfully" });
+        const data = await eventParticipantModel.getSelectedParticipants(event_id);
+        res.status(200).json(data);
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        res.status(400).json({ error: error.message });
     }
 };
 
-// Get all participants for a specific event
-const getEventParticipants = async (req, res) => {
+// Get all pending participants
+exports.getPendingParticipants = async (req, res) => {
+    const { event_id } = req.params;
     try {
-        const { event_id } = req.params;
-        const participants = await eventParticipantModel.getEventParticipants(event_id);
+        const participants = await eventParticipantModel.getPendingParticipants(event_id);
         res.status(200).json(participants);
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
-};
-
-module.exports = {
-    addEventParticipant,
-    updateEventParticipantStatus,
-    deleteEventParticipant,
-    getEventParticipants
 };
