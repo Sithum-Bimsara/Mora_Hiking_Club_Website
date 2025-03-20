@@ -91,6 +91,11 @@ const updateApplicationStatus = async (applicant_id, application_status) => {
     return result;
 };
 
+const countApplicantsForYear = async (year) => {
+    const query = "SELECT COUNT(*) AS applicantCount FROM applicant WHERE YEAR(applied_date) = ?";
+    const [rows] = await db.execute(query, [year]);
+    return rows[0].applicantCount;
+};
 
 
 
@@ -103,5 +108,6 @@ module.exports = {
     getApplicantById,
     getApplicantsByStatus,
     getMemberById,
-    getAllApplicants
+    getAllApplicants,
+    countApplicantsForYear
 };

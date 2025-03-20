@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from "react";
 import AdminSideBar from "../components/AdminSideBar";
-import MemberForm from "../components/MemberDetails";
 import DashboardComponent from "../components/DashboardComponent";
 import axios from "axios";
 import "../styles/AdminDashboard.css";
 
 const AdminDashboard = () => {
     const [searchTerm, setSearchTerm] = useState("");
-    const [editingMember, setEditingMember] = useState(null);
     const [currentPage, setCurrentPage] = useState(0);
     const [filter, setFilter] = useState("all");
     const [members, setMembers] = useState([]);
@@ -38,25 +36,6 @@ const AdminDashboard = () => {
         };
         fetchMembers();
     }, []);
-
-    const handleEditClick = (member) => {
-        setEditingMember(member);
-    };
-
-    const handleSave = (updatedMember) => {
-        // In a complete integration, you might send an update to the backend here.
-        updatedMember.fullName = updatedMember.fullName.trim();
-        setMembers((prevMembers) =>
-            prevMembers.map((m) =>
-                m.memberId === updatedMember.memberId ? updatedMember : m
-            )
-        );
-        setEditingMember(null);
-    };
-
-    const handleBack = () => {
-        setEditingMember(null);
-    };
 
     const handleSearchChange = (event) => {
         setSearchTerm(event.target.value);
@@ -110,60 +89,48 @@ const AdminDashboard = () => {
             </div>
             <div className="dashboard-content">
                 <div className="members-section">
-                    {!editingMember && (
-                        <DashboardComponent 
-                            searchTerm={searchTerm} 
-                            handleSearchChange={handleSearchChange} 
-                            handleFilterChange={handleFilterChange} 
+                    <DashboardComponent 
+                        searchTerm={searchTerm} 
+                        handleSearchChange={handleSearchChange} 
+                        handleFilterChange={handleFilterChange} 
+                    />
+                    <table className="members-table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Member ID</th>
+                                <th>Role</th>
+                                <th>Member Type</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {currentMembers.map((member) => (
+                                <tr key={member.memberId}>
+                                    <td>{member.fullName}</td>
+                                    <td>{member.memberId}</td>
+                                    <td>{member.role}</td>
+                                    <td>{member.memberType}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                    <div className="pagination">
+                        <button onClick={handlePreviousPage} disabled={currentPage === 0}>
+                            Back
+                        </button>
+                        <span> Page </span>
+                        <input
+                            type="number"
+                            value={currentPage + 1}
+                            onChange={handlePageChange}
+                            min="1"
+                            max={totalPages}
                         />
-                    )}
-                    {editingMember ? (
-                        <MemberForm memberData={editingMember} onSave={handleSave} onBack={handleBack} />
-                    ) : (
-                        <>
-                            <table className="members-table">
-                                <thead>
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Member ID</th>
-                                        <th>Role</th>
-                                        <th>Member Type</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {currentMembers.map((member) => (
-                                        <tr key={member.memberId}>
-                                            <td>{member.fullName}</td>
-                                            <td>{member.memberId}</td>
-                                            <td>{member.role}</td>
-                                            <td>{member.memberType}</td>
-                                            <td>
-                                                <button onClick={() => handleEditClick(member)}>Edit</button>
-                                            </td>
-                                        </tr>
-                                    ))}
-                                </tbody>
-                            </table>
-                            <div className="pagination">
-                                <button onClick={handlePreviousPage} disabled={currentPage === 0}>
-                                    Back
-                                </button>
-                                <span> Page </span>
-                                <input
-                                    type="number"
-                                    value={currentPage + 1}
-                                    onChange={handlePageChange}
-                                    min="1"
-                                    max={totalPages}
-                                />
-                                <span> of {totalPages} </span>
-                                <button onClick={handleNextPage} disabled={currentPage >= totalPages - 1}>
-                                    Next
-                                </button>
-                            </div>
-                        </>
-                    )}
+                        <span> of {totalPages} </span>
+                        <button onClick={handleNextPage} disabled={currentPage >= totalPages - 1}>
+                            Next
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
