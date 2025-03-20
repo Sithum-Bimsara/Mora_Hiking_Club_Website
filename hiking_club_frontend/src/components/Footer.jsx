@@ -46,7 +46,7 @@ const Footer = () => {
 University of Moratuwa,
 Katubedda 10400,
 Sri Lanka.</p>
-        <p><FaClock /> Sat - Fri (9.00am - 9.00pm)</p>
+    
       </div>
     </footer>
   );
