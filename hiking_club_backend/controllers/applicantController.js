@@ -18,6 +18,23 @@ exports.getAllApplicants = async (req, res) => {
     }
 };
 
+exports.getApplicantDetailsById = async (req, res) => {
+    const { applicant_id } = req.params;
+
+    try {
+        const applicantDetails = await applicantModel.getApplicantById(applicant_id);
+
+        if (!applicantDetails) {
+            return res.status(404).json({ error: "Applicant not found" });
+        }
+
+        res.status(200).json(applicantDetails);
+    } catch (error) {
+        console.error("Error fetching applicant details:", error);
+        res.status(500).json({ error: "Internal server error" });
+    }
+};
+
 // Get all applicants with pending status
 exports.getPendingApplicants = async (req, res) => {
     try {

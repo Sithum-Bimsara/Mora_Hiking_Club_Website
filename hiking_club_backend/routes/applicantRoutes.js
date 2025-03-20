@@ -17,4 +17,6 @@ router.put("/:applicant_id/status", authenticateUser, authorizeAdmin , applicant
 
 router.get("/", authenticateUser, authorizeAdmin,  applicantController.getAllApplicants);
 
+router.get("/:applicant_id", authenticateUser,  applicantController.getApplicantDetailsById);
+
 module.exports = router;
