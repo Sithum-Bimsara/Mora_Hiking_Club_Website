@@ -22,7 +22,7 @@ const Header1 = () => {
         <a href="/knowledge">Knowledge</a>
 
 
-        <a href="/AdminDashboard">AdminDashboard</a>
+        {/* <a href="/AdminDashboard">AdminDashboard</a> */}
 
       </nav>
       

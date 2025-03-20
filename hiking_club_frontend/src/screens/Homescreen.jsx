@@ -1,11 +1,8 @@
 import React, { useEffect } from "react";
 import "../styles/Homescreen.css";
 import Slideshow from "../components/Slideshow.jsx";
-import { useNavigate } from "react-router-dom";
 
 const Homescreen = () => {
-  const navigate = useNavigate();
-
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -19,7 +16,6 @@ const Homescreen = () => {
               counters.forEach((counter) => {
                 const target = +counter.getAttribute("data-target");
                 const duration = 2000; // 2 seconds
-                const start = 0;
                 const increment = target / (duration / 16); // 60 frames per second
 
                 const updateCounter = () => {
@@ -77,7 +73,23 @@ const Homescreen = () => {
         </div>
       </section>
 
+      {/* Slideshow */}
       <Slideshow />
+
+      {/* MHC Handbook Section */}
+      <section className="mhc-handbook animate-on-scroll">
+        <h2 className="handbook-title">MHC Handbook</h2>
+        <p className="handbook-description">
+          Learn everything about our club rules, hiking guidelines, and safety measures to ensure a great hiking experience.
+        </p>
+        <button
+      className="handbook-button"
+      onClick={() => window.open("https://drive.google.com/file/d/1V8IJOlqd875_zBpsFJgdThfEukZnI492/view?usp=drive_link", "_blank", "noopener,noreferrer")}
+    >
+      Read Handbook
+    </button>
+
+      </section>
     </div>
   );
 };

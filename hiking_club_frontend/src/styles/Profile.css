@@ -1,92 +1,272 @@
+/* Basic Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Profile Container */
 .profile-container {
-  padding: 20px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.profile-title {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.profile-content {
-  display: flex;
-  gap: 20px;
-}
-
-.profile-left {
-  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  padding: 50px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #f9f9f9, #eef2f3);
+  min-height: 100vh;
+}
+
+/* Title */
+.profile-title {
+  margin-top: 40px; /* Increase margin-top to create space */
+  font-size: 45px;
+  font-weight: 700;
+  color: #2e4057;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  border-bottom: 3px solid #073b32;
+  padding-bottom: 10px;
+}
+
+/* Profile Content */
+.profile-content {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 90%;
+  gap: 60px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+
+}
+
+/* Left Section */
+.profile-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 260px;
+  padding: 25px;
+  background: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
 }
 
 .profile-picture {
-  background-color: #ccc;
+  width: 180px;
+  height: 180px;
   border-radius: 50%;
-  margin-bottom: 20px;
+  overflow: hidden;
+  background-color: #f1f1f1;
+  margin-bottom: 15px;
+  position: relative;
+  border: 3px solid #073b32;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
-.profile-info {
+.profile-img {
   width: 100%;
-  margin-bottom: 20px;
+  height: 100%;
+  object-fit: cover;
 }
 
-.profile-info label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
+.placeholder-text {
+  font-size: 16px;
+  color: #666;
 }
 
-.profile-info input,
-.profile-info textarea {
+/* User Details */
+.user-details {
+  margin-top: 15px;
+  font-size: 18px;
+  line-height: 1.6;
+  color: #333;
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
   width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  max-width: 280px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  border-left: 5px solid #073b32;
 }
 
-.save-button {
-  padding: 10px 20px;
-  background-color: #007bff;
+/* Hidden File Input */
+.file-input {
+  display: none;
+}
+
+/* Edit Button */
+.edit-button {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 12px 25px;
+  font-size: 16px;
+  background-color: #073b32;
   color: white;
-  border: none;
-  border-radius: 5px;
+  border-radius: 30px;
   cursor: pointer;
+  text-align: center;
+  transition: all 0.3s ease;
+  border: none;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.edit-button:hover {
+  background-color: #38a3a5;
+  transform: translateY(-5px);
+}
+
+/* Right Section */
+.profile-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 60%;
+  max-width: 750px;
+}
+
+/* Editable Input */
+.editable-input {
+  width: 100%;
+  height: 50px;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  background-color: #f9f9f9;
+  transition: all 0.3s ease;
+}
+
+.editable-input:focus {
+  border: 1px solid #42AC3;
+  background-color: #fff;
+  box-shadow: 0 4px 10px rgba(86, 193, 165, 0.3);
+}
+
+/* User Log Section */
+.user-log {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 800px;
+  min-height: 80px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  font-size: 16px;
+  margin-top: 30px;
+  border-left: 5px solid #073b32;
+}
+
+/* Divider */
+.divider {
+  width: 100%;
+  height: 2px;
+  background-color: #ccc;
+  margin-top: 20px;
+}
+
+/* Modal Styling */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 25px;
+  border-radius: 15px;
+  width: 400px;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.4s ease;
+}
+
+.modal h3 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #333;
+}
+
+/* Scrollable Content */
+.modal-body {
+  max-height: 60vh;
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+/* Scrollbar Styling */
+.modal-body::-webkit-scrollbar {
+  width: 8px;
+}
+
+.modal-body::-webkit-scrollbar-thumb {
+  background: #073b32;
+  border-radius: 10px;
+}
+
+.modal-body::-webkit-scrollbar-thumb:hover {
+  background: #073b32;
+}
+
+/* Modal Input Styles */
+.modal-body label {
+  display: block;
+  font-weight: 600;
+  margin-top: 15px;
+  font-size: 18px;
+  color: #333;
+}
+
+.modal-body input {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  font-size: 16px;
+  background-color: #f9f9f9;
+}
+
+/* Save Button */
+.save-button {
+  display: block;
+  width: 100%;
+  background-color:#073b32;
+  color: white;
+  padding: 12px;
+  font-size: 16px;
+  margin-top: 20px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .save-button:hover {
-  background-color: #0056b3;
+  background-color:  ;
+  transform: translateY(-5px);
 }
 
-.profile-right {
-  flex: 2;
-}
-
-.divider {
-  border-bottom: 1px solid #ccc;
-  margin: 20px 0;
-}
-
-.file-list {
-  list-style-type: none;
-  padding: 0;
-}
-
-.file-item {
-  display: flex;
-  justify-content: space-between;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  margin-bottom: 10px;
-}
-
-.file-name {
-  font-weight: bold;
-}
-
-.file-date {
-  color: #666;
+/* Fade-In Animation */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }

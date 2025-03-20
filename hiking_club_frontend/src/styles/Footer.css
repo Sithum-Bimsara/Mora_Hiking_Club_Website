@@ -1,94 +1,101 @@
-.footer-container {
-    background-color: #073b32;
-    color: white;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding: 40px 20px;
-    flex-wrap: wrap;
-    text-align: left;
-    position: relative;
-  }
-  
-  .logo-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .logo {
-    font-size: 28px;
-    font-weight: bold;
-  }
-  
-  .logo span {
-    display: block;
-    font-size: 16px;
-  }
-  
-  .social-icons {
-    margin-top: 10px;
-    font-size: 24px;
-    display: flex;
-    gap: 15px;
-  }
-  
-  .footer-links h3,
-  .contact-info h3 {
-    font-size: 18px;
-    margin-bottom: 10px;
-    color: white;
-    
-  }
-  
-  .footer-links ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .footer-links li {
-    margin: 5px 0;
-    cursor: pointer;
-  }
-  
-  .contact-info p {
-    margin: 5px 0;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
+/* Ensure the full page takes up the height */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
 
-.footer-links link{
-    text-decoration: none;
-    color: white;
+/* Create a wrapper for all content */
+.page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Use viewport height to ensure full height */
+}
+
+/* Allow the main content to expand */
+.main-content {
+  flex: 1; /* This will push the footer down */
+}
+
+/* Ensure the footer sits at the bottom */
+.footer-container {
+
+  background-color: #073b32;
+  color: white;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 40px 20px;
+  flex-wrap: wrap;
+  text-align: left;
+  width: 100%;
+  /* No position:fixed so it flows with the document */
+  margin-top: auto; /* This ensures it stays at the bottom */
+}
+
+.logo-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.logo span {
+  display: block;
+  font-size: 16px;
+}
+
+.social-icons {
+  margin-top: 10px;
+  font-size: 24px;
+  display: flex;
+  gap: 15px;
+}
+
+
+.footer-links h3,
+.contact-info h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: white;
 }
 
 .footer-links ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .footer-links li {
-    margin: 5px 0;
-  }
-  
-  .footer-link {
-    text-decoration: none; /* Removes underline */
-    color: white; /* Makes text white */
-    font-weight: normal; /* Ensures normal font weight */
-  }
-  
-  .footer-link:hover {
-    text-decoration: underline; /* Adds underline on hover for better UX */
-  }
-  
-  .social-icons svg {
-    margin: 0 10px;
-    font-size: 1em;
-    color: white; /* Set the icon color to white */
-  }
-  
-  .social-icons a {
-    color: white; /* Ensure the anchor tags don't override the icon color */
-  }
-  
+  list-style: none;
+  padding: 0;
+}
+
+.footer-links li {
+  margin: 5px 0;
+  cursor: pointer;
+}
+
+.footer-links a {
+  text-decoration: none;
+  color: white;
+  font-weight: normal;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+}
+
+.contact-info p {
+  margin: 5px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.social-icons svg {
+  font-size: 1em;
+  color: white;
+}
+
+.social-icons a {
+  color: white;
+}
