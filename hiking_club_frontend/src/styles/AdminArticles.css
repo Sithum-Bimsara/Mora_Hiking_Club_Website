@@ -54,13 +54,15 @@
 
 
 .articles-header{
-    margin-top: 20px;
+    margin-top: 10px;
+    margin-bottom:0px;
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
 }
 
 .articles-header button{
+    margin-top: 10px;
     padding: 10px 30px;
     background-color: #00796b;
     color: white;
@@ -108,4 +110,11 @@
 
 .pagination span{
     margin-top: 5px;
+}
+
+@media(max-width: 768px){    
+    .articles-content{
+        margin-left: 0px;
+        margin-top: 170px;
+    }
 }
