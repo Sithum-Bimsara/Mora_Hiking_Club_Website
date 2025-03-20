@@ -26,7 +26,7 @@ const Header = () => {
         <Link to="/articles" className={isActive("/articles")}>Articles</Link>
         <Link to="/hikes" className={isActive("/hikes")}>Hikes</Link>
         <Link to="/knowledge" className={isActive("/knowledge")}>Knowledge</Link>
-        <Link to="/admindashboard" className={isActive("/admindashboard")}>AdminDashboard</Link>
+        <Link to="/admindashboard" className={isActive("/admindashboard")}>Admin Dashboard</Link>
       </nav>
       
       <Link to="/profile" className="profile">
