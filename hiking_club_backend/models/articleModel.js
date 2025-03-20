@@ -1,53 +1,68 @@
 const db = require("../config/db");
 
-// Create an article
-const createArticle = async (memberId, topic, imagesLink, description) => {
-    const query = "INSERT INTO article (member_id, topic, images_link, description) VALUES (?, ?, ?, ?)";
-    const [result] = await db.execute(query, [memberId, topic, imagesLink, description]);
-    return result;
-};
-
-// Delete an article
-const deleteArticle = async (articleId) => {
-    const query = "DELETE FROM article WHERE id = ?";
-    const [result] = await db.execute(query, [articleId]);
-    return result;
-};
 
 // Get all articles
 const getAllArticles = async () => {
-    const query = "SELECT * FROM article";
-    const [articles] = await db.execute(query);
-    return articles;
+    const [rows] = await db.execute("SELECT * FROM article");
+    return rows;
 };
 
-// Get a specific article with comments and member name
+// Get an article by ID with comments
 const getArticleWithComments = async (articleId) => {
-    const query = `
-        SELECT a.id, a.topic, a.images_link, a.description, 
-               m.member_id, ap.first_name, ap.last_name, 
-               c.id AS comment_id, c.commenter_name, c.comment
+    const [articles] = await db.execute("SELECT * FROM article WHERE id = ?", [articleId]);
+    if (articles.length === 0) return null;
+
+    const [comments] = await db.execute("SELECT * FROM article_comment WHERE article_id = ?", [articleId]);
+    return { ...articles[0], comments };
+};
+
+// Get all articles with comments
+const getAllArticlesWithComments = async () => {
+    const [rows] = await db.execute(`
+        SELECT a.*, ac.id AS comment_id, ac.commenter_name, ac.comment
         FROM article a
-        JOIN member m ON a.member_id = m.member_id
-        JOIN applicant ap ON m.applicant_id = ap.applicant_id
-        LEFT JOIN article_comment c ON a.id = c.article_id
-        WHERE a.id = ?
-    `;
-    const [article] = await db.execute(query, [articleId]);
-    return article;
+        LEFT JOIN article_comment ac ON a.id = ac.article_id
+    `);
+    return rows;
+};
+
+// Get a single article by ID
+const getArticleById = async (id) => {
+    const [rows] = await db.execute("SELECT * FROM article WHERE id = ?", [id]);
+    return rows.length ? rows[0] : null;
+};
+
+// Create a new article
+const createArticle = async (member_id, topic, images_link, description) => {
+    const [result] = await db.execute(
+        "INSERT INTO article (member_id, topic, images_link, description) VALUES (?, ?, ?, ?)",
+        [member_id, topic, images_link, description]
+    );
+    return { id: result.insertId, member_id, topic, images_link, description };
 };
 
 // Update an article
-const updateArticle = async (articleId, topic, imagesLink, description) => {
-    const query = "UPDATE article SET topic = ?, images_link = ?, description = ? WHERE id = ?";
-    const [result] = await db.execute(query, [topic, imagesLink, description, articleId]);
-    return result;
+const updateArticle = async (id, topic, images_link, description) => {
+    const [result] = await db.execute(
+        "UPDATE article SET topic = ?, images_link = ?, description = ? WHERE id = ?",
+        [topic, images_link, description, id]
+    );
+    return result.affectedRows > 0; // True if updated, false otherwise
 };
 
+// Delete an article
+const deleteArticle = async (id) => {
+    const [result] = await db.execute("DELETE FROM article WHERE id = ?", [id]);
+    return result.affectedRows > 0; // True if deleted, false otherwise
+};
+
+
 module.exports = {
-    createArticle,
-    deleteArticle,
     getAllArticles,
     getArticleWithComments,
-    updateArticle
-};
+    getAllArticlesWithComments,
+    getArticleById,
+    createArticle,
+    updateArticle,
+    deleteArticle
+}
