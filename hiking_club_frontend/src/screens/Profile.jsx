@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "../styles/Profile.css";
 
 const Profile = () => {
@@ -8,6 +8,7 @@ const Profile = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [userLog, setUserLog] = useState("Hi, I am Sasmitha Jayasinghe");
   const [userHistory, setUserHistory] = useState("Mehe giya ahare giya");
+  const modalRef = useRef(null); // Reference for modal
 
   const [userDetails, setUserDetails] = useState({
     application_status: "Pending",
@@ -48,6 +49,25 @@ const Profile = () => {
   const handleChange = (e) => {
     setUserDetails({ ...userDetails, [e.target.name]: e.target.value });
   };
+
+  // Close modal when clicking outside of it
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (modalRef.current && !modalRef.current.contains(event.target)) {
+        setIsModalOpen(false);
+      }
+    };
+
+    if (isModalOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isModalOpen]);
 
   return (
     <div className="profile-container">
@@ -142,21 +162,23 @@ const Profile = () => {
       {/* Editable Details Modal */}
       {isModalOpen && (
         <div className="modal">
-          <div className="modal-content">
+          <div className="modal-content" ref={modalRef}>
             <h3>Edit Details</h3>
             <div className="modal-body">
-              {Object.keys(userDetails).map((key) => (
-                <div key={key}>
-                  <label>{key.replace(/_/g, " ")}</label>
-                  <input
-                    type={key === "password_hash" ? "password" : "text"}
-                    name={key}
-                    value={userDetails[key]}
-                    onChange={handleChange}
-                    disabled={["first_name", "last_name", "full_name", "email"].includes(key)} // Disable specific fields
-                  />
-                </div>
-              ))}
+              {Object.keys(userDetails)
+                .filter((key) => key !== "password_hash" && key !== "application_status") // Exclude specific fields
+                .map((key) => (
+                  <div key={key}>
+                    <label>{key.replace(/_/g, " ")}</label>
+                    <input
+                      type={key === "password_hash" ? "password" : "text"}
+                      name={key}
+                      value={userDetails[key]}
+                      onChange={handleChange}
+                      disabled={["first_name", "last_name", "full_name", "email"].includes(key)} // Disable specific fields
+                    />
+                  </div>
+                ))}
             </div>
 
             <button
