@@ -17,6 +17,8 @@ router.put("/:applicant_id/status", authenticateUser, authorizeAdmin , applicant
 
 router.get("/", authenticateUser, authorizeAdmin,  applicantController.getAllApplicants);
 
+// router.get("/",  applicantController.getAllApplicants);
+
 
 router.get("/:applicant_id", authenticateUser, authorizeAdmin,  applicantController.getApplicantDetailsById);
 

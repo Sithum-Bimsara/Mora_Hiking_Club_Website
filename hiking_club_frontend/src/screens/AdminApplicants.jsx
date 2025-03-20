@@ -16,7 +16,12 @@ const AdminApplicants = () => {
     useEffect(() => {
         const fetchApplicants = async () => {
             try {
-                const response = await axios.get("http://localhost:8080/api/applicants");  // Adjust URL if needed
+                const token = localStorage.getItem("token");
+                const response = await axios.get("http://localhost:8080/api/applicants" , {
+                    headers: {
+                        Authorization: `Bearer ${token}` // Send token in Authorization header
+                    }
+                }); 
                 setApplicants(response.data);
             } catch (error) {
                 console.error("Error fetching applicants:", error);
@@ -67,21 +72,34 @@ const AdminApplicants = () => {
         setSelectedApplicant(null);
     };
 
-    // Function to update application status in backend
-    const handleStatusChange = async (id, newStatus) => {
+    
+    const handleStatusChange = async (applicant_id, newStatus) => {
         try {
-            await axios.put(`http://localhost:8080/api/applicants/${id}/status`, { application_status: newStatus });
-
-            // Update local state after successful request
+            const token = localStorage.getItem("token");
+    
+            // Convert to lowercase to match database ENUM values
+            const formattedStatus = newStatus.toLowerCase(); 
+            console.log(formattedStatus);
+            await axios.put(`http://localhost:8080/api/applicants/${applicant_id}/status`, 
+                { application_status: formattedStatus }, // Send lowercase value
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}` 
+                    }
+                }
+            );
+    
             setApplicants((prevApplicants) =>
                 prevApplicants.map((applicant) =>
-                    applicant.id === id ? { ...applicant, application_status: newStatus } : applicant
+                    applicant.applicant_id === applicant_id ? { ...applicant, application_status: formattedStatus } : applicant
                 )
             );
         } catch (error) {
             console.error("Error updating status:", error);
         }
     };
+    
+    
 
     return (
         <div className="admin-applicants">
@@ -112,12 +130,12 @@ const AdminApplicants = () => {
                         </thead>
                         <tbody>
                             {currentApplicants.map((applicant) => (
-                                <tr key={applicant.id}>
+                                <tr key={applicant.applicant_id}>
                                     <td>{applicant.first_name + " " + applicant.last_name}</td>
                                     <td>
                                         <select
-                                            value={applicant.application_status}
-                                            onChange={(e) => handleStatusChange(applicant.id, e.target.value)}
+                                            value={applicant.application_status.charAt(0).toUpperCase() + applicant.application_status.slice(1)}
+                                            onChange={(e) => handleStatusChange(applicant.applicant_id, e.target.value)}
                                         >
                                             <option value="Pending">Pending</option>
                                             <option value="Approved">Approved</option>
