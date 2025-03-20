@@ -4,9 +4,10 @@ const eventParticipantController = require("../controllers/eventParticipantContr
 const authenticateUser = require("../middlewares/authMiddleware"); 
 const authorizeAdmin = require("../middlewares/authorizeAdmin");
 
-router.post("/", authenticateUser, authorizeAdmin, eventParticipantController.addEventParticipant); 
-router.put("/:event_id/:member_id",authenticateUser, authorizeAdmin, eventParticipantController.updateEventParticipantStatus); 
-router.delete("/:event_id/:member_id", authenticateUser, authorizeAdmin, eventParticipantController.deleteEventParticipant); 
-router.get("/:event_id", authenticateUser, authorizeAdmin, eventParticipantController.getEventParticipants); 
+router.post("/register", authenticateUser, eventParticipantController.registerParticipant);
+router.delete("/remove", authenticateUser, authorizeAdmin, eventParticipantController.removeParticipant);
+router.put("/update-status", authenticateUser, authorizeAdmin, eventParticipantController.updateParticipationStatus);
+router.get("/selected/:event_id",authenticateUser, authorizeAdmin,  eventParticipantController.getSelectedParticipants);
+router.get("/pending/:event_id", authenticateUser,authorizeAdmin,  eventParticipantController.getPendingParticipants);
 
 module.exports = router;
