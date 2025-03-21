@@ -29,10 +29,10 @@ const MemberHeader = () => {
 
       <Link to="/profile" className="profile">
         <img src={userPhoto} alt="User Profile" className="avatar" /> 
-        <div className="user-info">
+        {/* <div className="user-info">
           <span className="name">User</span>
           <span className="email">user@gmail.com</span>
-        </div>
+        </div> */}
       </Link>
 
     </header>
