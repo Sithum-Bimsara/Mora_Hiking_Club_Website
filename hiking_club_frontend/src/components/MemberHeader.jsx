@@ -22,9 +22,9 @@ const MemberHeader = () => {
       <nav className={`nav-links`}>
         <a href="/" className="active">Home</a>
         <a href="/about">About Us</a>
-        <a href="/articles">Articles</a>
+        {/* <a href="/articles">Articles</a>
         <a href="/hikes">Hikes</a>
-        <a href="/knowledge">Knowledge</a>
+        <a href="/knowledge">Knowledge</a> */}
       </nav>
 
       <Link to="/profile" className="profile">

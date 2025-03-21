@@ -25,9 +25,9 @@ const AdminHeader = () => {
       <nav className="nav-links">
         <Link to="/" className={isActive("/")}>Home</Link>
         <Link to="/about" className={isActive("/about")}>About Us</Link>
-        <Link to="/articles" className={isActive("/articles")}>Articles</Link>
+        {/* <Link to="/articles" className={isActive("/articles")}>Articles</Link>
         <Link to="/hikes" className={isActive("/hikes")}>Hikes</Link>
-        <Link to="/knowledge" className={isActive("/knowledge")}>Knowledge</Link>
+        <Link to="/knowledge" className={isActive("/knowledge")}>Knowledge</Link> */}
         {/* Use dynamic dashboard link */}
         <Link to={dashboardLink} className={isActive(dashboardLink)}>Admin Dashboard</Link>
       </nav>
