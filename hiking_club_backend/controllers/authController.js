@@ -2,17 +2,41 @@ const applicantModel = require("../models/applicantModel");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const multer = require("multer");
+const path = require("path");
+const fs = require("fs");
 require("dotenv").config();
 
-// Configure multer for file uploads
-const upload = multer({ dest: "uploads/" });
+// Ensure payment-receipts directory exists
+const receiptsDir = "payment-receipts";
+if (!fs.existsSync(receiptsDir)) {
+    fs.mkdirSync(receiptsDir, { recursive: true });
+}
+
+// Configure multer for file uploads with custom filename
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, receiptsDir);
+    },
+    filename: (req, file, cb) => {
+        const { university_id, full_name } = req.body;
+        if (!university_id || !full_name) {
+            return cb(new Error("Missing university_id or full_name for filename generation"));
+        }
+
+        const fileExt = path.extname(file.originalname);
+        const sanitizedFullName = full_name.replace(/\s+/g, "_"); // Replace spaces with underscores
+        const newFileName = `${university_id}_${sanitizedFullName}${fileExt}`;
+        cb(null, newFileName);
+    },
+});
+
+const upload = multer({ storage });
 
 // Signup controller
 const signup = async (req, res) => {
-    // console.log(req.body);
     try {
         const { body, file } = req;
-        
+
         // Extract payment proof path from uploaded file
         const paymentProofPath = file ? file.path : null;
         body.payment_proof_link = paymentProofPath;
@@ -56,7 +80,7 @@ const signup = async (req, res) => {
     }
 };
 
-
+// Login controller
 const login = async (req, res) => { 
     try {
         const { email, password } = req.body;
@@ -83,7 +107,6 @@ const login = async (req, res) => {
             applicantId: applicant.applicant_id,
             full_name: applicant.full_name,
             member_id: applicant.member_id,
-            // role: applicant.role,
             role: applicant.role || "member",
         };
 
@@ -97,8 +120,6 @@ const login = async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 };
-
-
 
 // Logout controller
 const logout = () => {

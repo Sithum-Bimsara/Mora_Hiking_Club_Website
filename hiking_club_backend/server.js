@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const path = require("path");
 const dotenv = require("dotenv");
 const eventRoutes = require("./routes/eventRoutes");
 const eventParticipantRoutes = require("./routes/eventParticipantRoutes");
@@ -16,6 +17,8 @@ dotenv.config();
 
 const app = express();
 app.use(cors());
+
+app.use("/uploads/payment-receipts", express.static(path.join(__dirname, "payment-receipts")));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true })); 

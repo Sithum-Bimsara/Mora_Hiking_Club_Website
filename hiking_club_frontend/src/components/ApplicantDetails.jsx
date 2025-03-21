@@ -8,7 +8,7 @@ const ApplicantDetails = ({ applicantId, onBack }) => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        if (!applicantId) return;  // Prevent API call if ID is missing
+        if (!applicantId) return;
         console.log("Fetching details for applicant_id:", applicantId);
         const fetchApplicantDetails = async () => {
             try {
@@ -16,7 +16,7 @@ const ApplicantDetails = ({ applicantId, onBack }) => {
                 const response = await axios.get(`http://localhost:8080/api/applicants/${applicantId}`, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
-    
+
                 setApplicant(response.data);
             } catch (err) {
                 console.error("Error fetching applicant details:", err);
@@ -25,14 +25,18 @@ const ApplicantDetails = ({ applicantId, onBack }) => {
                 setLoading(false);
             }
         };
-    
+
         fetchApplicantDetails();
-    }, [applicantId]);  // Only run when `applicantId` changes
-    
+    }, [applicantId]);
 
     if (loading) return <p>Loading applicant details...</p>;
     if (error) return <p>{error}</p>;
     if (!applicant) return <p>No applicant details available.</p>;
+
+    // Construct the payment proof URL
+    const paymentProofUrl = applicant.payment_proof_link
+        ? `http://localhost:8080/uploads/payment-receipts/${applicant.payment_proof_link.split("\\").pop()}`
+        : null;
 
     return (
         <div className="ApplicantDetails">
@@ -55,11 +59,27 @@ const ApplicantDetails = ({ applicantId, onBack }) => {
                 <p><strong>Facebook:</strong> {applicant.facebook_url ? <a href={applicant.facebook_url} target="_blank" rel="noopener noreferrer">View Profile</a> : "N/A"}</p>
                 <p><strong>Instagram:</strong> {applicant.instagram_url ? <a href={applicant.instagram_url} target="_blank" rel="noopener noreferrer">View Profile</a> : "N/A"}</p>
                 <p><strong>Blood Type:</strong> {applicant.blood_type || "N/A"}</p>
-                <p><strong>First Aid Skills:</strong> {applicant.first_aid_skills ? "Yes" : "No"}</p>
+                <p><strong>First Aid Skills:</strong> {applicant.first_aid_skills || "N/A"}</p>
                 <p><strong>Injuries:</strong> {applicant.injuries || "None"}</p>
                 <p><strong>Long-Term Medical Issues:</strong> {applicant.long_term_medical_issues || "None"}</p>
                 <p><strong>Medicines:</strong> {applicant.medicines || "N/A"}</p>
-                {/* <p><strong>Payment Proof:</strong> {applicant.payment_proof_link ? <a href={applicant.payment_proof_link} target="_blank" rel="noopener noreferrer">View Proof</a> : "N/A"}</p> */}
+                
+                {/* Payment Proof Display */}
+                <p><strong>Payment Proof:</strong></p>
+                {paymentProofUrl ? (
+                    paymentProofUrl.endsWith(".pdf") ? (
+                        <iframe 
+                            src={paymentProofUrl} 
+                            width="100%" 
+                            height="500px"
+                            title="Payment Proof"
+                        ></iframe>
+                    ) : (
+                        <img src={paymentProofUrl} alt="Payment Proof" style={{ maxWidth: "100%", height: "auto" }} />
+                    )
+                ) : (
+                    <p>N/A</p>
+                )}
             </div>
 
             <button onClick={onBack} className="back-button">Back</button>
