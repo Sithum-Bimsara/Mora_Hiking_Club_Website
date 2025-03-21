@@ -50,7 +50,7 @@ const AdminDashboard = () => {
     const filteredMembers = members.filter(member => {
         return (
             (filter === "all" || 
-             (filter === "admins" && member.role === "admin") || 
+             (filter === "admins" && member.role === "admin" || member.role === "super_admin") || 
              (filter === "fellows" && member.memberType === "fellow member")
             ) &&
             (member.fullName.toLowerCase().includes(searchTerm.toLowerCase()) ||
