@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "../styles/MemberDetails.css";
 
-const MemberForm = ({ memberData, onSave, onBack }) => {
+const MemberForm = ({ memberData, onSave, onBack, currentUserRole }) => {
   const [member, setMember] = useState({
     firstName: memberData?.firstName || "",
     lastName: memberData?.lastName || "",
@@ -20,13 +20,7 @@ const MemberForm = ({ memberData, onSave, onBack }) => {
   };
 
   const handleSave = () => {
-    // Validation to ensure required fields are not empty
-    if (
-      !member.firstName ||
-      !member.lastName ||
-      !member.fullName ||
-      !member.memberId
-    ) {
+    if (!member.firstName || !member.lastName || !member.fullName || !member.memberId) {
       alert("Please fill in all the required fields.");
       return;
     }
@@ -43,76 +37,66 @@ const MemberForm = ({ memberData, onSave, onBack }) => {
       <div className="firstName">
         <label>
           First Name:
-          <input 
-            type="text" 
-            name="firstName" 
-            value={member.firstName} 
-            onChange={handleChange} 
-          />
+          <input type="text" name="firstName" value={member.firstName} onChange={handleChange} />
         </label>
       </div>
 
       <div className="lastName">
         <label>
           Last Name:
-          <input 
-            type="text" 
-            name="lastName" 
-            value={member.lastName} 
-            onChange={handleChange} 
-          />
+          <input type="text" name="lastName" value={member.lastName} onChange={handleChange} />
         </label>
       </div>
 
       <div className="fullName">
         <label>
           Full Name:
-          <input 
-            type="text" 
-            name="fullName" 
-            value={member.fullName} 
-            onChange={handleChange} 
-          />
+          <input type="text" name="fullName" value={member.fullName} onChange={handleChange} />
         </label>
       </div>
 
       <div className="id">
         <label>
           Member ID:
-          <input 
-            type="number" 
-            name="memberId" 
-            value={member.memberId} 
-            onChange={handleChange} 
-          />
+          <input type="number" name="memberId" value={member.memberId} onChange={handleChange} />
         </label>
       </div>
 
-      <div className="role">
-        <label>
-          Role:
-          <select name="role" value={member.role} onChange={handleChange}>
-            {roles.map((role) => (
-              <option key={role} value={role}>{role}</option>
-            ))}
-          </select>
-        </label>
-      </div>
+      {currentUserRole === "Super Admin" && (
+        <div className="role">
+          <label>
+            Role:
+            <select name="role" value={member.role} onChange={handleChange}>
+              {roles.map((role) => (
+                <option key={role} value={role}>
+                  {role}
+                </option>
+              ))}
+            </select>
+          </label>
+        </div>
+      )}
 
       <div className="type">
         <label>
           Member Type:
           <select name="memberType" value={member.memberType} onChange={handleChange}>
             {memberTypes.map((type) => (
-              <option key={type} value={type}>{type}</option>
+              <option key={type} value={type}>
+                {type}
+              </option>
             ))}
           </select>
         </label>
       </div>
 
       <div className="buttons">
-        <button type="save-button" onClick={handleSave}>Save</button>
-        <button type="back-button" onClick={onBack}>Back</button>
+        <button type="save-button" onClick={handleSave}>
+          Save
+        </button>
+        <button type="back-button" onClick={onBack}>
+          Back
+        </button>
       </div>
     </div>
   );

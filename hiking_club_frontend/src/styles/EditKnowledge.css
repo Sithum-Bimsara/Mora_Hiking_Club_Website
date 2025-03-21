@@ -74,8 +74,8 @@
     border-radius: 5px;
 }
 
-.form-buttons button[type="back-button"],
-.form-buttons button[type="delete-button"] {
+.knowledge-edit-form  .form-buttons button[type="back-button"],
+.knowledge-edit-form  .form-buttons button[type="delete-button"] {
     background-color: #ccc;
     color: black;
 }
@@ -86,6 +86,10 @@
 
 .form-buttons button[type="delete-button"]:hover {
     background-color: red;
+}
+
+.form-buttons button[type="back-button"]:hover {
+    background-color: #999;
 }
 
 .image-container {
@@ -117,41 +121,3 @@
     background-color: red;
 }
 
-.comments-section {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    background-color: #f9f9f9;
-    color: black;
-}
-
-.comment {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 5px;
-    gap: 10px;
-    margin-bottom: 15px;
-    border: #ddd solid 1px;
-    border-radius: 5px;
-}
-
-.comment p {
-    margin-top: 5px;
-}
-
-.comments-section button {
-    padding: 5px 15px;
-    background-color: #ccc;
-    color: black;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.comments-section button:hover {
-    background-color: red;
-}

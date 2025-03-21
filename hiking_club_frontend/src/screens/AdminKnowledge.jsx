@@ -19,13 +19,14 @@ const AdminKnowledge = () => {
                 topic: `Knowledge Topic ${i}`,
                 description: `This is a description of knowledge ${i}.`,
                 id: (10000 + i).toString(),
+                images: [],
             });
         }
         return knowledgeArray;
     };
 
     const [knowledgeData, setKnowledgeData] = useState(generateKnowledge());
-    const [knowledgeDataToEdit, setKnowledgeDataToEdit] = useState({ topic: '', description: '', id: '' });
+    const [knowledgeDataToEdit, setKnowledgeDataToEdit] = useState({ topic: '', description: '', id: '' , images: []});
 
     const handleBackAdd = () => {
         setIsAddingKnowledge(false);
@@ -103,10 +104,12 @@ const AdminKnowledge = () => {
                     <KnowledgeFormEdit onSave={handleSaveKnowledge} onDelete={handleDeleteKnowledge} onBack={handleBackKnowledge} initialData={knowledgeDataToEdit} />
                 ) : (
                     <div>
-                        <h2>Knowledge Base</h2>
+                        <h2>Knowledge</h2>
                         <div className="knowledge-header">
                             <button onClick={handleAddClickKnowledge}>Add New Knowledge</button>
-                            <input type="text" placeholder="Search Knowledge" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
+                            <input type="text" placeholder="Search Knowledge" value={searchTerm} onChange={(e) => {
+                                        setSearchTerm(e.target.value);
+                                        setCurrentPage(0); }} />
                         </div>
                         <table className="knowledge-table">
                             <thead>

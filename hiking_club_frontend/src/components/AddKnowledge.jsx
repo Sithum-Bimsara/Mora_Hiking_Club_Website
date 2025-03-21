@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import "../styles/AddArticle.css";
+import "../styles/AddKnowledge.css";
 
 const KnowledgeFormAdd = ({ onSave, onBack, initialData }) => {
   const [topic, setTopic] = useState(initialData?.topic || '');
