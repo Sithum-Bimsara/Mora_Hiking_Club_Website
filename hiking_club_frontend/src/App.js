@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter, Routes, Route, useLocation, useNavigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import AdminHeader from "./components/AdminHeader";
 import MemberHeader from "./components/MemberHeader";
 import Header from "./components/Header";
@@ -28,35 +28,19 @@ import HikeDetails from "./screens/HikeDetails";
 // Layout Component
 function Layout() {
   const location = useLocation();
-  const navigate = useNavigate();
   const [role, setRole] = useState(localStorage.getItem("role"));
-  const [redirected, setRedirected] = useState(false);
 
   useEffect(() => {
-    const storedRole = localStorage.getItem("role");
-    setRole(storedRole);
-
-    if (!redirected) {
-      if (storedRole === "super_admin" && location.pathname === "/login") {
-        navigate("/SuperAdminDashboard");
-        setRedirected(true);
-      } else if (storedRole === "admin" && location.pathname === "/login") {
-        navigate("/AdminDashboard");
-        setRedirected(true);
-      }
-    }
-  }, [location.pathname, role, navigate, redirected]);
+    setRole(localStorage.getItem("role"));
+  }, [location.pathname]);
 
   // Determine which header to show
   let HeaderComponent = Header;
-  if (role === "super_admin") {
-    HeaderComponent = AdminHeader
-  } else if (role === "admin") {
+  if (role === "super_admin" || role === "admin") {
     HeaderComponent = AdminHeader;
   } else if (role === "member") {
     HeaderComponent = MemberHeader;
   }
-
 
   return (
     <>

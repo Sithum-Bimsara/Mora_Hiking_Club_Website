@@ -5,28 +5,31 @@ import logo from "../assets/images/logo.png";
 import userPhoto from "../assets/images/1.jpg";  
 
 const AdminHeader = () => {
-  const location = useLocation(); // Get the current location (path)
+  const location = useLocation();
+  const role = localStorage.getItem("role"); // Get role from localStorage
 
   // Function to check if the current link is the active page
   const isActive = (path) => location.pathname === path ? "active" : "";
 
+  // Dynamically set the dashboard link based on role
+  const dashboardLink = role === "super_admin" ? "/SuperAdminDashboard" : "/AdminDashboard";
+
   return (
     <header className="header">
       <div className="logo-container">
-        {/* Wrap logo inside Link to navigate to homepage */}
         <Link to="/">
           <img src={logo} alt="MÓRA HIKING CLUB Logo" className="logo" />
         </Link>
       </div>
 
       <nav className="nav-links">
-        {/* Add active class dynamically based on current path */}
         <Link to="/" className={isActive("/")}>Home</Link>
         <Link to="/about" className={isActive("/about")}>About Us</Link>
         <Link to="/articles" className={isActive("/articles")}>Articles</Link>
         <Link to="/hikes" className={isActive("/hikes")}>Hikes</Link>
         <Link to="/knowledge" className={isActive("/knowledge")}>Knowledge</Link>
-        <Link to="/admindashboard" className={isActive("/admindashboard")}>Admin Dashboard</Link>
+        {/* Use dynamic dashboard link */}
+        <Link to={dashboardLink} className={isActive(dashboardLink)}>Admin Dashboard</Link>
       </nav>
       
       <Link to="/profile" className="profile">
