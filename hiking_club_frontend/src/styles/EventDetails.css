@@ -1,0 +1,66 @@
+.event-details-container {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 50%;
+    margin: auto;
+    color: black;
+    width: 100%;
+}
+
+.event-details-container .participants-title{
+    margin-top: 40px;
+}
+
+.event-info p {
+    font-size: large;
+    margin: 10px 0;
+}
+
+.event-info ul {
+    list-style: none;
+    padding: 0;
+}
+.event-info .participant-list {
+   display: flex;
+   flex-direction: column;
+}
+
+.event-info li {
+    padding: 5px;
+    font-size: 14px;
+    margin: 5px 5px;
+}
+
+.status {
+    padding: 3px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.status.accepted {
+    color: green;
+}
+
+.status.pending {
+    color: orange;
+}
+
+.status.rejected {
+    color: red;
+}
+
+.back-button {
+    margin-top: 20px;
+    padding: 10px 15px;
+    background: #00796b;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.back-button:hover {
+    background: #005249;
+}

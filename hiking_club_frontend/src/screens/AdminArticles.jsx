@@ -42,7 +42,8 @@ const AdminArticles = () => {
     });
 
     const initialDataAdd = {
-        memberId: '12345',
+        adminId: '12345',
+        adminName: 'Imansha',
     };
 
     const handleBackAdd = () => {
@@ -83,7 +84,6 @@ const AdminArticles = () => {
         setisEditingArticle(false);
     };
 
-    // Filter articles based on search term
     const filteredArticles = articleData.filter((article) => {
         return (
             article.topic.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -148,7 +148,11 @@ const AdminArticles = () => {
                                     type="text"
                                     placeholder="Search an Article"
                                     value={searchTerm}
-                                    onChange={(e) => setSearchTerm(e.target.value)}
+                                    onChange={(e) => {
+                                        setSearchTerm(e.target.value);
+                                        setCurrentPage(0); // Reset to first page when searching
+                                    }}
+                                    
                                 />
                             </div>
                         </div>

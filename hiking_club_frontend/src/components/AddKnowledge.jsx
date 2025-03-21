@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import "../styles/AddArticle.css";
+import "../styles/AddKnowledge.css";
 
-const ArticleFormAdd = ({ onSave, onBack, initialData }) => {
-  const [memberId, setMemberId] = useState(initialData?.adminId || '');
-  const [images, setImages] = useState(initialData?.images || []);
+const KnowledgeFormAdd = ({ onSave, onBack, initialData }) => {
   const [topic, setTopic] = useState(initialData?.topic || '');
   const [description, setDescription] = useState(initialData?.description || '');
-  const [author, setAuthor] = useState(initialData?.adminName || '');
+  const [images, setImages] = useState(initialData?.images || []);
 
   const handleImageChange = (event) => {
     const files = event.target.files;
@@ -25,7 +23,6 @@ const ArticleFormAdd = ({ onSave, onBack, initialData }) => {
   }, [images]);
 
   const handleSave = () => {
-    
     // Validate required fields before saving
     if (!topic.trim()) {
       alert("Topic cannot be empty!");
@@ -35,27 +32,17 @@ const ArticleFormAdd = ({ onSave, onBack, initialData }) => {
       alert("Description cannot be empty!");
       return;
     }
-    if (!memberId.trim()) {
-      alert("Member ID cannot be empty!");
-      return;
-    }
-    if (!author.trim()) {
-      alert("Author cannot be empty!");
-      return;
-    }
 
     onSave({
       topic,
       description,
-      memberId,
-      author,
-      images
+      images,
     });
   };
 
   return (
-    <div className="article-form">
-      <h2>Add an Article</h2>
+    <div className="knowledge-form">
+      <h2>Add Knowledge</h2>
 
       <div className="form-group">
         <label htmlFor="topic">Topic:</label>
@@ -73,26 +60,6 @@ const ArticleFormAdd = ({ onSave, onBack, initialData }) => {
           id="description"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
-        />
-      </div>
-
-      <div className="form-group">
-        <label htmlFor="memberId">Member ID:</label>
-        <input
-          type="number"
-          id="memberId"
-          value={memberId}
-          onChange={(e) => setMemberId(e.target.value)}
-        />
-      </div>
-
-      <div className="form-group">
-        <label htmlFor="author">Name:</label>
-        <input
-          type="text"
-          id="author"
-          value={author}
-          onChange={(e) => setAuthor(e.target.value)}
         />
       </div>
 
@@ -116,13 +83,13 @@ const ArticleFormAdd = ({ onSave, onBack, initialData }) => {
       </div>
 
       <div className="form-buttons">
-        <button type="save-button"  onClick={handleSave}>
+        <button type="save-button" onClick={handleSave}>
           Save
         </button>
-        <button type="back-button"  onClick={onBack}>Back</button>
+        <button type="back-button" onClick={onBack}>Back</button>
       </div>
     </div>
   );
 };
 
-export default ArticleFormAdd;
+export default KnowledgeFormAdd;
