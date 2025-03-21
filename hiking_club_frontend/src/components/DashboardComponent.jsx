@@ -32,14 +32,14 @@ const DashboardComponent = ({ searchTerm, handleSearchChange, handleFilterChange
                     Fellow Members
                 </button>
                 
-                <div className="search-bar">
+                {/* <div className="search-bar">
                     <input
                         type="text"
                         placeholder="Search Members"
                         value={searchTerm}
                         onChange={handleSearchChange}
                     />
-                </div>
+                </div> */}
             </div>
         </div>
     );

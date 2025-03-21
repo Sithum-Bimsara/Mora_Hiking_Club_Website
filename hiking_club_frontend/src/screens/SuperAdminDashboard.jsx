@@ -128,7 +128,7 @@ const SuperAdminDashboard = () => {
                                         <th>Member ID</th>
                                         <th>Role</th>
                                         <th>Member Type</th>
-                                        <th>Action</th>
+                                        {/* <th>Action</th> */}
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -138,9 +138,9 @@ const SuperAdminDashboard = () => {
                                             <td>{member.memberId}</td>
                                             <td>{member.role}</td>
                                             <td>{member.memberType}</td>
-                                            <td>
+                                            {/* <td>
                                                 <button onClick={() => handleEditClick(member)}>Edit</button>
-                                            </td>
+                                            </td> */}
                                         </tr>
                                     ))}
                                 </tbody>
