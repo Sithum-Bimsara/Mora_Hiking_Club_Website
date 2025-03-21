@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react';
 import "../styles/AddArticle.css";
 
 const ArticleFormAdd = ({ onSave, onBack, initialData }) => {
-  const [memberId, setMemberId] = useState(initialData?.memberId || '');
+  const [memberId, setMemberId] = useState(initialData?.adminId || '');
   const [images, setImages] = useState(initialData?.images || []);
   const [topic, setTopic] = useState(initialData?.topic || '');
   const [description, setDescription] = useState(initialData?.description || '');
-  const [author, setAuthor] = useState(initialData?.author || '');
+  const [author, setAuthor] = useState(initialData?.adminName || '');
 
   const handleImageChange = (event) => {
     const files = event.target.files;

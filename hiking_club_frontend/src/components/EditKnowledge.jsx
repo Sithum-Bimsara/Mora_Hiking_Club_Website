@@ -13,20 +13,21 @@ const KnowledgeFormEdit = ({ onSave, onDelete, onBack, initialData }) => {
   };
 
   const handleSave = () => {
-    if (!topic.trim()) {
-      alert("Topic cannot be empty!");
-      return;
-    }
-    if (!description.trim()) {
-      alert("Description cannot be empty!");
-      return;
-    }
+      if (!topic.trim()) {
+          alert("Topic cannot be empty!");
+          return;
+      }
+      if (!description.trim()) {
+          alert("Description cannot be empty!");
+          return;
+      }
 
-    onSave({
-      topic,
-      description,
-      images,
-    });
+      onSave({
+          id: initialData.id, // Ensure the ID is passed
+          topic,
+          description,
+          images,
+      });
   };
 
   const handleDelete = () => {
@@ -44,7 +45,7 @@ const KnowledgeFormEdit = ({ onSave, onDelete, onBack, initialData }) => {
   };
 
   return (
-    <div className="knowledge-form">
+    <div className="knowledge-edit-form">
       <h2>Edit Knowledge</h2>
       <div className="form-group">
         <label htmlFor="topic">Topic:</label>
@@ -95,9 +96,9 @@ const KnowledgeFormEdit = ({ onSave, onDelete, onBack, initialData }) => {
       </div>
 
       <div className="form-buttons">
-        <button type="button" onClick={handleSave}>Save</button>
-        <button type="button" onClick={handleBack}>Back</button>
-        <button type="button" className="delete" onClick={handleDelete}>Delete</button>
+        <button type="save-button" onClick={handleSave}>Save</button>
+        <button type="back-button" onClick={handleBack}>Back</button>
+        <button type="delete-button" className="delete" onClick={handleDelete}>Delete</button>
       </div>
     </div>
   );

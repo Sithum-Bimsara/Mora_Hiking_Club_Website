@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { use, useState } from "react";
 import AdminSideBar from "../components/AdminSideBar";
 import MemberForm from "../components/MemberDetails";
 import DashboardComponent from "../components/DashboardComponent";
@@ -25,6 +25,8 @@ const AdminDashboard = () => {
         }
         return membersArray;
     };
+
+    const adminRole = "Admin";
     
     const [members, setMembers] = useState(generateMembers());
 
@@ -105,7 +107,8 @@ const AdminDashboard = () => {
                         />
                     )}
                     {editingMember ? (
-                        <MemberForm memberData={editingMember} onSave={handleSave} onBack={handleBack} />
+                        <MemberForm memberData={editingMember} onSave={handleSave} onBack={handleBack} currentUserRole={adminRole} />
+
                     ) : (
                         <>
                             <table className="members-table">
