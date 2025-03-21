@@ -160,7 +160,7 @@ const Register = () => {
           <p className="Eligibility">
           Eligibility: <br /><br />
 ● Undergraduates from the 21, 22, 23 and 24 batches<br />
-● Undergraduates from faculty of architecture and faculty of medicine of the 20 th batch. <br /><br />
+● Undergraduates from 5 year architecture degree from Faculty of Architecture and Faculty of Medicine of the 20<sup>th</sup> batch. <br /><br />
 
 Please only proceed if you meet these requirements
           </p>
@@ -332,13 +332,19 @@ Please only proceed if you meet these requirements
               </div>
               <div className="form-group">
                 <label>Faculty:</label>
-                <input
-                  type="text"
+                <select
                   name="faculty"
                   value={formData.faculty}
                   onChange={handleChange}
                   required
-                />
+                >
+                  <option value="">Select your Faculty</option>
+                  <option value="Architecture">Architecture</option>
+                  <option value="Engineering">Engineering</option>
+                  <option value="IT">IT</option>
+                  <option value="Business">Business</option>
+                  <option value="Medicine">Medicine</option>
+                </select>
               </div>
               <div className="form-group">
                 <label>Degree Program:</label>
@@ -351,16 +357,20 @@ Please only proceed if you meet these requirements
                 />
               </div>
               <div className="form-group">
-                <label>Year:</label>
-                <input
-                  type="number"
+                <label>Batch:</label>
+                <select
                   name="level"
                   value={formData.level}
                   onChange={handleChange}
-                  min="1"
-                  max="5"
                   required
-                />
+                >
+                  <option value="">Select your batch</option>
+                  <option value="20">20</option>
+                  <option value="21">21</option>
+                  <option value="22">22</option>
+                  <option value="23">23</option>
+                  <option value="24">24</option>
+                </select>
               </div>
             </div>
 
