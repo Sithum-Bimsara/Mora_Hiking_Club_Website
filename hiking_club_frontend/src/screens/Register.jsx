@@ -159,7 +159,7 @@ const Register = () => {
 
           <p className="Eligibility">
           Eligibility: <br /><br />
-● Undergraduates from the 21,22, 23 and 24 batches,<br />
+● Undergraduates from the 21, 22, 23 and 24 batches<br />
 ● Undergraduates from faculty of architecture and faculty of medicine of the 20 th batch. <br /><br />
 
 Please only proceed if you meet these requirements

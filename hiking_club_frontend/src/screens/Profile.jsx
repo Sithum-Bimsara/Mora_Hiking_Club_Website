@@ -21,8 +21,8 @@ const Profile = () => {
   const [isEditingLog, setIsEditingLog] = useState(false);
   const [isEditingHistory, setIsEditingHistory] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [userLog, setUserLog] = useState("Hi, I am Sasmitha Jayasinghe");
-  const [userHistory, setUserHistory] = useState("Mehe giya ahare giya");
+  const [userLog, setUserLog] = useState("");
+  const [userHistory, setUserHistory] = useState("");
   const modalRef = useRef(null);
 
   const [userDetails, setUserDetails] = useState({
