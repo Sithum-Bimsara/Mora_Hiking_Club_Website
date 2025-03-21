@@ -555,15 +555,17 @@ Please only proceed if you meet these requirements
               <div className="form-group">
                 <label>Upload Payment Receipt:</label>
 
-                <p>Please note that inorder to activate your membership you have to pay a fee of Rs 500 /= and upload the receipt here</p>
+                <p>Please note that inorder to activate your membership you have to pay a fee of Rs 500 /= and upload the receipt here.
+
+                </p>
                 <input
                   type="file"
                   name="paymentReceipt"
                   onChange={handleChange}
-                  accept=".pdf,.jpg,.jpeg,.png" // Specify accepted file types
+                  accept=".jpg,.jpeg,.png" // Specify accepted file types
                   required
                 />
-                <p className="file-format-info">Accepted formats: PDF, JPG, JPEG, PNG</p>
+                <p className="file-format-info">Accepted formats: JPG, JPEG, PNG</p>
               </div>
             </div>
 
